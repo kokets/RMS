@@ -1,0 +1,69 @@
+/***************************************
+			 BODY STYLE
+***************************************/
+
+body { 
+	 margin:0;
+	 padding:0;
+	 }
+
+/***************************************
+			 BODY STYLE
+***************************************/
+.border-left-right 
+    {
+		border-left: dashed thin #E4E4E4;
+		border-right: dashed thin #E4E4E4;
+	}
+
+.banner { }
+
+.banner-box
+	{
+		height:225px;
+	}
+.banner-box1
+	{
+
+	}
+		
+	
+.box-image 
+	{
+		background-image:url(../images/bgbox-2.jpg);
+	
+	}
+.box-image1
+	{
+		background-image:url(../images/bgbox-3.jpg);
+	
+	}
+	
+.captions 
+   {
+	   position: absolute;
+	   margin-top:-150px;
+	   margin-left:50px;
+	   float:left; 
+   
+   }
+   
+ 
+ .text-box {
+	display:inline;
+    background-color:rgba(11,166,233, 0.9);;
+    color:#fff;
+	padding:3px 15px 3px 15px;
+	line-height:1.7;
+	text-shadow: 1px 0px 2px rgba(150, 150, 150, 1);
+	 }
+   
+/***************************************
+			 WRAPPERS
+***************************************/
+
+.wrappers {
+	padding:0px 60px;
+	margin: 0px 30px;
+}
+

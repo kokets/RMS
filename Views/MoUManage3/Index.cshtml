@@ -1,0 +1,441 @@
+@{
+    ViewData["Title"] = "Event Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+
+
+        .right-arrow {
+            display: flex;
+        }
+
+        .right-arrow-view {
+            width: 20px;
+            height: 20px
+        }
+
+       
+
+    </style>
+</head>
+<body>
+
+
+
+    <!--/***************************************/
+             ----   section-1  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section2 color-pellette-2">
+        <div class="row">
+            <div class="large-2 medium-12 small-12 padding_20 columns">
+                <img src="images/hsrclogo@2x.png" width="180px" class="logo" alt="" />
+
+            </div>
+
+            <div class="large-10 medium-12 small-12 columns padding_35 navigator">
+
+                <nav id="main-nav">
+
+                    <!-- Mobile menu toggle button (hamburger/x icon) -->
+                    <input id="main-menu-state" type="checkbox" />
+                    <label class="main-menu-btn" for="main-menu-state">
+                        <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+                    </label>
+
+
+                    <!-- Sample menu definition -->
+                    <ul id="main-menu" class="sm sm-mint color-pellette-0">
+                        <li><a asp-controller="TimeRecordings" asp-action="Index">Time Recording</a></li>
+                        <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="Projects1" asp-action="Index">Reports</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Perfomance indicators</a>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Projects Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Contract Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Program Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Employees Report </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Spend Procurement Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Project Budget Report</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Dataset Report</a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="has-submenu color-pellette-0">
+                                            <a asp-controller="MyGift" asp-action="Index">Data Set Reports</a>
+                                            <ul class="subg-menu color-pellette-0">
+                                                <li class="has-submenu color-pellette-0">
+                                                    <a asp-controller="DataSetReportKtree" asp-action="Index">Ktree file/Meta Data</a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li class=" color-pellette-0">
+                                            <a asp-controller="DataSetCitation" asp-action="Index">Dataset Citation Report</a>
+
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Interns </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportCy" asp-action="Index">Current Year</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportCyDegree" asp-action="Index">Current Year - by degree</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportCyUnit" asp-action="Index">Current Year - by Unit</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportCyRegion" asp-action="Index">Current Year - by Region</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportPyear" asp-action="Index">Previous Interns</a></li>
+
+                                    </ul>
+                                </li>
+
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MyGift" asp-action="Index">My Gift</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportActiveMou" asp-action="Index">Active MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportAllMou" asp-action="Index">All MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportRequest" asp-action="Index">MoUs Request</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="Collaborations1" asp-action="Index">Collabs</a></li>
+
+
+                        <li class="dropdowng color-pellette-0">
+                            <a href="#">Research output</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="color-pellette-0"><a asp-controller="EventRegistration" asp-action="Index">Output Registration</a></li>
+                                <li class="color-pellette-0"><a asp-controller="EventRegistration" asp-action="Index">Event Registration</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Budgets" asp-action="Index">Budgets</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Proposals" asp-action="Index">Proporsals</a>
+                        </li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift Register </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Add Gift</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="DataSet" asp-action="Index">DataSets</a></li>
+                                <li class="color-pellette-0"><a asp-controller="License" asp-action="Index">License Adminstrator</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUCreate" asp-action="Index">Create MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUActivity" asp-action="Index">MoU Activity</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage3" asp-action="Index">Manage MoU Requests(CEO)</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="TeamConfigure" asp-action="Index">TEAM MANAGEMENT</a></li>
+                        <li><a asp-controller="AccessGroups" asp-action="Index">ACCESS GROUPS</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--/***************************************/
+             ----   section-3  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section3 color-pellette-8 text-center">
+        <div class="row padding_40 ">
+            <div class="columns small-8 medium-centered small-centered large-centered">
+                <h4>Manage MoU requests(CEO View)</h4>
+                <p class="anim-text">Social science that makes a difference</p>
+            </div>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Back</a>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Home</a>
+        </div>
+    </div>
+
+
+    <div class="section5 color-pellette-5">
+        <div class="row collapse" data-equalizer>
+            <div class="large-12 columns ">
+                <div class="large-12 medium-12 columns padding_10 data-equalizer-watch">
+                    <div class="content-blocks content-blocks-0">
+                        <h3>Help With MoU Requests</h3>
+
+                        <div class="cards">
+                            <div class="card red">
+                                <p style="font-size: 15px; margin-top: 10px;"><span style="font-weight:bold">Name:</span> Ms Samantha Linn Coert</p>
+                                <p style="font-size: 15px;"><span style="font-weight:bold">Email:</span> slcoert@hsrc.ac.za</p>
+                                <p style="font-size: 15px;"><span style="font-weight:bold">Tel:</span> 021 466 7970</p>
+
+                            </div>
+                            <div class="card blue">
+                                <p style="font-size: 15px;"><span style="font-weight:bold">Name:</span> Dr Palesa Sekhejane</p>
+                                <p style="font-size: 15px;"><span style="font-weight:bold">Email:</span> PSekhejane@hsrc.ac.za</p>
+                            </div>
+                            <div class="card green">
+                                <p style="font-size: 15px;"><span style="font-weight:bold">Name:</span> Ms Lumka Luzipho</p>
+                                <p style="font-size: 15px;"><span style="font-weight:bold">Email:</span> lluzipho@hsrc.ac.za</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="section5 color-pellette-5">
+        <div class="row collapse" data-equalizer>
+            <div class="large-12 medium-12 small-12 columns">
+                <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
+
+
+                    <div class="content-blocks content-blocks-0  ">
+
+
+                        <div class="above-table">
+                            <div class="buttons-row ">
+
+                                <button class="download-buttons">Print</button>
+                                <button class="download-buttons">Copy</button>
+                                <button class="download-buttons">Excel</button>
+                                <button class="download-buttons">CSV</button>
+                                <div class="custom-text1">Show </div>
+                                <select class="custom-select" onchange="showNumberOfRows(this)">
+                                    <option value="---">---</option>
+
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="10">25</option>
+                                    <option value="35">35</option>
+                                    <option value="50">50</option>
+
+                                </select>
+                                <div class="custom-text2"> entries</div>
+                            </div>
+                            <div>
+                                <div class="search-box">
+                                    <input type="text" placeholder="Search" id="search-input" onkeyup="filterTable()">
+                                </div>
+                            </div>
+                        </div>
+
+                        <table id="event-table">
+
+                            <thead>
+                                <tr class="color-pellette-0">
+                                    <th scope="col" width="8%">Requester Name</th>
+                                    <th scope="col" width="6%">Date Captured</th>
+                                    <th scope="col" width="7%">Reference Number</th>
+                                    <th scope="col" width="6%">Mou Name</th>
+                                    <th scope="col" width="6%">MoU Unit </th>
+                                    <th scope="col" width="16%">Type of agreement</th>
+                                    <th scope="col" width="4%">Status</th>
+                                    <th scope="col" width="6%">Date Vetted</th>
+                                    <th scope="col" width="6%">Action</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">Govender, Koshenthree (Ms, K)		</td>
+                                    <td data-label="Reference Number">
+                                        19/MAR/19
+                                    </td>
+                                    <td data-label="MoU Name">2441	</td>
+                                    <td data-label="Type of Agreement">University of Alberta	</td>
+                                    <td data-label="Status">DGSD	</td>
+                                    <td data-label="Status">National/Regional/International		</td>
+                                    <td data-label="Status">3	</td>
+                                    <td data-label="Status">09/NOV/16		</td>
+
+                                    <td data-label="Action">
+                                        <div class="right-arrow">
+                                            <div class="right-arrow-view">
+                                                <img src="images/pencil.png" class="logo" alt="" />
+                                            </div>
+                                            <div>
+
+                                                <a asp-controller="MoUManage3Edit" asp-action="Index"> Edit</a>
+
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                </tr>
+
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">Govender, Koshenthree (Ms, K)		</td>
+                                    <td data-label="Reference Number">
+                                        19/MAR/19
+                                    </td>
+                                    <td data-label="MoU Name">2441	</td>
+                                    <td data-label="Type of Agreement">University of Alberta	</td>
+                                    <td data-label="Status">DGSD	</td>
+                                    <td data-label="Status">National/Regional/International		</td>
+                                    <td data-label="Status">3	</td>
+                                    <td data-label="Status">09/NOV/16		</td>
+
+                                    <td data-label="Action">
+                                        <div class="right-arrow">
+                                            <div class="right-arrow-view">
+                                                <img src="images/pencil.png" class="logo" alt="" />
+                                            </div>
+                                            <div>
+
+                                                <a asp-controller="MoUManage3Edit" asp-action="Index"> Edit</a>
+
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                </tr>
+
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">Govender, Koshenthree (Ms, K)		</td>
+                                    <td data-label="Reference Number">
+                                        19/MAR/19
+                                    </td>
+                                    <td data-label="MoU Name">2441	</td>
+                                    <td data-label="Type of Agreement">University of Alberta	</td>
+                                    <td data-label="Status">DGSD	</td>
+                                    <td data-label="Status">National/Regional/International		</td>
+                                    <td data-label="Status">3	</td>
+                                    <td data-label="Status">09/NOV/16		</td>
+
+                                    <td data-label="Action">
+                                        <div class="right-arrow">
+                                            <div class="right-arrow-view">
+                                                <img src="images/pencil.png" class="logo" alt="" />
+                                            </div>
+                                            <div>
+
+                                                <a asp-controller="MoUManage3Edit" asp-action="Index"> Edit</a>
+
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">Govender, Koshenthree (Ms, K)		</td>
+                                    <td data-label="Reference Number">
+                                        19/MAR/19
+                                    </td>
+                                    <td data-label="MoU Name">2441	</td>
+                                    <td data-label="Type of Agreement">University of Alberta	</td>
+                                    <td data-label="Status">DGSD	</td>
+                                    <td data-label="Status">National/Regional/International		</td>
+                                    <td data-label="Status">3	</td>
+                                    <td data-label="Status">09/NOV/16		</td>
+
+                                    <td data-label="Action">
+                                        <div class="right-arrow">
+                                            <div class="right-arrow-view">
+                                                <img src="images/pencil.png" class="logo" alt="" />
+                                            </div>
+                                            <div>
+
+                                                <a asp-controller="MoUManage3Edit" asp-action="Index"> Edit</a>
+
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                </tr>
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--/***************************************/
+                  Java scripts
+    /***************************************/-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/js.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="~/js/JavaScript.js"></script>
+
+
+    <!-- SmartMenus jQuery plugin -->
+    <script type="text/javascript" src="js/jquery.smartmenus.js"></script>
+
+    <!-- SmartMenus jQuery init -->
+    <script type="text/javascript">
+        $(function () {
+            $('#main-menu').smartmenus({
+                subMenusSubOffsetX: 1,
+                subMenusSubOffsetY: -8
+            });
+        });
+    </script>
+    <script>
+        const animationsHandler = new AnimationsHandler();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            animationsHandler.initTextAnimation();
+            animationsHandler.applyTableAnimation();
+        });
+    </script>
+
+
+ 
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+
+</body>

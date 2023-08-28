@@ -1,0 +1,475 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<head>
+    <style>
+
+        .cards {
+            display: flex;
+            flex-direction: column;
+            justify-content:center;
+            align-items:center;
+            gap: 15px;
+        }
+
+            .cards .red {
+                background-color: grey;
+            }
+
+            .cards .blue {
+                background-color: #3b82f6;
+            }
+
+            .cards .green {
+                background-color: grey;
+            }
+
+            .cards .card {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                text-align: center;
+                width: 250px;
+                border-radius: 10px;
+                color: white;
+                cursor: pointer;
+                transition: 400ms;
+            }
+
+
+
+
+                .cards .card:hover {
+                    transform: scale(1.1, 1.1);
+                }
+
+            .cards:hover > .card:not(:hover) {
+                filter: blur(10px);
+                transform: scale(0.9, 0.9);
+            }
+       
+
+        .comments-container {
+            max-height: 500px; /* Set a maximum height for the container */
+            overflow-y: auto; /* Add vertical scrollbar when the content exceeds the maximum height */
+        }
+
+        .event-form {
+            align-content: center;
+            justify-content: center;
+        }
+
+        .save-buttons {
+            background-color: grey;
+            height: 35px;
+            width: 100px;
+            border-radius: 6px;
+            color: white;
+            font-family: inherit;
+            margin-top: 15px;
+        }
+
+        .cancel-buttons {
+            background-color: grey;
+            height: 35px;
+            width: 70px;
+            border-radius: 6px;
+            color: white;
+            font-family: inherit;
+            margin-top: 15px;
+        }
+
+        .buttons-row {
+            display: flex; /* Nested flex container */
+            gap: 10px; /* Add spacing between buttons and select */
+        }
+
+        .section5 {
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+        }
+
+        .required {
+            display: flex;
+            color: red;
+            justify-content: flex-end;
+        }
+
+       
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+
+
+    <!--/***************************************/
+             ----   section-1  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section2 color-pellette-2">
+        <div class="row">
+            <div class="large-2 medium-12 small-12 padding_20 columns">
+                <img src="images/hsrclogo@2x.png" width="180px" class="logo" alt="" />
+
+            </div>
+
+            <div class="large-10 medium-12 small-12 columns padding_35 navigator">
+
+                <nav id="main-nav">
+
+                    <!-- Mobile menu toggle button (hamburger/x icon) -->
+                    <input id="main-menu-state" type="checkbox" />
+                    <label class="main-menu-btn" for="main-menu-state">
+                        <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+                    </label>
+
+
+                    <!-- Sample menu definition -->
+                    <ul id="main-menu" class="sm sm-mint">
+                        <li><a asp-controller="Projects1" asp-action="Index">Time Recording</a></li>
+            
+                        <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="Projects1" asp-action="Index">Reports</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Perfomance indicators</a>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Projects Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Contract Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Program Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Employees Report </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Spend Procurement Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Project Budget Report</a></li>
+
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Dataset Report</ </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="DatasetCitation" asp-action="Index">Dataset Citation  Report</a></li>
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Interns </a></li>
+                              <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MyGift" asp-action="Index">My Gift</a></li>
+   
+                                    </ul>
+                                </li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportActiveMou" asp-action="Index">Active MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportAllMou" asp-action="Index">All MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportRequest" asp-action="Index">MoUs Request</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Projects1" asp-action="Index">Budget</a>
+                        </li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift Register </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Add Gift</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="DataSet" asp-action="Index">DataSets</a></li>
+
+                                <li class="color-pellette-0"><a asp-controller="License" asp-action="Index">License Adminstrator</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUCreate" asp-action="Index">Create MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUActivity" asp-action="Index">MoU Activity</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage3" asp-action="Index">Manage MoU Requests(CEO)</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="TeamConfigure" asp-action="Index">TEAM MANAGEMENT</a></li>
+                        <li><a asp-controller="AccessGroups" asp-action="Index">ACCESS GROUPS</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!--/***************************************/
+             ----   section-3  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section3 color-pellette-8 text-center">
+        <div class="row padding_40 ">
+            <div class="columns small-8 medium-centered small-centered large-centered">
+                <h4>Create MoU Request</h4>
+                <p>Social science that makes a difference</p>
+            </div>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Back</a>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Home</a>
+        </div>
+    </div>
+
+
+    <div class="section5 color-pellette-5">
+        <div class="row collapse" data-equalizer>
+            <div class="large-12 columns ">
+                <section class="step-wizard">
+                    <ul class="step-wizard-list">
+                        <li class="step-wizard-item" onclick="startAnimation(1)">
+                            <span class="progress-count">1</span>
+                            <span class="progress-label">Request MoU</span>
+                        </li>
+                        <li class="step-wizard-item current-item" onclick="startAnimation(2)">
+                            <span class="progress-count">2</span>
+                            <span class="progress-label">Upload MoU</span>
+                        </li>
+                        <li class="step-wizard-item" onclick="startAnimation(3)">
+                            <span class="progress-count">3</span>
+                            <span class="progress-label">Legal Vetting the MoU</span>
+                        </li>
+                        <li class="step-wizard-item" onclick="startAnimation(4)">
+                            <span class="progress-count">4</span>
+                            <span class="progress-label">Send OCEO</span>
+                        </li>
+                        <li class="step-wizard-item" onclick="startAnimation(5)">
+                            <span class="progress-count">5</span>
+                            <span class="progress-label">Send CEO</span>
+                        </li>
+                        <li class="step-wizard-item" onclick="startAnimation(6)">
+                            <span class="progress-count">6</span>
+                            <span class="progress-label">Upload into the System</span>
+                        </li>
+                    </ul>
+                </section>
+
+            </div>
+
+        </div>
+    </div>
+
+   
+
+        <div class="section5 color-pellette-5">
+            <div class="row collapse" data-equalizer>
+                <div class="large-9 columns ">
+                    <div class="large-12 medium-12 columns padding_10 data-equalizer-watch">
+                  
+                        <div class="content-blocks content-blocks-0">
+
+
+
+
+                        <h3>   <a asp-controller="MoUManage1" asp-action="Index">List MoU Requests</a> </h3>
+
+                            <div class="required"><span class="mandatory-star">*</span> Required </div>
+
+                            <form>
+                                <div class="">
+                                    <div class="search-section">
+
+                                        <div class="medium-12 cell ">
+                                            <label>
+                                                Division/Unit/Centre
+                                                <select>
+                                                    <option value="D -GE Support Service">-----</option>
+                                                    <option value="D -GE Support Service">D -GE Support Service</option>
+
+                                                </select>
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Requester  <span class="mandatory-star">*</span>
+
+                                                <select>
+                                                    <option value="D -GE Support Service">-----</option>
+                                                    <option value="D -GE Support Service">D -GE Support Service</option>
+
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Representative contact details                                            <span class="mandatory-star">*</span>
+
+                                                <input type="text" />
+                                            </label>
+                                        </div>
+
+
+
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                MoU requested <span class="mandatory-star">*</span>
+
+                                                <input type="text" />
+
+                                            </label>
+                                        </div>
+
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Type of agreement
+                                                <span class="mandatory-star">*</span>
+
+                                                <select>
+                                                    <option value="D -GE Support Service">-----</option>
+                                                    <option value="D -GE Support Service">D -GE Support Service</option>
+
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Name of Institution of partner  <span class="mandatory-star">*</span>
+                                                <input type="text" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Type of institution                                          <span class="mandatory-star">*</span>
+
+                                                <select>
+                                                    <option value="D -GE Support Service">-----</option>
+                                                    <option value="D -GE Support Service">D -GE Support Service</option>
+
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Purpose for the MOU (Strategic alignment)                                        <span class="mandatory-star">*</span>
+
+                                                <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
+
+                                            </label>
+                                        </div>
+
+
+                                        <div class="medium-12 cell buttons-row">
+                                            <button class="save-buttons">Create Request</button>
+                                            <button asp-controller="GiftDisplay" asp-action="Index" class="cancel-buttons">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="large-3 medium-12 small-12 columns widgets">
+                    <div class="large-12 medium-6 columns padding_10 data-equalizer-watch">
+                        <div class="content-blocks content-blocks-widget-1">
+                            <div class="wgt" >
+                                <h3>Help With MoU Requests</h3>
+                            <div class="cards">
+                                <div class="card red">
+                                    <p style="font-size: 15px; margin-top: 10px;"><span style="font-weight:bold">Name:</span> Ms Samantha Linn Coert</p>
+                                    <p style="font-size: 15px;"><span style="font-weight:bold">Email:</span> slcoert@hsrc.ac.za</p>
+                                    <p style="font-size: 15px;"><span style="font-weight:bold">Tel:</span> 021 466 7970</p>
+
+                                </div>
+                                <div class="card blue">
+                                    <p style="font-size: 15px;"><span style="font-weight:bold">Name:</span> Dr Palesa Sekhejane</p>
+                                    <p style="font-size: 15px;"><span style="font-weight:bold">Email:</span> PSekhejane@hsrc.ac.za</p>
+                                </div>
+                                <div class="card green">
+                                    <p style="font-size: 15px;"><span style="font-weight:bold">Name:</span> Ms Lumka Luzipho</p>
+                                    <p style="font-size: 15px;"><span style="font-weight:bold">Email:</span> lluzipho@hsrc.ac.za</p>
+                                </div>
+                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--/***************************************/
+                  Java scripts
+    /***************************************/-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/js.js"></script>
+    <script src="~/js/JavaScript.js"></script>
+
+
+    <!-- SmartMenus jQuery plugin -->
+    <script type="text/javascript" src="js/jquery.smartmenus.js"></script>
+
+    <!-- SmartMenus jQuery init -->
+    <script type="text/javascript">
+        $(function () {
+            $('#main-menu').smartmenus({
+                subMenusSubOffsetX: 1,
+                subMenusSubOffsetY: -8
+            });
+        });
+
+
+   
+    </script>
+    <script>
+        const animationsHandler = new AnimationsHandler();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            animationsHandler.initTextAnimation();
+
+            const stepWizardItems = document.querySelectorAll('.step-wizard-item');
+
+            stepWizardItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    animationsHandler.startAnimation(index + 1); // Call the startAnimation method with the step number (1-based index)
+                });
+            });
+        });
+
+  
+    </script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+
+
+
+
+</body>

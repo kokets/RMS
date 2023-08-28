@@ -1,0 +1,508 @@
+﻿@model List<TimeRecordings>
+@{
+	ViewData["Title"] = "Login Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+	<style>
+		a {
+			color: blue;
+			text-decoration: underline;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+			a:hover {
+				color: red;
+				text-decoration: none;
+			}
+
+		.above-table {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.buttons-row {
+			display: flex;
+			align-items: center;
+		}
+
+			.buttons-row > div {
+				display: flex; /* Nested flex container */
+				gap: 10px; /* Add spacing between buttons and select */
+			}
+
+			.buttons-row button {
+				margin-right: 10px; /* Adjust the value to add the desired space between buttons */
+			}
+
+		.download-buttons {
+			background-color: grey;
+			height: 35px;
+			width: 50px;
+			border-radius: 6px;
+			color: white;
+			font-family: inherit;
+			margin-bottom: 10px;
+		}
+
+		.custom-text1 {
+			margin-right: 5px;
+			margin-bottom: 14px;
+		}
+
+		.custom-text2 {
+			margin-left: 5px;
+			margin-bottom: 14px;
+		}
+
+		.custom-select {
+			height: 35px;
+			width: 50px;
+			border: 1px solid #cacaca;
+			font-size: 1rem;
+			font-family: inherit;
+			padding: 8px 16px;
+			color: #0a0a0a;
+			background-color: #fefefe;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>");
+			background-repeat: no-repeat;
+		}
+
+		table {
+			overflow: hidden;
+		}
+
+
+
+		tr {
+			transition: all 1s ease-in-out;
+		}
+
+			tr.slide-out {
+				transform: translateX(100%);
+			}
+
+			tr.slide-in {
+				transform: translateX(0);
+			}
+
+		nav .dropdowng-menu {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			list-style: none;
+			background-color: #34495e;
+			font-family: Arial;
+			width: 200px;
+			padding: 0;
+			text-align: center;
+			display: none;
+		}
+
+			nav .dropdowng-menu li {
+				border-bottom: 5px solid #2c3e50;
+			}
+
+				nav .dropdowng-menu li a {
+					display: block;
+					color: #ecf0f1;
+					text-decoration: none;
+					padding: 10px;
+				}
+
+				nav .dropdowng-menu li:first-child a:after {
+					float: right;
+					margin-left: -35px;
+					margin-right: 5px;
+				}
+
+		/* Show sub-menu on hover */
+		nav .dropdowng:hover .dropdowng-menu {
+			display: block;
+		}
+
+		nav .dropdowng .dropdowng-menu li .disabled {
+			color: #888;
+			pointer-events: none;
+		}
+
+
+	</style>
+</head>
+<body>
+
+
+
+	<!--/***************************************/
+			 ----   section-2  ----
+		 ----   OTHER DEFENITIONS  ----
+	/***************************************/-->
+
+	<div class="section2 color-pellette-2">
+		<div class="row">
+			<div class="large-2 medium-12 small-12 padding_20 columns">
+				<img src="images/hsrclogo@2x.png" width="180px" class="logo" alt="" />
+
+			</div>
+
+			<div class="large-10 medium-12 small-12 columns padding_35 navigator">
+
+				<nav id="main-nav">
+
+					<!-- Mobile menu toggle button (hamburger/x icon) -->
+					<input id="main-menu-state" type="checkbox" />
+					<label class="main-menu-btn" for="main-menu-state">
+						<span class="main-menu-btn-icon"></span> Toggle main menu visibility
+					</label>
+
+
+					<!-- Sample menu definition -->
+					<ul id="main-menu" class="sm sm-mint">
+						<li><a asp-controller="Projects1" asp-action="Index">Time Recording</a></li>
+						<li>
+							<a href="#">About</a>
+							<ul>
+								<li><a href="#">Introduction to SmartMenus jQuery</a></li>
+								<li><a href="#">Demos + themes</a></li>
+								<li><a href="#">The author</a></li>
+								<li>
+									<a href="#">The company</a>
+									<ul>
+										<li><a href="#">About Vadikom</a></li>
+										<li><a href="#">Projects</a></li>
+										<li><a href="#">Services</a></li>
+										<li><a href="#">Privacy policy</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
+						<li>
+							<a asp-controller="Projects1" asp-action="Index">Budget</a>
+						</li>
+						<li class="dropdowng">
+							<a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
+							<ul class="dropdowng-menu">
+								<li><a asp-controller="GiftDisplay" asp-action="Index">Gift Register</a></li>
+							</ul>
+						</li>						<li><a asp-controller="TeamConfigure" asp-action="Index">TEAM MANAGEMENT</a></li>
+						<li><a asp-controller="AccessGroups" asp-action="Index">ACCESS GROUPS</a></li>
+					</ul>
+				</nav>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!--/***************************************/
+			 ----   section-3  ----
+		 ----   OTHER DEFENITIONS  ----
+	/***************************************/-->
+
+	<div class="section3 color-pellette-8 text-center">
+		<div class="row padding_40 ">
+			<div class="columns small-8 medium-centered small-centered large-centered">
+				<h4>Reports</h4>
+			
+			</div>
+			<a asp-controller="Home" asp-action="Index"
+	  class="button radius padding_10">Back</a>
+			<a asp-controller="Home" asp-action="Index"
+	  class="button radius padding_10">Home</a>
+		</div>
+		</div>
+	</div>
+	<!--/***************************************/
+			 ----   section-4  ----
+		 ----   OTHER DEFENITIONS  ----
+	/***************************************/-->
+	<div class="section5 color-palette-5">
+		<div class="row collapse" data-equalizer>
+			<div class="large-6 medium-1 small-12 columns">
+				<div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
+					<div class="content-blocks content-blocks-0">
+						<h3>Record Daily Hours</h3>
+						<form>
+							<div class="search-section">
+								<div class="medium-12 cell">
+									<label for="project">Project:</label>
+									<input type="text" id="project" />
+								</div>
+								<div class="medium-12 cell">
+									<label for="date">Date:</label>
+									<input type="text" id="date" />
+
+								</div>
+								<div class="medium-12 cell">
+									<label for="hours">Hours Worked:</label>
+									<input type="text" id="hours" />
+								</div>
+								<div class="padding_10">
+									<a asp-controller="Home" asp-action="Index" class="button radius padding_10">Submit</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--/***************************************/
+			 ----   section-5  ----
+		 ----   OTHER DEFENITIONS  ----
+	/***************************************/-->
+
+	<div class="section5 color-pellette-5">
+		<div class="row collapse" data-equalizer>
+			<div class="large-12 medium-1 small-12 columns">
+				<div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
+					<div class="content-blocks content-blocks-0">
+						<h3>Reports</h3>
+						<table id="event-table">
+
+							<thead>
+								<tr class="color-pellette-0">
+									<th scope="col" width="7%">Status</th>
+									
+									<th scope="col" width="35%">Indicator No.</th>
+									<th scope="col" width="10%">Key Performance Indicator</th>
+									<th scope="col" width="10%">Unit Annual Target</th>
+									<th scope="col" width="7%">HSRC Annual Target</th>
+									<th scope="col" width="35%">Performance (YTD - Cumulative)</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td scope="row" data-label="PROJECT">Locked</td>
+									<td data-label="TITLE"></td>
+									<td data-label="TITLE">IT Surplus Funds Project</td>
+									<td data-label="TITLE">IT Surplus Funds Project</td>
+									<td data-label="TITLE">IT Surplus Funds Project</td>
+									<td data-label="TITLE">IT Surplus Funds Project</td>
+
+								</tr>
+								<tr>
+									<td scope="row" data-label="PROJECT">1</td>
+									<td data-label="TITLE">IT Surplus Funds Project</td>
+									<td data-label="Edit" class="down color-pellette-1"><a asp-controller="Edit" asp-action="Index"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+									<td data-label="Edit" class="color-pellette-4 down"><a asp-controller="Configure" asp-action="Index"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+								</tr>
+								<tr>
+									<td scope="row" data-label="PROJECT">1</td>
+									<td data-label="TITLE">IT Surplus Funds Project</td>
+									<td data-label="Edit" class="down color-pellette-1"><a asp-controller="Edit" asp-action="Index"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+									<td data-label="Edit" class="color-pellette-4 down"><a asp-controller="Configure" asp-action="Index"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+								</tr>
+								<tr>
+									<td scope="row" data-label="PROJECT">1</td>
+									<td data-label="TITLE">IT Surplus Funds Project</td>
+									<td data-label="Edit" class="down color-pellette-1"><a asp-controller="Edit" asp-action="Index"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+									<td data-label="Edit" class="color-pellette-4 down"><a asp-controller="Configure" asp-action="Index"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+								</tr>
+								<tr>
+									<td scope="row" data-label="PROJECT">1</td>
+									<td data-label="TITLE">IT Surplus Funds Project</td>
+									<td data-label="Edit" class="down color-pellette-1"><a asp-controller="Edit" asp-action="Index"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+									<td data-label="Edit" class="color-pellette-4 down"><a asp-controller="Configure" asp-action="Index"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!--
+			<div class="large-3 medium-12 small-12 columns widgets">
+				<div class="large-12 medium-6 columns padding_10 data-equalizer-watch">
+					<div class="content-blocks content-blocks-widget-1">
+						<div class="wgt">
+							<h3>Filter</h3>
+							<form>
+								<div class="">
+									<div class="search-section">
+
+										<div class="medium-12 cell ">
+											<label>
+												Budget year
+												<select>
+													<option value="2021/22">2021/22</option>
+													<option value="2021/22">2021/22</option>
+													<option value="2021/22">2021/22</option>
+													<option value="2021/22">2021/22</option>
+												</select>
+											</label>
+										</div>
+										<div class="medium-12 cell">
+											<label>
+												Research programme
+												<select>
+													<option value="D -GE Support Service">D -GE Support Service</option>
+													<option value="D -GE Support Service">D -GE Support Service</option>
+													<option value="D -GE Support Service">D -GE Support Service</option>
+													<option value="D -GE Support Service">D -GE Support Service</option>
+												</select>
+											</label>
+										</div>
+										<div class="medium-12 cell">
+											<label>
+												Cut Off Date
+												<select>
+													<option value="Show all">Show all</option>
+													<option value="Show all">Show all</option>
+													<option value="Show all">Show all</option>
+													<option value="Show all">Show all</option>
+												</select>
+											</label>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+					-->
+		</div>
+
+
+
+
+	</div>
+
+	<!--/***************************************/
+			 ----   section-6  ----
+		 ----   OTHER DEFENITIONS  ----
+	/***************************************/-->
+	<div class="section6 color-pellette-5 padding_20">
+		<div class="row collapse color-pellette-5 hide-for-large show-for-small-only">
+			<div class="wrappon">
+				<div class="large-12 color-pellette-2 columns up-section">
+					<div class="large-3 medium-6 small-6 columns padding_20">
+						<div class="blocks blocks-1">
+							<div class="large-7 medium-7 small-12 columns padding_40"><h3>Uploaded Documents for the month <br><hlite>59%</hlite></h3></div>
+							<div class="large-5 medium-5 small-12 columns padding_20 hide"><img src="images/Group81.png" alt="" /></div>
+						</div>
+					</div>
+					<div class="large-3 medium-6 small-6 columns padding_20">
+						<div class="blocks blocks-2">
+							<div class="large-7 medium-7 small-12 columns padding_40"><h3>Data captured for the for the month<br><hlite>80%</hlite></h3></div>
+							<div class="large-5 medium-5 small-12 columns padding_20 hide"><img src="images/graph-report.png" alt="" /></div>
+
+						</div>
+					</div>
+					<div class="large-3 medium-6 small-6 columns padding_20">
+						<div class="blocks blocks-3">
+
+							<div class="large-7 medium-7 small-12 columns padding_30"><h3>Data modifications for the month<br><hlite>40%</hlite></h3></div>
+							<div class="large-5 medium-5 small-12 columns padding_20 hide"><img src="images/Group112.png" alt="" /></div>
+
+						</div>
+					</div>
+					<div class="large-3 medium-6 small-6 columns padding_20">
+						<div class="blocks blocks-4">
+							<div class="large-12 columns padding_20">
+								<h3>LATEST DATA ENTRIES </h3>
+								<ul>
+									<li>Interpark South Africa Pty Ltd</li>
+									<li>Interpark South Africa Pty Ltd</li>
+								</ul>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--/***************************************/
+				  Java scripts
+	/***************************************/-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+	<script type="text/javascript" src="js/js.js"></script>
+
+	<!-- SmartMenus jQuery plugin -->
+	<script type="text/javascript" src="js/jquery.smartmenus.js"></script>
+
+	<!-- SmartMenus jQuery init -->
+	<script type="text/javascript">
+		$(function () {
+			$('#main-menu').smartmenus({
+				subMenusSubOffsetX: 1,
+				subMenusSubOffsetY: -8
+			});
+		});
+		//Table Animation start
+
+		
+
+
+		//Table Animation end
+
+
+		//Text animation start
+		var textWrapper = document.querySelector('.anim-text');
+		textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+		anime.timeline({ loop: true })
+			.add({
+				targets: '.anim-text .letter',
+				scale: [4, 1],
+				opacity: [0, 1],
+				translateZ: 0,
+				easing: "easeOutExpo",
+				duration: 950,
+				delay: (el, i) => 70 * i
+			}).add({
+				targets: '.anim-text',
+				opacity: 0,
+				duration: 1000,
+				easing: "easeOutExpo",
+				delay: 1000
+			});
+				//Text animation end
+	</script>
+	   <script>
+        const rows = Array.from(document.querySelectorAll('tr'));
+
+        function slideOut(row) {
+            row.classList.add('slide-out');
+        }
+
+        function slideIn(row, index) {
+            setTimeout(function () {
+                row.classList.remove('slide-out');
+                row.classList.add('slide-in');
+            }, (index + 5) * 200);
+        }
+
+        rows.forEach(slideOut);
+
+        rows.forEach(slideIn);
+    </script>
+	<script src="js/vendor/what-input.js"></script>
+	<script src="js/vendor/foundation.js"></script>
+	<script type="text/javascript" src="script.js">	</script>
+
+
+
+
+</body>

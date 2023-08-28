@@ -1,0 +1,971 @@
+@{
+    ViewData["Title"] = "Data Set";
+}
+
+<head>
+    <script src="~/js/JavaScript.js"></script>
+
+    <style>
+        /*memorandum of request styling start*/
+        .cards-list {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        figure {
+            display: grid;
+            border-radius: 1rem;
+            overflow: hidden;
+            cursor: pointer;
+            margin: 0 10px; /* Add some margin between the cards */
+        }
+
+            figure > * {
+                grid-area: 1/1;
+                transition: 0.4s;
+            }
+
+            figure figcaption {
+                display: grid;
+                align-items: end;
+                font-size: 25px;
+                font-weight: bold;
+                color: #0000;
+                padding: 0.75rem;
+                background: var(--c, #0009);
+                clip-path: inset(0 var(--_i, 100%) 0 0);
+                -webkit-mask: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+                -webkit-mask-composite: xor;
+                -webkit-mask-clip: text, padding-box;
+                margin: -1px;
+                justify-content: center;
+            }
+
+            figure:hover figcaption {
+                --_i: 0%;
+            }
+
+            figure:hover img {
+                transform: scale(1.2);
+            }
+
+            figure .card_image {
+                width: 100px;
+                height: 100px;
+                border-radius: 1rem;
+                overflow: hidden;
+            }
+
+                figure .card_image img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 1rem;
+                    object-fit: cover;
+                }
+
+
+    </style>
+</head>
+<body>
+
+
+
+    <!--/***************************************/
+             ----   section-1  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section2 color-pellette-2">
+        <div class="row">
+            <div class="large-2 medium-12 small-12 padding_20 columns">
+                <img src="images/hsrclogo@2x.png" width="180px" class="logo" alt="" />
+
+            </div>
+
+            <div class="large-10 medium-12 small-12 columns padding_35 navigator">
+
+                <nav id="main-nav">
+
+                    <!-- Mobile menu toggle button (hamburger/x icon) -->
+                    <input id="main-menu-state" type="checkbox" />
+                    <label class="main-menu-btn" for="main-menu-state">
+                        <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+                    </label>
+
+
+                    <!-- Sample menu definition -->
+                    <ul id="main-menu" class="sm sm-mint">
+                        <li><a asp-controller="Projects1" asp-action="Index">Time Recording</a></li>
+                        <li>
+                            <a href="#">About</a>
+                            <ul>
+                                <li><a href="#">Introduction to SmartMenus jQuery</a></li>
+                                <li><a href="#">Demos + themes</a></li>
+                                <li><a href="#">The author</a></li>
+                                <li>
+                                    <a href="#">The company</a>
+                                    <ul>
+                                        <li><a href="#">About Vadikom</a></li>
+                                        <li><a href="#">Projects</a></li>
+                                        <li><a href="#">Services</a></li>
+                                        <li><a href="#">Privacy policy</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="Projects1" asp-action="Index">Reports</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Perfomance indicators</a>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Projects Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Contract Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Program Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Employees Report </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Spend Procurement Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Project Budget Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Dataset Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Interns </a></li>
+                                <li class="color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Gift </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MyGift" asp-action="Index">My Gift</a></l>
+                                    </ul>
+                                </li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportActiveMou" asp-action="Index">Active MoUs</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportAllMou" asp-action="Index">All MoUs</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportRequest" asp-action="Index">MoUs Request</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                        <li>
+                            <a asp-controller="Projects1" asp-action="Index">Budget</a>
+                        </li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift Register </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Add Gift</a></l>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="License" asp-action="Index">License Adminstrator</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUCreate" asp-action="Index">Create MoU Request</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUActivity" asp-action="Index">MoU Activity</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage3" asp-action="Index">Manage MoU Requests(CEO)</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="TeamConfigure" asp-action="Index">TEAM MANAGEMENT</a></li>
+                        <li><a asp-controller="AccessGroups" asp-action="Index">ACCESS GROUPS</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--/***************************************/
+             ----   section-3  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section3 color-pellette-8 text-center">
+        <div class="row padding_40 ">
+            <div class="columns small-8 medium-centered small-centered large-centered">
+                <h4>Data Set - Project Level</h4>
+                <p class="anim-text">Social science that makes a difference</p>
+                <a asp-controller="DataSet" asp-action="Index"
+                   class="button radius padding_10">Back</a>
+                <a asp-controller="Home" asp-action="Index"
+                   class="button radius padding_10">Home</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section5 color-pellette-5">
+        <div class="row collapse" data-equalizer>
+            <div class="large-12 medium-12 small-12 columns">
+                <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
+
+
+                    <div class="content-blocks content-blocks-0  ">
+
+                        <div class="cards-list">
+                            <figure class="card 1">
+                                <div class="card_image">
+                                    <img src="~/images/control-panel.png" Card 1" />
+                                </div>
+                                <figcaption>
+
+                                    <a asp-controller="DataSet" asp-action="Index">
+                                        Control Panel
+                                    </a>
+                                </figcaption>
+                            </figure>
+
+                            <figure class="card 2">
+                                <div class="card_image">
+                                    <img src="~/images/presentation.png" Card 2" />
+                                </div>
+                                <figcaption>
+
+                                    <a asp-controller="MoUReportAllMou" asp-action="Index">
+                                        Introduction
+                                    </a>
+                                </figcaption>
+                            </figure>
+
+                            <figure class="card 3">
+                                <div class="card_image">
+                                    <img src="~/images/agreement.png" Card 3" />
+                                </div>
+                                <figcaption>
+
+                                    <a onclick="toggleForm('form1')">
+    Related<br>Documents
+</a>
+
+
+                                </figcaption>
+                            </figure>
+
+                            <figure class="card 3">
+                                <div class="card_image">
+                                    <img src="~/images/data-collection.png" Card 4" />
+                                </div>
+                                <figcaption>
+                                    <a asp-controller="MoUReportRequest" asp-action="Index">
+                                        Collections
+                                    </a>
+
+                                </figcaption>
+                            </figure>  <figure class="card 3">
+                                <div class="card_image">
+                                    <img src="~/images/all.png" Card 5" />
+                                </div>
+                                <figcaption>
+                                    <a asp-controller="MoUReportRequest" asp-action="Index">
+                                        Research <br >Outputs <br >on collect
+                                    </a>
+
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+           <div class="section5 color-pellette-5" id="form2" style="display:none;" >
+            <div class="row collapse" data-equalizer>
+                <div class="large-12 columns ">
+                    <div class="large-12 medium-12 columns padding_10 data-equalizer-watch">
+                        <div class="content-blocks content-blocks-0">
+                                           <div style="width: 100%; background-color:grey; justify-content:center;align-items:center; display:flex; height:50px; border-radius:6px;" >
+                                    <h4 style="color: #fff;">   New related document</h4>
+                                </div>
+
+                              <div style="display: flex; justify-content: flex-start; width: 100%; align-items:center; ">
+                                  <div>
+
+                                    <a id="back-link" asp-controller="DataSetProjectLevel" asp-action="Index">
+                                            <img src="images/left-arrow.png" class="logo" alt="" style="height: 30px; width: 30px;" /> Back
+
+                                      </a>
+
+                                  </div>
+                                    </div>
+
+                                            <form>
+                                                <div class="">
+                                                    <div class="search-section">
+
+                                                        <div class="medium-12 cell ">
+                                                            <label>
+                                                                Collection
+                                                                <select>
+                                                                    <option value="D -GE Support Service">---Link on the project level only--</option>
+                                                                    <option value="D -GE Support Service">Unemployment</option>
+
+                                                                </select>
+
+                                                            </label>
+                                                        </div>
+                                                        <div class="medium-12 cell">
+                                                            <label>
+                                                                Document Title  <span class="mandatory-star">*</span>
+
+                                                                <input type="text" />
+
+                                                            </label>
+                                                        </div>
+                                                        <div class="medium-12 cell">
+                                                            <label>
+                                                                Version                                         <span class="mandatory-star">*</span>
+
+                                                                <input type="text" />
+                                                            </label>
+                                                        </div>
+                                                        <div class="medium-12 cell">
+                                                            <label>
+                                                               Version Comment <span class="mandatory-star">*</span>
+                                                                <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
+                                                            </label>
+                                                        </div>
+                                                        <div class="medium-12 cell">
+                                                            <label>
+                                                                Type 
+                                                                <span class="mandatory-star">*</span>
+
+                                                                <select>
+                                                                    <option value="D -GE Support Service">---Please select--</option>
+                                                                    <option value="D -GE Support Service">Text</option>
+                                                                    <option value="D -GE Support Service">Image</option>
+                                                                    <option value="D -GE Support Service">Video</option>
+                                                                    <option value="D -GE Support Service">Audio</option>
+                                                                </select>
+                                                            </label>
+                                                        </div>
+                                                        <div class="medium-12 cell" style="display:flex; align-items:center; ">
+                                                            <label>
+                                                               Other Type
+                                                                <span class="mandatory-star">*</span>
+
+                                                                <select>
+                                                                    <option value="D -GE Support Service">---Please select--</option>
+                                                                    <option value="D -GE Support Service">Introductory information</option>
+                                                                    <option value="D -GE Support Service">Data input Notes</option>
+                                                                    <option value="D -GE Support Service">Research results</option>
+                                                                    <option value="D -GE Support Service">Event Programme</option>
+
+                                                                </select>
+                                                            </label>
+                                                           <a href="#modal-popup1" style="display: flex; justify-content: center; align-items: center; margin-left: 10px; background-color: grey; height: 35px; width: 100px; border-radius: 6px; color: white; font-family: inherit; margin-top: 15px; text-align: center;">
+    New
+</a>
+
+                                                        </div>
+                                                        <div class="medium-12 cell">
+                                                            <label>
+                                                                Creator/Author  <span class="mandatory-star">*</span>
+                                                                <input type="text" />
+
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="medium-14 cell" style="display:flex; align-items:center;">
+                                                            <label >
+                                                                Format
+                                                                <span class="mandatory-star">*</span>
+                                                                <select>
+                                                                    <option value="D -GE Support Service">---Please select--</option>
+                                                                    <option value="D -GE Support Service">Microsoft Word</option>
+                                                                    <option value="D -GE Support Service">PDF</option>
+                                                                    <option value="D -GE Support Service">Digital Image</option>
+                                                                    <option value="D -GE Support Service">Excel</option>
+
+                                                                </select>
+
+                                                            </label>
+                                                                  <a href="#modal-popup2" style="display: flex; justify-content: center; align-items: center; margin-left: 10px; background-color: grey; height: 35px; width: 100px; border-radius: 6px; color: white; font-family: inherit; margin-top: 15px; text-align: center;">
+    New
+</a>
+
+                                                        </div>
+                                                        <div class="medium-12 cell">
+                                                            <label>
+                                                                Description                                     
+                                                                <span class="mandatory-star">*</span>
+                                                                        <textarea id="editor1">Type your text here...</textarea>
+                                                            </label>
+                                                        </div>
+
+                                                            <div class="medium-12 cell">
+                                                            <label>
+                                                                Short Description                                    
+                                                                <span class="mandatory-star">*</span>
+                                                                        <textarea id="editor2">Type your text here...</textarea>
+                                                            </label>
+                                                        </div>
+
+
+                                                          <div class="medium-12 cell">
+                                                                <label>
+                                                                  Comment                                      <span class="mandatory-star">*</span>
+
+                                                                    <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
+
+                                                                </label>
+                                                            </div>
+
+                                                               <div class="medium-12 cell">
+                                                            <label>
+                                                                Publisher  <span class="mandatory-star">*</span>
+                                                                <input type="text" />
+
+                                                            </label>
+                                                        </div>
+                                                           <div class="medium-12 cell">
+                                                            <label>
+                                                                Date Of Creation  <span class="mandatory-star">*</span>
+                                                                <input type="date" />
+
+                                                            </label>
+                                                        </div>
+                                                           <div class="medium-12 cell">
+                                                            <label>
+                                                                Contributor  <span class="mandatory-star">*</span>
+                                                                <input type="text" />
+
+                                                            </label>
+                                                        </div>
+                                                          <div class="medium-12 cell">
+                                                                <label>
+                                                                  Copyright                                     <span class="mandatory-star">*</span>
+
+                                                                    <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
+
+                                                                </label>
+                                                            </div>
+                                                              <div class="medium-12 cell">
+                                                                <label>
+                                                                  Geographic Coverage                                   <span class="mandatory-star">*</span>
+
+                                                                    <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
+
+                                                                </label>
+                                                            </div>
+
+                                                            <div class="medium-12 cell">
+                                                            <label>
+                                                                Source <span class="mandatory-star">*</span>
+                                                                <input type="text" />
+
+                                                            </label>
+                                                        </div>
+                                                        <div class="medium-12 cell" style="display:flex; align-items:center;">
+                                                            <label>
+                                                                Language  <span class="mandatory-star">*</span>
+                                                                <select>
+                                                                    <option value="D -GE Support Service">---Please select--</option>
+                                                                    <option value="D -GE Support Service">Sepedi</option>
+                                                                    <option value="D -GE Support Service">English</option>
+                                                                    <option value="D -GE Support Service">venda</option>
+                                                                    <option value="D -GE Support Service">Afrikaans</option>
+
+                                                                </select>
+
+                                                            </label>
+                                                                                            <a href="#modal-popup2" style="display: flex; justify-content: center; align-items: center; margin-left: 10px; background-color: grey; height: 35px; width: 100px; border-radius: 6px; color: white; font-family: inherit; margin-top: 15px; text-align: center;">
+    New
+</a>
+
+                                                        </div>
+
+                                                        <div class="medium-12 cell">
+                                                            <label>
+                                                                Relation <span class="mandatory-star">*</span>
+                                                                <input type="text" />
+
+                                                            </label>
+                                                        </div>
+                                                        <div class="medium-12 cell">
+                                                            <label>
+                                                                Provenance <span class="mandatory-star">*</span>
+                                                                <input type="text" />
+
+                                                            </label>
+                                                        </div>
+                                                        <div class="medium-12 cell">
+                                                            <label>
+                                                                Actual Policy <span class="mandatory-star">*</span>
+                                                                <input type="text" />
+
+                                                            </label>
+                                                        </div>
+                                                        <div class="medium-12 cell">
+                                                            <label>
+                                                                Identifier <span class="mandatory-star">*</span>
+                                                                <input type="text" />
+
+                                                            </label>
+                                                        </div>
+                                                        <div class="medium-12 cell">
+                                                            <label>
+                                                                Rightsholder <span class="mandatory-star">*</span>
+                                                                <input type="text" />
+
+                                                            </label>
+                                                        </div>
+                                                        <div class="medium-12 cell buttons-row">
+                                                                  <a  style="display: flex; justify-content: center; align-items: center;  background-color: grey; height: 35px; width: 150px; border-radius: 6px; color: white; font-family: inherit; margin-top: 15px; text-align: center;">Save Information</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section5 color-pellette-5" id="form3" >
+            <div class="row collapse" data-equalizer>
+                <div class="large-12 columns ">
+                    <div class="large-12 medium-12 columns padding_10 data-equalizer-watch">
+                        <div class="content-blocks content-blocks-0">
+                            <div style="width: 100%; background-color:grey; justify-content:center;align-items:center; display:flex; height:50px; border-radius:6px;">
+                                <h4 style="color: #fff;">   Edit related document</h4>
+                            </div>
+
+                            <div style="display: flex; justify-content: flex-start; width: 100%; align-items: center;margin-top: 15px; ">
+                                <div style="display: flex; gap: 15px;">
+                                    <a id="back-link" asp-controller="DataSetProjectLevel" asp-action="Index">
+                                        <img src="images/left-arrow.png" class="logo" alt="" style="height: 30px; width: 30px;" /> Back
+                                    </a>
+                                    <a onclick="toggleForms('form-2', 'form-1')">
+                                        <img src="images/pencil.png" class="logo" alt="" style="height: 30px; width: 30px;" /> Edit
+                                    </a>
+                                    <a onclick="toggleForms('form-2', 'form-1')">
+                                        <img src="images/delete.png" class="logo" alt="" style="height: 30px; width: 30px;" /> Delete
+                                    </a>
+                                    <a onclick="toggleForms('form-2', 'form-1')">
+                                        <img src="images/assign.png" class="logo" alt="" style="height: 30px; width: 30px;" /> Keywords
+                                    </a>
+                                    <a onclick="toggleForms('form-2', 'form-1')">
+                                        <img src="images/country.png" class="logo" alt="" style="height: 30px; width: 30px;" /> Countries
+                                    </a>
+                                    <a onclick="toggleForms('form-2', 'form-1')">
+                                        <img src="images/assign.png" class="logo" alt="" style="height: 30px; width: 30px;" /> Status
+                                    </a>
+                                </div>
+                            </div>
+
+                            <form>
+                                <div class="">
+                                    <div class="search-section">
+
+                                        <div class="medium-12 cell ">
+                                            <label>
+                                                Collection
+                                                <select>
+                                                    <option value="D -GE Support Service">---Link on the project level only--</option>
+                                                    <option value="D -GE Support Service">Unemployment</option>
+
+                                                </select>
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell ">
+                                            <label>
+                                                Citation
+                                                <div>Human Sciences Research Council (2023) A longitudinal view of unemployment in South Africa (UNEMPL): UNEMPL 1991-2007 Municipalities Metadata dara. Version 1. Pretoria: Human Sciences Research Council (HSRC). http://dx.doi.org/doi:</div>
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Document Title  <span class="mandatory-star">*</span>
+
+                                                <input type="text" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Version                                         <span class="mandatory-star">*</span>
+
+                                                <input type="text" />
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Version Comment <span class="mandatory-star">*</span>
+                                                <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Type
+                                                <span class="mandatory-star">*</span>
+
+                                                <select>
+                                                    <option value="D -GE Support Service">---Please select--</option>
+                                                    <option value="D -GE Support Service">Text</option>
+                                                    <option value="D -GE Support Service">Image</option>
+                                                    <option value="D -GE Support Service">Video</option>
+                                                    <option value="D -GE Support Service">Audio</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell" style="display:flex; align-items:center; ">
+                                            <label>
+                                                Other Type
+                                                <span class="mandatory-star">*</span>
+
+                                                <select>
+                                                    <option value="D -GE Support Service">---Please select--</option>
+                                                    <option value="D -GE Support Service">Introductory information</option>
+                                                    <option value="D -GE Support Service">Data input Notes</option>
+                                                    <option value="D -GE Support Service">Research results</option>
+                                                    <option value="D -GE Support Service">Event Programme</option>
+
+                                                </select>
+                                            </label>
+                                            <a onclick="modalHandler.openModal('myModal4')"  style="display: flex; justify-content: center; align-items: center; margin-left: 10px; background-color: grey; height: 35px; width: 100px; border-radius: 6px; color: white; font-family: inherit; margin-top: 15px; text-align: center;">
+                                                New
+                                            </a>
+
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Creator/Author  <span class="mandatory-star">*</span>
+                                                <input type="text" />
+
+                                            </label>
+                                        </div>
+
+                                        <div class="medium-14 cell" style="display:flex; align-items:center;">
+                                            <label>
+                                                Format
+                                                <span class="mandatory-star">*</span>
+                                                <select>
+                                                    <option value="D -GE Support Service">---Please select--</option>
+                                                    <option value="D -GE Support Service">Microsoft Word</option>
+                                                    <option value="D -GE Support Service">PDF</option>
+                                                    <option value="D -GE Support Service">Digital Image</option>
+                                                    <option value="D -GE Support Service">Excel</option>
+
+                                                </select>
+
+                                            </label>
+                                            <a onclick="modalHandler.openModal('myModal5')" style="display: flex; justify-content: center; align-items: center; margin-left: 10px; background-color: grey; height: 35px; width: 100px; border-radius: 6px; color: white; font-family: inherit; margin-top: 15px; text-align: center;">
+                                                New
+                                            </a>
+
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Description
+                                                <span class="mandatory-star">*</span>
+                                                <textarea id="editor1">Type your text here...</textarea>
+                                            </label>
+                                        </div>
+
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Short Description
+                                                <span class="mandatory-star">*</span>
+                                                <textarea id="editor2">Type your text here...</textarea>
+                                            </label>
+                                        </div>
+
+
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Comment                                      <span class="mandatory-star">*</span>
+
+                                                <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
+
+                                            </label>
+                                        </div>
+
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Publisher  <span class="mandatory-star">*</span>
+                                                <input type="text" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Date Of Creation  <span class="mandatory-star">*</span>
+                                                <input type="date" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Contributor  <span class="mandatory-star">*</span>
+                                                <input type="text" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Copyright                                     <span class="mandatory-star">*</span>
+
+                                                <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Geographic Coverage                                   <span class="mandatory-star">*</span>
+
+                                                <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
+
+                                            </label>
+                                        </div>
+
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Source <span class="mandatory-star">*</span>
+                                                <input type="text" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell" style="display:flex; align-items:center;">
+                                            <label>
+                                                Language  <span class="mandatory-star">*</span>
+                                                <select>
+                                                    <option value="D -GE Support Service">---Please select--</option>
+                                                    <option value="D -GE Support Service">Sepedi</option>
+                                                    <option value="D -GE Support Service">English</option>
+                                                    <option value="D -GE Support Service">venda</option>
+                                                    <option value="D -GE Support Service">Afrikaans</option>
+
+                                                </select>
+
+                                            </label>
+                                            <a onclick="modalHandler.openModal('myModal6')" style="display: flex; justify-content: center; align-items: center; margin-left: 10px; background-color: grey; height: 35px; width: 100px; border-radius: 6px; color: white; font-family: inherit; margin-top: 15px; text-align: center;">
+                                                New
+                                            </a>
+
+                                        </div>
+
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Relation <span class="mandatory-star">*</span>
+                                                <input type="text" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Provenance <span class="mandatory-star">*</span>
+                                                <input type="text" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Accrual Policy <span class="mandatory-star">*</span>
+                                                <input type="text" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Identifier <span class="mandatory-star">*</span>
+                                                <input type="text" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Rightsholder <span class="mandatory-star">*</span>
+                                                <input type="text" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell buttons-row">
+                                            <a style="display: flex; justify-content: center; align-items: center;  background-color: grey; height: 35px; width: 150px; border-radius: 6px; color: white; font-family: inherit; margin-top: 15px; text-align: center;">Update Information</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="myModal3" class="my-modal1">
+            <div class="my-modal-content">
+                <span class="my-close" onclick="closeModal('myModal3')">&times;</span>
+
+                <form>
+                    <div class="">
+                        <div class="search-section">
+
+
+                            <div class="medium-12 cell">
+                                <label>
+                                    Collection Name<span class="mandatory-star">*</span>
+
+                                    <input type="text" />
+
+                                </label>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+
+                <div class="my-clearfix">
+                    <button type="button" class="my-cancelbtn" onclick="closeModal('myModal3')">Cancel</button>
+                    <button type="button" class="my-deletebtn1" onclick="deleteAccount()">ok</button>
+                </div>
+            </div>
+        </div>
+        <div id="myModal4" class="my-modal1">
+            <div class="my-modal-content-indicator">
+                <span class="my-close" onclick="modalHandler.closeModal('myModal4')">&times;</span>
+
+                <div class="my-modal-content-header">
+                    <h4>  Create New Object Type </h4>
+
+                </div>
+                <div class="my-modal-content-body">
+                    <form>
+                        <div class="">
+                            <div class="search-section">
+
+
+                                <div class="medium-12 cell">
+                                    <label>
+                                        Document Title  <span class="mandatory-star">*</span>
+
+                                        <input type="text" />
+
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="my-clearfix">
+                    <button type="button" class="my-cancelbtn" onclick="modalHandler.closeModal('myModal4')">Cancel</button>
+                    <button type="button" class="my-deletebtn1" onclick="deleteAccount()">Ok</button>
+                </div>
+            </div>
+        </div>
+        <div id="myModal5" class="my-modal1">
+            <div class="my-modal-content-indicator">
+                <span class="my-close" onclick="modalHandler.closeModal('myModal5')">&times;</span>
+                <div class="my-modal-content-header">
+                    <h4>Create New File Format</h4>
+
+                </div>
+                <div class="my-modal-content-body">
+                    <form>
+                        <div class="">
+                            <div class="search-section">
+
+
+                                <div class="medium-12 cell">
+                                    <label>
+                                        File Description <span class="mandatory-star">*</span>
+
+                                        <input type="text" />
+
+                                    </label>
+                                </div>
+                                <div class="medium-12 cell">
+                                    <label>
+                                        File Extension  <span class="mandatory-star">*</span>
+
+                                        <input type="text" />
+
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="my-clearfix">
+                    <button type="button" class="my-cancelbtn" onclick="modalHandler.closeModal('myModal5')">Cancel</button>
+                    <button type="button" class="my-deletebtn1" onclick="deleteAccount()">Ok</button>
+                </div>
+            </div>
+        </div>
+        <div id="myModal6" class="my-modal1">
+            <div class="my-modal-content-indicator">
+                <span class="my-close" onclick="modalHandler.closeModal('myModal6')">&times;</span>
+                <div class="my-modal-content-header">
+                    <h4>Create New Language</h4>
+
+                </div>
+                <div class="my-modal-content-body">
+                    <form>
+                        <div class="">
+                            <div class="search-section">
+
+
+                                <div class="medium-12 cell">
+                                    <label>
+                                        Language Type<span class="mandatory-star">*</span>
+
+                                        <input type="text" />
+
+                                    </label>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="my-clearfix">
+                    <button type="button" class="my-cancelbtn" onclick="modalHandler.closeModal('myModal6')">Cancel</button>
+                    <button type="button" class="my-deletebtn1" onclick="deleteAccount()">Ok</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!--/***************************************/
+                  Java scripts
+    /***************************************/-->
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.tiny.cloud/1/your-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+        <script src="~/js/JavaScript.js"></script>
+
+        <script>
+            modalHandler.registerModal('myModal');
+            modalHandler.registerModal('myModal1');
+            modalHandler.registerModal('myModal2');
+            modalHandler.registerModal('myModal3');
+            modalHandler.registerModal('myModal4');
+            modalHandler.registerModal('myModal5');
+            modalHandler.registerModal('myModal6');
+            function handleActionChange(selectId) {
+                modalHandler.handleActionChange(selectId);
+            }
+        </script>
+
+</body>

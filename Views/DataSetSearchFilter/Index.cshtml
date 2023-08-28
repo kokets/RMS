@@ -1,0 +1,333 @@
+@{
+    ViewData["Title"] = "Data Set";
+}
+
+<body>
+
+
+
+    <!--/***************************************/
+             ----   section-1  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section2 color-pellette-2">
+        <div class="row">
+            <div class="large-2 medium-12 small-12 padding_20 columns">
+                <img src="images/hsrclogo@2x.png" width="180px" class="logo" alt="" />
+
+            </div>
+
+            <div class="large-10 medium-12 small-12 columns padding_35 navigator">
+
+                <nav id="main-nav">
+
+                    <!-- Mobile menu toggle button (hamburger/x icon) -->
+                    <input id="main-menu-state" type="checkbox" />
+                    <label class="main-menu-btn" for="main-menu-state">
+                        <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+                    </label>
+
+
+                    <!-- Sample menu definition -->
+                    <ul id="main-menu" class="sm sm-mint">
+                        <li><a asp-controller="Projects1" asp-action="Index">Time Recording</a></li>
+                        <li>
+                            <a href="#">About</a>
+                            <ul>
+                                <li><a href="#">Introduction to SmartMenus jQuery</a></li>
+                                <li><a href="#">Demos + themes</a></li>
+                                <li><a href="#">The author</a></li>
+                                <li>
+                                    <a href="#">The company</a>
+                                    <ul>
+                                        <li><a href="#">About Vadikom</a></li>
+                                        <li><a href="#">Projects</a></li>
+                                        <li><a href="#">Services</a></li>
+                                        <li><a href="#">Privacy policy</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="Projects1" asp-action="Index">Reports</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Perfomance indicators</a>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Projects Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Contract Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Program Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Employees Report </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Spend Procurement Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Project Budget Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Dataset Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Interns </a></li>
+
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MyGift" asp-action="Index">My Gift</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportActiveMou" asp-action="Index">Active MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportAllMou" asp-action="Index">All MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportRequest" asp-action="Index">MoUs Request</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Projects1" asp-action="Index">Budget</a>
+                        </li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift Register </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Add Gift</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="License" asp-action="Index">License Adminstrator</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUCreate" asp-action="Index">Create MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUActivity" asp-action="Index">MoU Activity</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage3" asp-action="Index">Manage MoU Requests(CEO)</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="TeamConfigure" asp-action="Index">TEAM MANAGEMENT</a></li>
+                        <li><a asp-controller="AccessGroups" asp-action="Index">ACCESS GROUPS</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--/***************************************/
+             ----   section-3  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section3 color-pellette-8 text-center">
+        <div class="row padding_40 ">
+            <div class="columns small-8 medium-centered small-centered large-centered">
+                <h4>Data Set Report - Determine for which data sets these fields were omitted</h4>
+                <p class="anim-text">Social science that makes a difference</p>
+            </div>
+            <a asp-controller="DataSet" asp-action="Index"
+               class="button radius padding_10">Back</a>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Home</a>
+        </div>
+    </div>
+
+
+
+    <div class="section5 color-pellette-5">
+        <div class="row collapse" data-equalizer>
+            <div class="large-12 medium-12 small-12 columns">
+                <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
+
+
+                    <div class="content-blocks content-blocks-0  ">
+
+
+                        <div class="above-table">
+                            <div class="buttons-row ">
+
+
+                                <select  onchange="showNumberOfRows(this)">
+                             
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="10">25</option>
+                                    <option value="35">35</option>
+                                    <option value="50">50</option>
+
+                                </select>
+                                <div > entries</div>
+                            </div>
+                            <div>
+                                <div class="search-box">
+                                    <input type="text" placeholder="Search" id="search-input" onkeyup="filterTable()">
+                                </div>
+                            </div>
+                        </div>
+
+                        <table id="event-table">
+
+                            <thead>
+                                <tr class="color-pellette-0">
+                                    <th scope="col" width="10%">Project No.</th>
+                                    <th scope="col" width="10%">DataSet Id</th>
+                                    <th scope="col" width="10%">Missing Data</th>
+                                    <th scope="col" width="10%">Action</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">GKNAAA</td>
+                                    <td data-label="Mou Unit">Test data set 6		</td>
+                                    <td data-label="Reference Number">
+                                        Citation
+                                        Data set description
+                                        Geographic coverage
+                                        Time method
+                                        Origin
+                                        Granularity
+                                        Data type
+                                        Kind of data
+                                        Production year
+                                    </td>
+                                   
+                                    <td data-label="MoU Name">
+                                        <div class="right-arrow">
+                                            <div class="right-arrow-view">
+                                                <img src="images/view.png" class="logo" alt="" />
+                                            </div>
+                                            <div>
+                                                <a asp-controller="DataSetLevel" asp-action="Index"> View datasets</a>
+                                            </div>
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-popup1" class="overlay">
+        <div class="popup">
+            <h2>Unit Programmes</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                <div class="outer-container">
+                    <div class="centered-container">
+                        <div class="center-container-1">
+                            <div class="left-box">
+                                <h4>Available Programmes</h4>
+
+                                <select class="select-below" size="5" id="options">
+                                    <option value="Option 1">Office of the CEO</option>
+                                    <option value="Option 2">Finance</option>
+                                    <option value="Option 3">Ge Support Service</option>
+                                    <option value="Option 4">Deputy CEO</option>
+                                    <option value="Option 5">Center of science ,technology and innovation indicators</option>
+                                    <option value="Option 4">Incliusive Economic development</option>
+                                    <option value="Option 4">Human and social capabilities</option>
+                                    <option value="Option 4">Impact Center</option>
+
+                                </select>
+                            </div>
+                            <div class="middle-box">
+                                <button class="move-buttons" id="moveRight" onclick="moveOption('options', 'selectedOptions')">&gt;</button>
+                                <button class="move-buttons" id="moveLeft" onclick="moveOption('selectedOptions', 'options')">&lt;</button>
+                            </div>
+
+                            <div class="right-box">
+                                <h4>Assigned Programmes</h4>
+
+                                <select size="5" id="selectedOptions"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="medium-12 cell" style="  display: flex; gap: 10px; flex-basis:revert ">
+                    <button style="     background-color: grey;
+            height: 35px;
+            width: 100px;
+            border-radius: 6px;
+            color: white;
+            font-family: inherit;
+            margin-top: 15px;">
+                        Save
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--/***************************************/
+                  Java scripts
+    /***************************************/-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/js.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="~/js/JavaScript.js"></script>
+
+
+    <!-- SmartMenus jQuery plugin -->
+    <script type="text/javascript" src="js/jquery.smartmenus.js"></script>
+
+    <!-- SmartMenus jQuery init -->
+    <script type="text/javascript">
+        $(function () {
+            $('#main-menu').smartmenus({
+                subMenusSubOffsetX: 1,
+                subMenusSubOffsetY: -8
+            });
+        });
+        function toggleModal() {
+            const modal = document.getElementById('modal-1');
+            const btn = document.getElementById('myBtn');
+            if (modal.style.display === 'block') {
+                modal.style.display = 'none';
+            } else {
+                modal.style.display = 'block';
+            }
+        }
+
+    </script>
+    <script>
+        const animationsHandler = new AnimationsHandler();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            animationsHandler.initTextAnimation();
+            animationsHandler.applyTableAnimation();
+        });
+    </script>
+
+
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+
+</body>

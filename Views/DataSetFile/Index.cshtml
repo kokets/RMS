@@ -1,0 +1,569 @@
+@{
+    ViewData["Title"] = "Data Sets";
+}
+
+<body>
+
+
+
+    <!--/***************************************/
+             ----   section-1  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section2 color-pellette-2">
+        <div class="row">
+            <div class="large-2 medium-12 small-12 padding_20 columns">
+                <img src="images/hsrclogo@2x.png" width="180px" class="logo" alt="" />
+
+            </div>
+
+            <div class="large-10 medium-12 small-12 columns padding_35 navigator">
+
+                <nav id="main-nav">
+
+                    <!-- Mobile menu toggle button (hamburger/x icon) -->
+                    <input id="main-menu-state" type="checkbox" />
+                    <label class="main-menu-btn" for="main-menu-state">
+                        <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+                    </label>
+
+
+                    <!-- Sample menu definition -->
+                    <ul id="main-menu" class="sm sm-mint">
+                        <li><a asp-controller="Projects1" asp-action="Index">Time Recording</a></li>
+                        <li>
+                            <a href="#">About</a>
+                            <ul>
+                                <li><a href="#">Introduction to SmartMenus jQuery</a></li>
+                                <li><a href="#">Demos + themes</a></li>
+                                <li><a href="#">The author</a></li>
+                                <li>
+                                    <a href="#">The company</a>
+                                    <ul>
+                                        <li><a href="#">About Vadikom</a></li>
+                                        <li><a href="#">Projects</a></li>
+                                        <li><a href="#">Services</a></li>
+                                        <li><a href="#">Privacy policy</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="Projects1" asp-action="Index">Reports</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Perfomance indicators</a>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Projects Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Contract Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Program Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Employees Report </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Spend Procurement Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Project Budget Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Dataset Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Interns </a></li>
+                                <li class="color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Gift </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MyGift" asp-action="Index">My Gift</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportActiveMou" asp-action="Index">Active MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportAllMou" asp-action="Index">All MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportRequest" asp-action="Index">MoUs Request</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Projects1" asp-action="Index">Budget</a>
+                        </li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift Register </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Add Gift</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="DataSet" asp-action="Index">DataSets</a></li>
+
+                                <li class="color-pellette-0"><a asp-controller="License" asp-action="Index">License Adminstrator</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUCreate" asp-action="Index">Create MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUActivity" asp-action="Index">MoU Activity</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage3" asp-action="Index">Manage MoU Requests(CEO)</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="TeamConfigure" asp-action="Index">TEAM MANAGEMENT</a></li>
+                        <li><a asp-controller="AccessGroups" asp-action="Index">ACCESS GROUPS</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--/***************************************/
+             ----   section-3  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section3 color-pellette-8 text-center">
+        <div class="row padding_40 ">
+            <div class="columns small-8 medium-centered small-centered large-centered">
+                <h4>DataSet MetaData - file status </h4>
+                <p class="anim-text">Social science that makes a difference</p>
+            </div>
+            <a asp-controller="Dataset" asp-action="Index"
+               class="button radius padding_10">Back</a>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Home</a>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="section5 color-pellette-5">
+        <div class="row collapse" data-equalizer>
+            <div class="large-12 medium-12 small-12 columns">
+                <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
+
+
+                    <div class="content-blocks content-blocks-0  ">
+                        <!--add new file implementing view for adding license type-->
+             
+                        <div class="above-table">
+                            <div class="buttons-row ">
+                            </div>
+                            <div>
+                                <div class="search-box">
+                                    <input type="text" placeholder="Search" id="search-input" onkeyup="filterTable()">
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <table class="table-sort" id="event-table">
+
+                            <thead>
+                                <tr >
+                                    <th colspan="3"></th>
+
+                                    <th class="color-pellette-0" colspan="3">File Status</th>
+                                    <th class="color-pellette-0" colspan="3">Metada</th>
+                                    <th colspan="1"></th>
+
+                                </tr>
+                                <tr class="color-pellette-0 ">
+                                    <th scope="col" width="10%">Dataset  Id</th>
+                                    <th scope="col" width="6%">Project no.</th>
+                                    <th scope="col" width="18%">File Name</th>
+                                    <th scope="col" width="6%">Status</th>
+                                    <th scope="col" width="6%">Date </th>
+                                    <th scope="col" width="5%">Audience </th>
+                                    <th scope="col" width="6%">Status</th>
+                                    <th scope="col" width="6%">Date </th>
+                                    <th scope="col" width="5%">Audience </th>
+                                    <th scope="col" width="8%">Action </th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">ATIMSS 2003 School Questionnaire</td>
+                                    <td data-label="MoU Name">PRAFAA</td>
+                                    <td data-label="MoU Name">AEDR_TB2019_DR_TB_Facilities.sas7bcat [Download]</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2022-01-31</td>
+                                    <td data-label="MoU Name">Project team</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2011-06-15</td>
+                                    <td data-label="MoU Name">Project team	</td>
+                                    <td data-label="Action">
+                                          <label>
+                                            <select id="action-select1" onchange="handleActionChange('action-select1')">
+                                                <option value="D -GE Support Service">- select-</option>
+                                                <option value="Edit">Edit</option>
+                                                          
+                                                        </select>
+                                                    </label>
+                    
+                                        </td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">ATIMSS 2003 School Questionnaire</td>
+                                    <td data-label="MoU Name">PRAFAA</td>
+                                    <td data-label="MoU Name">AEDR_TB2019_DR_TB_Facilities.sas7bcat [Download]</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2022-01-31</td>
+                                    <td data-label="MoU Name">Project team</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2011-06-15</td>
+                                    <td data-label="MoU Name">Project team	</td>
+                                    <td data-label="Action">
+                                           <label>
+                                            <select id="action-select1" onchange="handleActionChange('action-select1')">
+                                                <option value="D -GE Support Service">-select-</option>
+                                                <option value="Edit">Edit</option>
+                                                          
+                                                        </select>
+                                                    </label>
+                                    </td>
+
+                                </tr>
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">ATIMSS 2003 School Questionnaire</td>
+                                    <td data-label="MoU Name">PRAFAA</td>
+                                    <td data-label="MoU Name">AEDR_TB2019_DR_TB_Facilities.sas7bcat [Download]</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2022-01-31</td>
+                                    <td data-label="MoU Name">Project team</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2011-06-15</td>
+                                    <td data-label="MoU Name">Project team	</td>
+                                    <td data-label="Action">
+                                        <label>
+                                            <select id="action-select1" onchange="handleActionChange('action-select1')">
+                                                <option value="D -GE Support Service">- select-</option>
+                                                <option value="Edit">Edit</option>
+
+                                            </select>
+                                        </label>
+                                        </td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">ATIMSS 2003 School Questionnaire</td>
+                                    <td data-label="MoU Name">PRAFAA</td>
+                                    <td data-label="MoU Name">AEDR_TB2019_DR_TB_Facilities.sas7bcat [Download]</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2022-01-31</td>
+                                    <td data-label="MoU Name">Project team</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2011-06-15</td>
+                                    <td data-label="MoU Name">Project team	</td>
+                                    <td data-label="Action">
+                                        <label>
+                                            <select id="action-select1" onchange="handleActionChange('action-select1')">
+
+                                                <option value="D -GE Support Service">-select-</option>
+                                                <option value="Edit">Edit</option>
+
+                                            </select>
+                                        </label>
+                                    </td>
+                                </tr>
+
+                                    <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">ATIMSS 2003 School Questionnaire</td>
+                                    <td data-label="MoU Name">PRAFAA</td>
+                                    <td data-label="MoU Name">AEDR_TB2019_DR_TB_Facilities.sas7bcat [Download]</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2022-01-31</td>
+                                    <td data-label="MoU Name">Project team</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2011-06-15</td>
+                                    <td data-label="MoU Name">Project team	</td>
+                                    <td data-label="Action">
+                                        <label>
+                                            <select id="action-select1" onchange="handleActionChange('action-select1')">
+
+                                                <option value="D -GE Support Service">-select-</option>
+                                                <option value="Edit">Edit</option>
+
+                                            </select>
+                                        </label>
+                                    </td>
+                                </tr>
+                                    <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">ATIMSS 2003 School Questionnaire</td>
+                                    <td data-label="MoU Name">PRAFAA</td>
+                                    <td data-label="MoU Name">AEDR_TB2019_DR_TB_Facilities.sas7bcat [Download]</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2022-01-31</td>
+                                    <td data-label="MoU Name">Project team</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2011-06-15</td>
+                                    <td data-label="MoU Name">Project team	</td>
+                                    <td data-label="Action">
+                                        <label>
+                                            <select id="action-select1" onchange="handleActionChange('action-select1')">
+
+                                                <option value="D -GE Support Service">-select-</option>
+                                                <option value="Edit">Edit</option>
+
+                                            </select>
+                                        </label>
+                                    </td>
+                                </tr>
+                                    <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">ATIMSS 2003 School Questionnaire</td>
+                                    <td data-label="MoU Name">PRAFAA</td>
+                                    <td data-label="MoU Name">AEDR_TB2019_DR_TB_Facilities.sas7bcat [Download]</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2022-01-31</td>
+                                    <td data-label="MoU Name">Project team</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2011-06-15</td>
+                                    <td data-label="MoU Name">Project team	</td>
+                                    <td data-label="Action">
+                                        <label>
+                                            <select id="action-select1" onchange="handleActionChange('action-select1')">
+
+                                                <option value="D -GE Support Service">-select-</option>
+                                                <option value="Edit">Edit</option>
+
+                                            </select>
+                                        </label>
+                                    </td>
+                                </tr>
+                                    <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">ATIMSS 2003 School Questionnaire</td>
+                                    <td data-label="MoU Name">PRAFAA</td>
+                                    <td data-label="MoU Name">AEDR_TB2019_DR_TB_Facilities.sas7bcat [Download]</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2022-01-31</td>
+                                    <td data-label="MoU Name">Project team</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2011-06-15</td>
+                                    <td data-label="MoU Name">Project team	</td>
+                                    <td data-label="Action">
+                                        <label>
+                                            <select id="action-select1" onchange="handleActionChange('action-select1')">
+
+                                                <option value="D -GE Support Service">-select-</option>
+                                                <option value="Edit">Edit</option>
+
+                                            </select>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">ATIMSS 2003 School Questionnaire</td>
+                                    <td data-label="MoU Name">PRAFAA</td>
+                                    <td data-label="MoU Name">AEDR_TB2019_DR_TB_Facilities.sas7bcat [Download]</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2022-01-31</td>
+                                    <td data-label="MoU Name">Project team</td>
+                                    <td data-label="MoU Name">Dissemination	</td>
+                                    <td data-label="MoU Name">2011-06-15</td>
+                                    <td data-label="MoU Name">Project team	</td>
+                                    <td data-label="Action">
+                                        <label>
+                                            <select id="action-select1" onchange="handleActionChange('action-select1')">
+
+                                                <option value="D -GE Support Service">-select-</option>
+                                                <option value="Edit">Edit</option>
+
+                                            </select>
+                                        </label>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+
+
+
+    <!--/***************************************/
+             ----   Modal Class pop up definitions  ----
+
+    /***************************************/-->
+       <div id="myModal" class="my-modal3">
+        <div class="my-modal-content-file-form">
+            <span class="my-close" onclick="modalHandler.closeModal('myModal')">&times;</span>
+            <div class="my-modal-content-header">
+                <h4>Meta status (assign meta status)</h4>
+
+            </div>
+            <div class="my-modal-content-body">
+
+
+                <form>
+                    <div class="">
+                        <div class="search-section">
+
+                            <div class="medium-12 cell ">
+                                <label>
+                                    Supplier
+                                    <input type="text" />
+
+                                </label>
+                            </div>
+                            <div class="medium-12 cell">
+                                <label>
+                                    Contact No.
+                                    <input type="text" />
+
+                                </label>
+                            </div>
+                            <div class="medium-12 cell">
+                                <label>
+                                    Email Address
+                                    <input type="text" />
+
+                                </label>
+                            </div>
+
+                            <div class="medium-12 cell">
+                                <label>
+                                    Status
+                                    <select>
+                                        <option value="D -GE Support Service">Active</option>
+                                        <option value="D -GE Support Service">Inactive</option>
+
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="my-clearfix" style="margin-top: 20px;">
+
+                                <button type="button" class="my-deletebtn1" onclick="deleteAccount()">Save Meta Status</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            <div class="my-modal-content-header">
+                <h4>File status (assign file status)</h4>
+
+            </div>
+            <div class="my-modal-content-body">
+
+
+              
+               
+                    <form>
+                        <div class="">
+                            <div class="search-section">
+
+                                <div class="medium-12 cell ">
+                                    <label>
+                                        Status
+                                        <span class="mandatory-star">*</span>
+
+                                        <select>
+                                            <option value="D -GE Support Service">Reviewed</option>
+                                            <option value="D -GE Support Service">Dissemination</option>
+
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="medium-12 cell">
+                                    <label>
+                                        Date
+                                        <input type="text" />
+
+                                    </label>
+                                </div>
+                                <div class="medium-12 cell ">
+                                    <label>
+                                        Done By
+
+                                        <select>
+                                            <option value="D -GE Support Service">---Please select---</option>
+                                            <option value="D -GE Support Service">Dlamini Qinisile</option>
+                                            <option value="D -GE Support Service">Lota Lucia</option>
+
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="medium-12 cell ">
+                                    <label>
+                                        Target Audience
+
+                                        <select>
+                                            <option value="D -GE Support Service">---Please select---</option>
+                                            <option value="D -GE Support Service">Project Team</option>
+                                            <option value="D -GE Support Service">Restricted Access</option>
+                                            <option value="D -GE Support Service">Registered Access</option>
+                                            <option value="D -GE Support Service">HRSC</option>
+
+
+                                        </select>
+                                    </label>
+                                </div>
+
+
+                                <div class="medium-12 cell">
+                                    <label>
+                                        Dissemination Requirements
+                                        <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
+
+                                    </label>
+                                </div>
+                                <div class="medium-12 cell">
+                                    <label>
+                                        Discription
+                                        <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
+
+                                    </label>
+                                </div>
+                            <div class="my-clearfix" style="margin-top: 20px;">
+
+                                <button type="button" class="my-deletebtn1" onclick="deleteAccount()">Save File Status</button>
+                            </div>
+                            </div>
+                    </div>
+
+                    </form>
+            
+
+            </div>
+            <div class="my-clearfix">
+                <hr> <!-- Add a horizontal line here -->
+
+                <button type="button" class="my-cancelbtn" onclick="modalHandler.closeModal('myModal')">Cancel</button>
+                <button type="button" class="my-deletebtn1" onclick="deleteAccount()">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!--/***************************************/
+                  Java scripts
+    /***************************************/-->
+    <script src="~/js/JavaScript.js"></script>
+
+    <script>
+        modalHandler.registerModal('myModal');
+
+        function handleActionChange(selectId) {
+            modalHandler.handleActionChange(selectId);
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            animationsHandler.applyTableAnimation(); // <!--responsible for text animation-- >
+
+        });
+        </script>
+
+
+
+</body>

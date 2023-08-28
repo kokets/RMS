@@ -1,0 +1,482 @@
+@model HSRC_RMS.Models.LicenseCaptureGet
+
+
+@using HSRC_RMS.Helpers
+
+@{
+    ViewData["Title"] = "License";
+}
+
+<head>
+    <style>
+
+    </style>
+</head>
+
+
+<body>
+
+
+
+    <!--/***************************************/
+             ----   section-1  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section2 color-pellette-2">
+        <!---
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__menu">
+                    menu
+                    <ul class="nav__menu-lists nav__menu--1-lists">
+                        <li class="nav__menu-items">Etiam</li>
+                        <li class="nav__menu-items">Lectus</li>
+                        <li class="nav__menu-items">Netus</li>
+                        <li class="nav__menu-items">Dictum</li>
+                        <li class="nav__menu-items">Nibh</li>
+                    </ul>
+                </li>
+            </nav>
+            -->
+        <div class="row">
+            <div class="large-2 medium-12 small-12 padding_20 columns">
+                <img src="images/hsrclogo@2x.png" width="180px" class="logo" alt="" />
+            </div>
+
+            <div class="large-10 medium-12 small-12 columns padding_35 navigator">
+
+                <nav id="main-nav">
+
+                    <!-- Mobile menu toggle button (hamburger/x icon) -->
+                    <input id="main-menu-state" type="checkbox" />
+                    <label class="main-menu-btn" for="main-menu-state">
+                        <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+                    </label>
+
+
+                    <!-- Sample menu definition -->
+                    <ul id="main-menu" class="sm sm-mint color-pellette-0">
+                        <li><a asp-controller="TimeRecordings" asp-action="Index">Time Recording</a></li>
+                        <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="Projects1" asp-action="Index">Reports</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Perfomance indicators</a>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Projects Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Contract Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Program Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Employees Report </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Spend Procurement Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Project Budget Report</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Dataset Report</a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="has-submenu color-pellette-0">
+                                            <a asp-controller="MyGift" asp-action="Index">Data Set Reports</a>
+                                            <ul class="subg-menu color-pellette-0">
+                                                <li class="has-submenu color-pellette-0">
+                                                    <a asp-controller="DataSetReportKtree" asp-action="Index">Ktree file/Meta Data</a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li class=" color-pellette-0">
+                                            <a asp-controller="DataSetCitation" asp-action="Index">Dataset Citation Report</a>
+
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Interns </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportCy" asp-action="Index">Current Year</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportCyDegree" asp-action="Index">Current Year - by degree</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportCyUnit" asp-action="Index">Current Year - by Unit</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportCyRegion" asp-action="Index">Current Year - by Region</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportPyear" asp-action="Index">Previous Interns</a></li>
+
+                                    </ul>
+                                </li>
+
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MyGift" asp-action="Index">My Gift</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportActiveMou" asp-action="Index">Active MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportAllMou" asp-action="Index">All MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportRequest" asp-action="Index">MoUs Request</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="Collaborations1" asp-action="Index">Collabs</a></li>
+
+
+                        <li class="dropdowng color-pellette-0">
+                            <a href="#">Research output</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="color-pellette-0"><a asp-controller="EventRegistration" asp-action="Index">Output Registration</a></li>
+                                <li class="color-pellette-0"><a asp-controller="EventRegistration" asp-action="Index">Event Registration</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Budgets" asp-action="Index">Budgets</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Proposals" asp-action="Index">Proporsals</a>
+                        </li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift Register </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Add Gift</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="DataSet" asp-action="Index">DataSets</a></li>
+                                <li class="color-pellette-0"><a asp-controller="License" asp-action="Index">License Adminstrator</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUCreate" asp-action="Index">Create MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUActivity" asp-action="Index">MoU Activity</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage3" asp-action="Index">Manage MoU Requests(CEO)</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="TeamConfigure" asp-action="Index">TEAM MANAGEMENT</a></li>
+                        <li><a asp-controller="AccessGroups" asp-action="Index">ACCESS GROUPS</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--/***************************************/
+             ----   section-3  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section3 color-pellette-8 text-center">
+        <div class="row padding_40 ">
+            <div class="columns small-8 medium-centered small-centered large-centered">
+                <h4>License Management System</h4>
+                <p class="anim-text">Social science that makes a difference</p>
+            </div>
+            <a asp-controller="License" asp-action="Index"
+               class="button radius padding_10">Back</a>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Home</a>
+        </div>
+    </div>
+
+
+
+
+    <div class="section5 color-pellette-5">
+        <div class="row collapse" data-equalizer>
+            <div class="large-12 medium-12 small-12 columns">
+                <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
+                 
+
+                    <div class="content-blocks content-blocks-0  ">
+                   
+                        <div class="above-table">
+                            <div class="buttons-row ">
+                                <div class="add-buttons">
+                                    <a asp-controller="LicenseCapture" asp-action="Index" style="display: flex; align-items: center; color: white; text-decoration: none;">
+                                        <div class="right-arrow-view" style="margin-left: 10px">
+                                            <img src="images/new-file.png" class="logo" alt="" />
+                                        </div>
+                                        Add Licence
+                                    </a>
+
+                                </div>
+
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <div class="above-table">
+                            <div class="buttons-row ">
+
+                                <button class="download-buttons" onclick="printData()">Print</button>
+                                <button class="download-buttons" onclick="copyTable(document.getElementById('event-table'))">Copy</button>
+                                @*                                 <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+                                *@                                <button class="download-buttons" onclick="pdfCopyExcelCsv.ExportToExcel('xlsx')">Excel</button>
+
+                                <button class="download-buttons" id="csvButton">CSV</button>
+                                <div class="custom-text1">Show </div>
+                                <select class="custom-select" onchange="showNumberOfRows(this)">
+                                    <option value="---">---</option>
+
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="10">25</option>
+                                    <option value="35">35</option>
+                                    <option value="50">50</option>
+
+                                </select>
+                                <div class="custom-text2"> entries</div>
+                            </div>
+                            <div>
+                                <div class="search-box">
+                                    <input type="text" placeholder="Search" id="search-input" onkeyup="methodHandler.filterTable()">
+                                </div>
+                            </div>
+                        </div>
+
+                        <table id="event-table">
+
+                            <thead>
+                                <tr class="color-pellette-0">
+                                    <th scope="col" width="8%">Product</th>
+                                    <th scope="col" width="4%">Date Acquired</th>
+                                    <th scope="col" width="3%">Expiry Date</th>
+                                    <th scope="col" width="7%">Type</th>
+                                    <th scope="col" width="6%">Owner</th>
+                                    <th scope="col" width="4%">Activation </th>
+                                    <th scope="col" width="3%">Status</th>
+                                    <th scope="col" width="4%">Action</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var capture in Model.LicenseCaptureList)
+                                {
+                                    <tr class="table-row">
+                                        <td data-label="ProductName" class="color-pellette-4">
+                                       @capture.ProductName
+                                        </td>
+                                        <td data-label="AcquiredDate">@capture.AcquiredDate.ToString("yyyy-MM-dd")	</td>
+                                        <td data-label="ExpiryDate">
+                                            @capture.ExpiryDate.ToString("yyyy-MM-dd")
+                                        </td>
+                                        <td data-label="LicenseType">
+                                            @capture.LicenseType
+
+                                        </td>
+                                        <td data-label="LicenseOwner">@capture.LicenseOwner</td>
+                                        <td data-label="Activations">
+                                            @capture.Activations
+                                            <a asp-controller="LicenseMActivations" asp-action="Index"> 	Manage</a>
+                                        </td>
+                                        <td data-label="LicenseStatus">@capture.LicenseStatus	</td>
+
+                                        <td data-label="Action">
+                                          @*   <label>
+                                                <select id="action-select" onchange="modalHandler.handleActionNavigation('action-select')">
+
+                                                    <option value="D -GE Support Service">-select-</option>
+                                                    <option value="View1">View</option>
+                                                    <option value="Edit2">Edit</option>
+
+                                                </select>
+                                            </label> *@
+                                            <form asp-controller="LicenseListView" asp-action="Index" method="get">
+                                                <input type="hidden" name="id" value="@capture.CaptureId" />
+                                                <button type="submit" class="edit-link-button">View</button>
+                                            </form>
+
+                                            <form asp-controller="LicenseListEdit" asp-action="Index" method="get">
+                                                <input type="hidden" name="giftId" value="@capture.CaptureId" />
+                                                <button type="submit" class="submit-link-button" ><a>Edit</a> </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="my-modal">
+        <div class="my-modal-content-license">
+            <span class="my-close" onclick="modalHandler.closeModal('myModal')">&times;</span>
+            <div class="my-modal-content-header">
+                <h4>License details </h4>
+
+            </div>
+            <div class="my-modal-content-body">
+                <table id="event-table">
+                    <tr class="data-row">
+                        <td data-label="Budget Year" class="color-pellette-4 short-column">
+
+                            Call ID
+                        </td>
+                        <td data-label="Mou Unit">
+                            90811
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Budget Year" class="color-pellette-4">Product</td>
+                        <td data-label="Mou Unit">
+                            Fraser TJ Ms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Budget Year" class="color-pellette-4">Key		</td>
+                        <td data-label="Mou Unit">
+                            n/a
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Budget Year" class="color-pellette-4">Type		</td>
+                        <td data-label="Mou Unit">
+                            Productivity - Adobe
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Budget Year" class="color-pellette-4">Acquired Date			</td>
+                        <td data-label="Mou Unit">
+                            2022/09/26
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Budget Year" class="color-pellette-4">Expiry Date			</td>
+                        <td data-label="Mou Unit">
+                            2023/09/30
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Budget Year" class="color-pellette-4">Activations		</td>
+                        <td data-label="Mou Unit">
+                            7
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Budget Year" class="color-pellette-4">Status		</td>
+                        <td data-label="Mou Unit">
+                            Active
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Budget Year" class="color-pellette-4">Supplier			</td>
+                        <td data-label="Mou Unit">
+                            OLSPS
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Budget Year" class="color-pellette-4">Price			</td>
+                        <td data-label="Mou Unit">
+                            R10000
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Budget Year" class="color-pellette-4">Comments			</td>
+                        <td data-label="Mou Unit">
+                            7 X Adobe Acrobat Pro DC licences owned by IED
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="my-clearfix">
+                <button type="button" class="my-cancelbtn" onclick="modalHandler.closeModal('myModal')">Cancel</button>
+                <button type="button" class="my-deletebtn1" onclick="deleteAccount()">Add</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--/***************************************/
+                  Java scripts
+    /***************************************/-->
+
+    <script src="~/js/JavaScript.js"></script>
+
+    <script>
+        modalHandler.registerModal('myModal');
+
+
+        function handleActionChange(selectId) {
+            modalHandler.handleActionChange(selectId);
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            animationsHandler.applyTableAnimation(); // <!--responsible for text animation-- >
+
+        });
+        function openModalWithData(CaptureId) {
+            // Fetch data from the backend based on captureid
+            fetch(`/LicenseList/Index?CaptureId=${CaptureId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Populate the modal content with the fetched data
+                    document.getElementById("productName").textContent = data.Product;
+                    document.getElementById("acquiredDate").textContent = data.AcquiredDate;
+                    document.getElementById("expiryDate").textContent = data.ExpiryDate;
+                    // ... Populate other data fields ...
+
+                    // Open the modal
+                    modalHandler.openModal('myModal');
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                });
+        }
+
+
+    </script>
+
+
+    <script>
+        var selectElement = document.getElementById("action-select");
+
+        // Add event listener to the <select> element
+        selectElement.addEventListener("change", function () {
+            // Get the selected option value
+            var selectedOption = selectElement.value;
+
+            // Perform the action based on the selected option
+            switch (selectedOption) {
+                case "View1":
+                    // Redirect to the "AssignKeyword" view
+                    window.location.href = "/LicenseMActivations"; // Replace "ControllerName" with the actual controller name and "AssignKeyword" with the view name.
+                    break;
+                case "Edit2":
+                    // Redirect to the "AssignCounties" view
+                    window.location.href = "/MoUManage1Edit"; // Replace "ControllerName" with the actual controller name and "AssignCounties" with the view name.
+                    break;
+
+
+
+
+
+                default:
+                    // Handle invalid option or other cases
+                    break;
+            }
+        });
+    </script>
+</body>

@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HSRC_RMS</title>
+
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/sections.css" rel="stylesheet" type="text/css">
+    <link href="css/styling.css" rel="stylesheet" type="text/css">
+    <link href="css/custom.css" rel="stylesheet" type="text/css">
+    <link href="css/header.css" rel="stylesheet" type="text/css">
+    <link href="css/navigation.css" rel="stylesheet" type="text/css">
+    <link href="css/responsive.css" rel="stylesheet" type="text/css">
+
+    <link href="/css/app.css" rel="stylesheet" type="text/css">
+
+    
+
+
+    <!--/***************************************/
+                  Preset styles
+    /***************************************/-->
+    <!-- SmartMenus core CSS (required) -->
+    <link href="css/sm-core-css.css" rel="stylesheet" type="text/css" />
+
+    <!-- "sm-blue" menu theme (optional, you can use your own CSS, too) -->
+    <link href="css/sm-mint.css" rel="stylesheet" type="text/css" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>  <!--responsible for text animation-->
+    <!-- Reference SharePoint Framework loader JavaScript -->
+    <script type="text/javascript" src="/_layouts/15/sp.loader.js"></script>
+
+    <script src="https://use.fontawesome.com/f76cd5e23f.js"></script>
+    <script type="text/javascript" src="main.js" charset="UTF-8"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+    <!--font-family: 'Roboto', sans-serif;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Oswald', sans-serif;
+    font-family: 'Varela', sans-serif;
+    font-family: 'Varela Round', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    -->
+
+    <link href="css/clearfix.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/app.css">
+    <link href="css/reset.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header>
+        <div class="section1 color-pellette-0">
+            <div class="row">
+                <div class="large-3 medium-12 small-12 columns">
+                    <div class="topnav">
+                        <div class="search-container">
+                            <form action="##">
+                                <input type="text" placeholder="Search.." name="search">
+                                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="large-9 medium-12 small-12 columns">
+                    <div class="navbar">
+                        <a class="active borderd" asp-controller="Login" asp-action="Index"><i class="fa fa-fw fa-user"></i> Logout</a>
+                        <a href="#"><i class="fa fa-bell" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-commenting" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-phone-square" aria-hidden="true"></i> <pin>contact us</pin></a>
+                        <a href="#"><i class="fa fa-globe" aria-hidden="true"></i> <pin>Intranet</pin></a>
+                        <a href="#"><i class="fa fa-file-text" aria-hidden="true"></i> <pin>Documents</pin></a>
+                        <a href="#"><i class="fa fa-pencil-square" aria-hidden="true"></i> <pin>Declaration of Interest</pin></a>
+                        <a href="#"><i class="fa fa-fw fa-home"></i><pin> HOME</pin></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+
+            @RenderBody()
+            <!-- Placeholder Container for SPFx Web Part -->
+            <div id="spfxWebPartContainer"></div>
+
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="section7 color-pellette-0">
+            <div class="row padding_20 ">
+                <div class="columns small-8 large-centered medium-centered small-centered text-center text-pellette-6">
+
+                    © 2022 The Human Sciences Research Council (HSRC) Management system.
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Load SharePoint JavaScript dependencies and initialize SPFx web part -->
+    <!-- Load SharePoint JavaScript dependencies and initialize SPFx web part -->
+    <script type="text/javascript">
+        SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
+            SP.SOD.registerSod('spfx-webpart', 'https://<company-site-url>/_layouts/15/test-rms-spfx/<path-to-bundle-file>.js');
+            SP.SOD.executeFunc('spfx-webpart', 'functionNameThatRendersWebPart');
+        });
+    </script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/JavaScript.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            animationsHandler.initTextAnimation();  // <!--responsible for text animation-- >
+                
+        });
+    </script>
+@*     <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tinyFormHandler = new TinyFormHandler();
+        });
+    </script> *@
+    <script>
+        // Get the <select> element
+        //var selectElement = document.getElementById("action-select");
+
+        //// Add event listener to the <select> element
+        //selectElement.addEventListener("change", function () {
+        //    // Get the selected option value
+        //    var selectedOption = selectElement.value;
+
+        //    // Perform the action based on the selected option
+        //    switch (selectedOption) {
+        //        case "Edit":
+        //            // Redirect to the "AssignKeyword" view
+        //            window.location.href = "/DataSetProjectLevelEdit"; // Replace "ControllerName" with the actual controller name and "AssignKeyword" with the view name.
+        //            break;
+        //        case "Keyword":
+        //            // Redirect to the "AssignCounties" view
+        //            window.location.href = "/DataSetProjectLevelKey"; // Replace "ControllerName" with the actual controller name and "AssignCounties" with the view name.
+        //            break;
+
+        //        case "Countries":
+        //            // Redirect to the "AssignCounties" view
+        //            window.location.href = "/DataSetProjectLevelCountry"; // Replace "ControllerName" with the actual controller name and "AssignCounties" with the view name.
+        //            break;
+        //        case "Status":
+        //            // Redirect to the "AssignCounties" view
+        //            window.location.href = "/DataSetProjectLevelStatus"; // Replace "ControllerName" with the actual controller name and "AssignCounties" with the view name.
+        //            break;
+        //        //case "View":
+        //        //    // Redirect to the "AssignKeyword" view
+        //        //    window.location.href = "/MoUViewRegister"; // Replace "ControllerName" with the actual controller name and "AssignKeyword" with the view name.
+        //        //    break;
+        //        case "View1":
+        //            // Redirect to the "AssignCounties" view
+        //            window.location.href = "/LicenseMActivations"; // Replace "ControllerName" with the actual controller name and "AssignCounties" with the view name.
+        //            break;
+
+        //        //case "Activity":
+        //        //    // Redirect to the "AssignCounties" view
+        //        //    window.location.href = "/MoUActivityEdit"; // Replace "ControllerName" with the actual controller name and "AssignCounties" with the view name.
+        //        //    break;
+        //        case "Edit1":
+        //            // Redirect to the "AssignKeyword" view
+        //            window.location.href = "/MoUManage1Edit"; // Replace "ControllerName" with the actual controller name and "AssignKeyword" with the view name.
+        //            break;
+        //        case "Edit2":
+        //            // Redirect to the "AssignCounties" view
+        //            window.location.href = "/LicenseListEdit"; // Replace "ControllerName" with the actual controller name and "AssignCounties" with the view name.
+        //            break;
+        //        case "Edit3":
+        //            // Redirect to the "AssignCounties" view
+        //            window.location.href = "/LicenseListTypesEdit"; // Replace "ControllerName" with the actual controller name and "AssignCounties" with the view name.
+        //            break;
+
+        //        case "Delete":
+        //            // Redirect to the "AssignCounties" view
+        //            window.location.href = "/MoUManage1Delete"; // Replace "ControllerName" with the actual controller name and "AssignCounties" with the view name.
+        //            break;
+
+
+
+        //        default:
+        //            // Handle invalid option or other cases
+        //            break;
+        //    }
+        //});
+        // Add event listener to the <select> element
+      
+
+        //function openModal() {
+        //    var modal = document.getElementById('myModal');
+        //    modal.style.display = "block";
+        //}
+        //function openModal1() {
+        //    var modal = document.getElementById('myModal1');
+        //    modal.style.display = "block";
+        //}
+        //function openModal2() {
+        //    const modal = document.getElementById("myModal2");
+        //    modal.style.display = "block";
+        //}
+
+        //function openModal3() {
+        //    const modal = document.getElementById("myModal3");
+        //    modal.style.display = "block";
+        //}
+        //function openModal4() {
+        //    const modal = document.getElementById("myModal4");
+        //    modal.style.display = "block";
+        //}
+
+        //function openModal5() {
+        //    const modal = document.getElementById("myModal5");
+        //    modal.style.display = "block";
+        //}
+        //function openModal6() {
+        //    const modal = document.getElementById("myModal6");
+        //    modal.style.display = "block";
+        //}
+        //function closeModal(modalId) {
+        //    var modal = document.getElementById(modalId);
+        //    if (modal) {
+        //        modal.classList.add('modal-closing'); // Add the modal-closing class
+        //        setTimeout(() => {
+        //            modal.style.display = "none";
+        //            modal.classList.remove('modal-closing'); // Remove the modal-closing class after animation
+        //        }, 300); // Adjust the timing based on your CSS animation duration
+        //    }
+        //}
+        //function handleActionChange(selectId) {
+        //    const selectElement = document.getElementById(selectId);
+        //    const selectedValue = selectElement.value;
+
+        //    if (selectId === "action-select") 
+        //    { // Check the select element's ID
+        //        if (selectedValue === "DeleteProject") {
+        //            openModal(); // Open the modal
+        //        } 
+        //        else if (selectedValue === "Link") 
+        //        {
+        //            openModal2(); // Open the second modal
+        //        } 
+        //        else if (selectedValue === "copy")
+        //        {
+        //            openModal1(); // Open the modal
+        //        }
+        //      else  if (selectedValue === "Assign") {
+        //            openModal(); 
+        //        }
+        //    } 
+            
+        //    else if (selectId === "action-select1") { // Check another select element's ID
+        //        if (selectedValue === "Edit1") {
+        //            openModal3(); // Open the third modal
+        //        }
+        //      else  if (selectedValue === "Edit") {
+        //            openModal(); // Open the third modal
+        //        }
+        //        // Add more conditions as needed
+        //    }
+        //    else if (selectId === "option-select") { // Check another select element's ID
+        //        if (selectedValue === "Edit") {
+        //            openModal(); // Open the third modal
+        //        }
+        //        // Add more conditions as needed
+        //    }
+
+        //    // Add more conditions for other select elements if needed
+        //}
+
+   
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

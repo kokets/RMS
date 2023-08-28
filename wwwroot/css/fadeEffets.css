@@ -1,0 +1,10 @@
+﻿/* Hide the table initially */
+.table-fadein {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+
+    /* Show the table with fade-in effect */
+    .table-fadein.show {
+        opacity: 1;
+    }

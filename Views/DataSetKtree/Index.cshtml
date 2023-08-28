@@ -1,0 +1,391 @@
+@{
+    ViewData["Title"] = "Data Set";
+}
+<head>
+    <style>
+        .table-sortable th {
+            cursor: pointer;
+        }
+
+        .table-sortable .th-sort-asc::after {
+            content: "\25b4";
+        }
+
+        .table-sortable .th-sort-desc::after {
+            content: "\25be";
+        }
+
+        .table-sortable .th-sort-asc::after,
+        .table-sortable .th-sort-desc::after {
+            margin-left: 5px;
+        }
+
+        .table-sortable .th-sort-asc,
+        .table-sortable .th-sort-desc {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+
+    <!--/***************************************/
+             ----   section-1  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section2 color-pellette-2">
+        <div class="row">
+            <div class="large-2 medium-12 small-12 padding_20 columns">
+                <img src="images/hsrclogo@2x.png" width="180px" class="logo" alt="" />
+
+            </div>
+
+            <div class="large-10 medium-12 small-12 columns padding_35 navigator">
+
+                <nav id="main-nav">
+
+                    <!-- Mobile menu toggle button (hamburger/x icon) -->
+                    <input id="main-menu-state" type="checkbox" />
+                    <label class="main-menu-btn" for="main-menu-state">
+                        <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+                    </label>
+
+
+                    <!-- Sample menu definition -->
+                    <ul id="main-menu" class="sm sm-mint">
+                        <li><a asp-controller="Projects1" asp-action="Index">Time Recording</a></li>
+                        <li>
+                            <a href="#">About</a>
+                            <ul>
+                                <li><a href="#">Introduction to SmartMenus jQuery</a></li>
+                                <li><a href="#">Demos + themes</a></li>
+                                <li><a href="#">The author</a></li>
+                                <li>
+                                    <a href="#">The company</a>
+                                    <ul>
+                                        <li><a href="#">About Vadikom</a></li>
+                                        <li><a href="#">Projects</a></li>
+                                        <li><a href="#">Services</a></li>
+                                        <li><a href="#">Privacy policy</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="Projects1" asp-action="Index">Reports</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Perfomance indicators</a>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Projects Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Contract Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Program Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Employees Report </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Spend Procurement Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Project Budget Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Dataset Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Interns </a></li>
+
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MyGift" asp-action="Index">My Gift</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportActiveMou" asp-action="Index">Active MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportAllMou" asp-action="Index">All MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportRequest" asp-action="Index">MoUs Request</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Projects1" asp-action="Index">Budget</a>
+                        </li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift Register </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Add Gift</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="License" asp-action="Index">License Adminstrator</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUCreate" asp-action="Index">Create MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUActivity" asp-action="Index">MoU Activity</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage3" asp-action="Index">Manage MoU Requests(CEO)</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="TeamConfigure" asp-action="Index">TEAM MANAGEMENT</a></li>
+                        <li><a asp-controller="AccessGroups" asp-action="Index">ACCESS GROUPS</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--/***************************************/
+             ----   section-3  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section3 color-pellette-8 text-center">
+        <div class="row padding_40 ">
+            <div class="columns small-8 medium-centered small-centered large-centered">
+                <h4>Data Set - List of data sets</h4>
+                <p class="anim-text">Social science that makes a difference</p>
+            </div>
+            <a asp-controller="DataSet" asp-action="Index"
+               class="button radius padding_10">Back</a>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Home</a>
+        </div>
+    </div>
+
+
+
+    <div class="section5 color-pellette-5">
+        <div class="row collapse" data-equalizer>
+            <div class="large-12 medium-12 small-12 columns">
+                <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
+
+
+                    <div class="content-blocks content-blocks-0  ">
+                        <!--
+                        <div class="container-modal">
+                            <div class="box" id="left-box">
+                                <p>Item 1</p>
+                                <p>Item 2</p>
+                                <p>Item 3</p>
+                            </div>
+                            <div class="buttons">
+                                <button id="move-left">Move Left</button>
+                                <button id="move-right">Move Right</button>
+                            </div>
+                            <div class="box" id="right-box">
+                            </div>
+                        </div>
+                        -->
+
+                        <div class="above-table">
+                            <div class="buttons-row ">
+
+                                <button class="download-buttons">Print</button>
+                                <button class="download-buttons">Copy</button>
+                                <button class="download-buttons">Excel</button>
+                                <button class="download-buttons">CSV</button>
+                                <div class="custom-text1">Show </div>
+                                <select class="custom-select" onchange="showNumberOfRows(this)">
+                                    <option value="---">---</option>
+
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="10">25</option>
+                                    <option value="35">35</option>
+                                    <option value="50">50</option>
+
+                                </select>
+                                <div class="custom-text2"> entries</div>
+                            </div>
+                            <div>
+                                <div class="search-box">
+                                    <input type="text" placeholder="Search" id="search-input" onkeyup="filterTable()">
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="table-sortable" id="event-table">
+
+                            <thead>
+                                <tr class="color-pellette-0">
+                                    <th scope="col" width="7%">Id</th>
+                                    <th scope="col" width="16%">FileName</th>
+                                    <th scope="col" width="12%">Target Audience</th>
+                                    <th scope="col" width="6%">Access</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">4218		</td>
+                                    <td data-label="Mou Unit">SASAS 2004 Combined code book.pdf		</td>
+                                    <td data-label="Reference Number">
+                                        Open access
+                                    </td>
+                                    <td data-label="MoU Name">
+                                        System Administrators
+                                    </td>
+
+
+                                </tr>
+
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">44218		</td>
+                                    <td data-label="Mou Unit">SASAS 2004 Combined code book.pdf		</td>
+                                    <td data-label="Reference Number">
+                                        Open access
+                                    </td>
+                                    <td data-label="MoU Name">
+                                        System Administrators
+                                    </td>
+
+
+                                </tr>
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">8		</td>
+                                    <td data-label="Mou Unit">SASAS 2004 Combined code book.pdf		</td>
+                                    <td data-label="Reference Number">
+                                        Open access
+                                    </td>
+                                    <td data-label="MoU Name">
+                                        System Administrators
+                                    </td>
+
+
+                                </tr>
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">7218		</td>
+                                    <td data-label="Mou Unit">SASAS 2004 Combined code book.pdf		</td>
+                                    <td data-label="Reference Number">
+                                        Open access
+                                    </td>
+                                    <td data-label="MoU Name">
+                                        System Administrators
+                                    </td>
+
+
+                                </tr>
+                                <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">421		</td>
+                                    <td data-label="Mou Unit">SASAS 2004 Combined code book.pdf		</td>
+                                    <td data-label="Reference Number">
+                                        Open access
+                                    </td>
+                                    <td data-label="MoU Name">
+                                        System Administrators
+                                    </td>
+
+
+                                </tr>
+                                  <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">428		</td>
+                                    <td data-label="Mou Unit">SASAS 2004 Combined code book.pdf		</td>
+                                    <td data-label="Reference Number">
+                                        Open access
+                                    </td>
+                                    <td data-label="MoU Name">
+                                        System Administrators
+                                    </td>
+
+
+                                </tr>
+                                  <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">218		</td>
+                                    <td data-label="Mou Unit">SASAS 2004 Combined code book.pdf		</td>
+                                    <td data-label="Reference Number">
+                                        Open access
+                                    </td>
+                                    <td data-label="MoU Name">
+                                        System Administrators
+                                    </td>
+
+
+                                </tr>
+                                  <tr class="table-row">
+                                    <td data-label="Budget Year" class="color-pellette-4">18		</td>
+                                    <td data-label="Mou Unit">SASAS 2004 Combined code book.pdf		</td>
+                                    <td data-label="Reference Number">
+                                        Open access
+                                    </td>
+                                    <td data-label="MoU Name">
+                                        System Administrators
+                                    </td>
+
+
+                                </tr>
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--/***************************************/
+                  Java scripts
+    /***************************************/-->
+    <script src="~/js/JavaScript.js"></script>
+    <script>
+        function sortTableByColumn(table, column, asc = true) {
+            const dirModifier = asc ? 1 : -1;
+            const tBody = table.tBodies[0];
+            const rows = Array.from(tBody.querySelectorAll("tr"));
+
+            // Sort each row
+            const sortedRows = rows.sort((a, b) => {
+                const aColText = a.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+                const bColText = b.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+
+                return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
+            });
+
+            // Remove all existing TRs from the table
+            while (tBody.firstChild) {
+                tBody.removeChild(tBody.firstChild);
+            }
+
+            // Re-add the newly sorted rows
+            tBody.append(...sortedRows);
+
+            // Remember how the column is currently sorted
+            table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
+            table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
+            table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
+        }
+
+        document.querySelectorAll(".table-sortable th.th-sort").forEach(headerCell => {
+            headerCell.addEventListener("click", () => {
+                const tableElement = headerCell.closest(".table-sortable"); // Use the correct class name
+                const headerIndex = Array.from(headerCell.parentElement.children).indexOf(headerCell);
+                const currentIsAscending = headerCell.classList.contains("th-sort-asc");
+
+                const modalHandler = new ModalHandler();
+                modalHandler.sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
+            });
+        });
+
+    </script>
+
+
+</body>

@@ -1,0 +1,66 @@
+@model HSRC_RMS.Models.LicenseSupplies
+
+
+@using HSRC_RMS.Helpers
+
+@{ Layout = null; }
+
+
+<div id="myModal" class="my-modal1">
+    <div class="my-modal-content-indicator">
+        <span class="my-close" onclick="modalHandler.closeModal('myModal')">&times;</span>
+        <div class="my-modal-content-header">
+            <h4 class="modal-title"></h4>
+        </div>
+        <div class="required"><span class="mandatory-star">*</span> Required </div>
+
+        <div class="my-modal-content-body">
+            <div>
+                <form asp-controller="LicenseMSupplier" asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()">
+                    <div class="">
+                        <div class="search-section">
+
+                            <div class="medium-12 cell ">
+                                <label>
+                                    Supplier
+                                    <span class="mandatory-star">*</span>
+                                    @Html.TextBoxFor(model => model.Supplier, new { required = "required"  ,id = "Supplier"})
+                                </label>
+                            </div>
+                            <div class="medium-12 cell">
+                                <label>
+                                    Contact No.
+                                    <span class="mandatory-star">*</span>
+                                    @Html.TextBoxFor(model => model.Contact, new { required = "required"  ,id = "Contact"})
+                                </label>
+                            </div>
+                            <div class="medium-12 cell">
+                                <label>
+                                    Email Address
+                                    <span class="mandatory-star">*</span>
+                                    @Html.TextBoxFor(model => model.EmailAddress, new { required = "required"  ,id = "EmailAddress"})
+                                </label>
+                            </div>
+                            <div class="medium-12 cell">
+                                <label>
+                                    Status
+                                    <span class="mandatory-star">*</span>
+                                    @Html.DropDownListFor(model => model.Status, DropdownHelpers.GetStatusOption(), "--Please Select--", new { required = "required" ,id = "Status"})
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-clearfix">
+                        <hr> <!-- Add a horizontal line here -->
+
+                        <button type="button" class="my-cancelbtn" onclick="modalHandler.closeModal('myModal')">Cancel</button>
+                        <button type="submit" class="my-deletebtn1">Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>

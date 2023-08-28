@@ -1,0 +1,125 @@
+/****************************************
+			 COLOUR PALETTE
+****************************************/
+
+.color-pellette-0 { color:#FFF; background-color:#35699F;}
+.color-pellette-1 { color:#FFF; background-color:#70AC49;}
+.color-pellette-2 { color:#000; background-color:#FFFFFF ;}
+.color-pellette-3 { color:#FFF; background-color:#1D1D1D;}
+.color-pellette-4 { color:#FFF; background-color:#E2A92F;}
+.color-pellette-5 { color:#000; background-color:#E9E9E9;}   
+.color-pellette-6 { color:#fff; background-color:#003464;} 
+.color-pellette-7 { color:#fff; background-color: rgba(0, 60,113, 0.9);}
+.color-pellette-8 { color:#fff; background-color:#1E9275;}
+.color-pellette-9 { color:#fff; background-color:#1E9275;}
+
+/****************************************
+			 TEXT PALETTE
+****************************************/
+
+.text-pellette-0 { color:#35699F;}
+.text-pellette-1 i { color:#70AC49;}
+.text-pellette-2 { color:#FFFFFF;}
+.text-pellette-3 { color:#1D1D1D;}
+.text-pellette-4 { color:#E2A92F;}
+.text-pellette-5 { color:#E9E9E9;} 
+.text-pellette-6 { color:#7B9ABB;}
+
+/****************************************
+			 ICON STYLING
+****************************************/
+
+i { color:#0BA6E9;} 
+
+/***************************************
+		    PRESET LIST ITEMS
+***************************************/
+
+.section1 ul {}
+.section1 li {}
+
+.section2 ul {}
+.section2 li {}
+
+.section3 ul {}
+.section3 li {}
+
+.section4 ul { 
+	margin-left:22px;
+}
+.section4 li { 
+	list-style-image: url("../images/Shape.png");
+  	padding: 1px 1px 1px 10px;
+	font-size: 14px;
+	line-height: 19px;
+
+}
+
+.section5 ul {
+	margin-left:10px;
+	
+}
+.section5 .content-blocks li {
+	list-style-image: url("../images/Shape.png");
+	border-top: thin solid #DA9C19;
+  	padding: 1px 1px 1px 10px;	
+}
+
+.section5 .content-blocks-2 li {
+	border-top: thin solid #386391;
+	list-style-image: url("../images/Shape2.png");
+}
+
+.section5 .content-blocks-3 li {
+	border-top: thin solid #B5BFCC;
+	list-style-image: url("../images/Shape3.png");
+}
+
+.section5 .content-blocks-4 li {
+	border-top: thin solid #7B9E40;
+	list-style-image: url("../images/Shape.png");
+}
+
+.section6 ul {
+	margin-left:22px;
+}
+.section6 li {
+	list-style-image: url("../images/Shape.png");
+  	padding: 1px 1px 1px 10px;
+	font-size: 15px;
+	line-height: 19px;
+}
+
+.section7 ul { list-style:none; margin-left:-8px; font-size:12px; margin-top:-15px; }
+.section7 li { display:inline; width:300px; padding:8px; }
+
+.section8 ul {}
+.section8 li {}
+
+.patten-bg{
+background: #C0CAD6;
+	background-image: url("images/email-pattern1.png");
+	background-position: center;
+    border-radius: 5px;
+
+}
+
+.search-section-bg {
+	border-radius: 6px;
+	box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 10%);
+}
+
+.search-section-bg input[type="text"], input[type="text"] {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #cecece;
+    background-color: #d3d3d373;
+    font-weight: 500;
+}
+
+.down a {
+	margin: 0 auto;
+	display: block;
+	width: 35px;
+
+}

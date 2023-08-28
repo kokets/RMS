@@ -1,0 +1,7 @@
+﻿tr {
+    transition: all 1s ease-in-out;
+}
+
+    tr.slide-out {
+        transform: rotateY(90deg);
+    }

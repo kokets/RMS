@@ -1,0 +1,329 @@
+@model HSRC_RMS.Models.LicenseCaptureGet
+@using HSRC_RMS.Helpers
+
+@{
+    ViewData["Title"] = "License View";
+}
+<head>
+
+    <style>
+
+
+
+
+        .view-mo-menu {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            margin-top: -20px; /* Adjust this value as needed */
+        }
+
+        .view-mou-menu {
+            display: flex;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            list-style: none;
+            width: 205px;
+        }
+
+            .view-mou-menu a {
+                position: relative;
+                width: 100%;
+                display: table-cell;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 10px 20px;
+                transition: 0.2s ease color;
+                border-right: 1px solid #ccc; /* Add right border to create a line separator */
+            }
+
+                .view-mou-menu a:last-child {
+                    border-right: none; /* Remove right border for the last link */
+                }
+
+                .view-mou-menu a:before, .view-mou-menu a:after {
+                    position: absolute;
+                    border-radius: 50%;
+                    transform: scale(0);
+                    transition: 0.2s ease transform;
+                }
+
+                .view-mou-menu a:after {
+                    top: 5%;
+                    left: 18px;
+                    width: 20px;
+                    height: 4px;
+                }
+
+    </style>
+</head>
+<body>
+
+
+
+    <!--/***************************************/
+             ----   section-1  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section2 color-pellette-2">
+        <div class="row">
+            <div class="large-2 medium-12 small-12 padding_20 columns">
+                <img src="images/hsrclogo@2x.png" width="180px" class="logo" alt="" />
+
+            </div>
+
+            <div class="large-10 medium-12 small-12 columns padding_35 navigator">
+
+                <nav id="main-nav">
+
+                    <!-- Mobile menu toggle button (hamburger/x icon) -->
+                    <input id="main-menu-state" type="checkbox" />
+                    <label class="main-menu-btn" for="main-menu-state">
+                        <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+                    </label>
+
+
+                    <!-- Sample menu definition -->
+                    <ul id="main-menu" class="sm sm-mint">
+                        <li><a asp-controller="Projects1" asp-action="Index">Time Recording</a></li>
+
+                        <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="Projects1" asp-action="Index">Reports</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Perfomance indicators</a>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Projects Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Contract Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Program Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Employees Report </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Spend Procurement Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Project Budget Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Dataset Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Interns </a></li>
+
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MyGift" asp-action="Index">My Gift</a></l>
+
+                                    </ul>
+                                </li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportActiveMou" asp-action="Index">Active MoUs</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportAllMou" asp-action="Index">All MoUs</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportRequest" asp-action="Index">MoUs Request</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Projects1" asp-action="Index">Budget</a>
+                        </li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift Register </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Add Gift</a></l>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="License" asp-action="Index">License Adminstrator</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUCreate" asp-action="Index">Create MoU Request</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUActivity" asp-action="Index">MoU Activity</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage3" asp-action="Index">Manage MoU Requests(CEO)</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="TeamConfigure" asp-action="Index">TEAM MANAGEMENT</a></li>
+                        <li><a asp-controller="AccessGroups" asp-action="Index">ACCESS GROUPS</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--/***************************************/
+             ----   section-3  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section3 color-pellette-8 text-center">
+        <div class="row padding_40 ">
+            <div class="columns small-8 medium-centered small-centered large-centered">
+                <h4>License details</h4>
+                <p class="anim-text">Social science that makes a difference</p>
+            </div>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Back</a>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Home</a>
+        </div>
+    </div>
+
+
+
+
+    <div class="section5 color-pellette-5">
+        <div class="row collapse" data-equalizer>
+            <div class="large-12 medium-12 small-12 columns">
+                <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
+
+
+                    <div class="content-blocks content-blocks-0">
+
+                        <h3><a asp-controller="License" asp-action="Index"> Back to Dashboard</a></h3>
+                        <h3><a asp-controller="LicenseList" asp-action="Index"> Back to License Listing</a></h3>
+
+
+
+                        <div id="table2" class="table-template" >
+                            <table id="event-table">
+                            @*     @foreach (var capture in Model.LicenseCaptureList)
+                                {
+                                    if (capture.CaptureId == Model.SelectedCaptureId)
+                                    { *@
+                                        <tr class="data-row">
+                                            <td data-label=" Call ID" class="color-pellette-4 short-column">
+                                                Call ID
+                                            </td>
+                                            <td data-label=" Call ID">
+@*                                                 @capture.CaptureId
+ *@                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="ProductName" class="color-pellette-4">Product</td>
+                                            <td data-label="ProductName">
+@*                                                 @capture.ProductName
+ *@                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label=" ProductKey" class="color-pellette-4">Key		</td>
+                                            <td data-label="ProductKey">
+@*                                                 @capture.ProductKey
+ *@                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="LicenseType" class="color-pellette-4">Type		</td>
+                                            <td data-label="LicenseType">
+@*                                                 @capture.LicenseType
+ *@                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="AcquiredDate " class="color-pellette-4">Acquired Date			</td>
+                                            <td data-label="AcquiredDate ">
+@*                                                 @capture.AcquiredDate
+ *@                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="ExpiryDate" class="color-pellette-4">Expiry Date			</td>
+                                            <td data-label="ExpiryDate">
+@*                                                 @capture.ExpiryDate
+ *@                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="Activations" class="color-pellette-4">Activations		</td>
+                                            <td data-label="Activations">
+@*                                                 @capture.Activations
+ *@
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="LicenseStatus" class="color-pellette-4">Status		</td>
+                                            <td data-label="LicenseStatus">
+@*                                                 @capture.LicenseStatus
+ *@
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="Supplier" class="color-pellette-4">Supplier			</td>
+                                            <td data-label="Supplier">
+@*                                                 @capture.Supplier
+ *@
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="PurchasePrice" class="color-pellette-4">Price			</td>
+                                            <td data-label="PurchasePrice">
+@*                                                 @capture.PurchasePrice
+ *@
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="CommentPrice" class="color-pellette-4">Comments			</td>
+                                            <td data-label="CommentPrice">
+@*                                                 @capture.CommentPrice
+ *@                                            </td>
+                                        </tr>
+                                    }
+                           @*      } *@
+
+                            </table>
+                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--/***************************************/
+                      Java scripts
+        /***************************************/-->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/js.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="~/js/JavaScript.js"></script>
+
+
+        <!-- SmartMenus jQuery plugin -->
+        <script type="text/javascript" src="js/jquery.smartmenus.js"></script>
+
+        <!-- SmartMenus jQuery init -->
+        <script type="text/javascript">
+            $(function () {
+                $('#main-menu').smartmenus({
+                    subMenusSubOffsetX: 1,
+                    subMenusSubOffsetY: -8
+                });
+            });
+
+
+        </script>
+
+        <script>
+            const animationsHandler = new AnimationsHandler();
+
+            document.addEventListener("DOMContentLoaded", () => {
+                animationsHandler.initTextAnimation();
+                animationsHandler.applyTableAnimation();
+            });
+        </script>
+        <script src="js/vendor/what-input.js"></script>
+        <script src="js/vendor/foundation.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+
+</body>

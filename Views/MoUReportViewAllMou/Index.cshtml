@@ -1,0 +1,568 @@
+@{
+    ViewData["Title"] = "Event Page";
+}
+
+<head>
+
+    <style>
+
+        tr {
+            transition: all 1s ease-in-out;
+        }
+
+            tr.slide-out {
+                transform: translateX(100%);
+            }
+
+            tr.slide-in {
+                transform: translateX(0);
+            }
+
+        .short-column {
+            width: 30%;
+        }
+
+        .view-mo-menu {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            margin-top: -20px; /* Adjust this value as needed */
+        }
+
+        .view-mou-menu {
+            display: flex;
+            gap: 20px;
+            background-color: #f2f2f2;
+            padding: 5px;
+            border-radius: 5px;
+            list-style: none;
+            margin: 0;
+        }
+
+            .view-mou-menu a {
+                position: relative;
+                width: 33.333%;
+                display: table-cell;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 10px 20px;
+                transition: 0.2s ease color;
+                border-right: 1px solid #ccc; /* Add right border to create a line separator */
+            }
+
+                .view-mou-menu a:last-child {
+                    border-right: none; /* Remove right border for the last link */
+                }
+
+                .view-mou-menu a:before, .view-mou-menu a:after {
+                    position: absolute;
+                    border-radius: 50%;
+                    transform: scale(0);
+                    transition: 0.2s ease transform;
+                }
+
+                .view-mou-menu a:after {
+                    top: 5%;
+                    left: 18px;
+                    width: 4px;
+                    height: 4px;
+                }
+    </style>
+</head>
+<body>
+
+
+
+    <!--/***************************************/
+             ----   section-1  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section2 color-pellette-2">
+        <div class="row">
+            <div class="large-2 medium-12 small-12 padding_20 columns">
+                <img src="images/hsrclogo@2x.png" width="180px" class="logo" alt="" />
+
+            </div>
+
+            <div class="large-10 medium-12 small-12 columns padding_35 navigator">
+
+                <nav id="main-nav">
+
+                    <!-- Mobile menu toggle button (hamburger/x icon) -->
+                    <input id="main-menu-state" type="checkbox" />
+                    <label class="main-menu-btn" for="main-menu-state">
+                        <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+                    </label>
+
+
+                    <!-- Sample menu definition -->
+                    <ul id="main-menu" class="sm sm-mint color-pellette-0">
+                        <li><a asp-controller="TimeRecordings" asp-action="Index">Time Recording</a></li>
+                        <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="Projects1" asp-action="Index">Reports</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Perfomance indicators</a>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Projects Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Contract Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Program Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Employees Report </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Spend Procurement Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Project Budget Report</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Dataset Report</a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="has-submenu color-pellette-0">
+                                            <a asp-controller="MyGift" asp-action="Index">Data Set Reports</a>
+                                            <ul class="subg-menu color-pellette-0">
+                                                <li class="has-submenu color-pellette-0">
+                                                    <a asp-controller="DataSetReportKtree" asp-action="Index">Ktree file/Meta Data</a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li class=" color-pellette-0">
+                                            <a asp-controller="DataSetCitation" asp-action="Index">Dataset Citation Report</a>
+
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Interns </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportCy" asp-action="Index">Current Year</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportCyDegree" asp-action="Index">Current Year - by degree</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportCyUnit" asp-action="Index">Current Year - by Unit</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportCyRegion" asp-action="Index">Current Year - by Region</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="InternsReportPyear" asp-action="Index">Previous Interns</a></li>
+
+                                    </ul>
+                                </li>
+
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MyGift" asp-action="Index">My Gift</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportActiveMou" asp-action="Index">Active MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportAllMou" asp-action="Index">All MoUs</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportRequest" asp-action="Index">MoUs Request</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="Collaborations1" asp-action="Index">Collabs</a></li>
+
+
+                        <li class="dropdowng color-pellette-0">
+                            <a href="#">Research output</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="color-pellette-0"><a asp-controller="EventRegistration" asp-action="Index">Output Registration</a></li>
+                                <li class="color-pellette-0"><a asp-controller="EventRegistration" asp-action="Index">Event Registration</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Budgets" asp-action="Index">Budgets</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Proposals" asp-action="Index">Proporsals</a>
+                        </li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift Register </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Add Gift</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="DataSet" asp-action="Index">DataSets</a></li>
+                                <li class="color-pellette-0"><a asp-controller="License" asp-action="Index">License Adminstrator</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUCreate" asp-action="Index">Create MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUActivity" asp-action="Index">MoU Activity</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage3" asp-action="Index">Manage MoU Requests(CEO)</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="TeamConfigure" asp-action="Index">TEAM MANAGEMENT</a></li>
+                        <li><a asp-controller="AccessGroups" asp-action="Index">ACCESS GROUPS</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--/***************************************/
+             ----   section-3  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section3 color-pellette-8 text-center">
+        <div class="row padding_40 ">
+            <div class="columns small-8 medium-centered small-centered large-centered">
+                <h4>View All MoU</h4>
+                <p class="anim-text">Social science that makes a difference</p>
+            </div>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Back</a>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Home</a>
+        </div>
+    </div>
+
+
+    <div class="section5 color-pellette-5">
+        <div class="row collapse" data-equalizer>
+            <div class="large-12 medium-12 small-12 columns">
+                <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
+
+
+                    <div class="content-blocks content-blocks-0">
+                        <h3><a asp-controller="MoUReportAllMou" asp-action="Index">Back To List Of All MoU</a></h3>
+
+                        <div class="view-mo-menu">
+                            <div class="view-mou-menu">
+                                <a onclick="showTable('table1')">View MoU</a>
+                                <a onclick="showTable('table2')">Contract dates</a>
+                                <a onclick="showTable('table3')">People and institutions</a>
+                                <a onclick="showTable('table4')">Location details</a>
+                                <a onclick="showTable('table5')">Narratives</a>
+                            </div>
+                        </div>
+                        <div id="table1" class="table-template" style="display: none;">
+                            <table id="event-table">
+                                <tr class="data-row">
+                                    <td data-label="Budget Year" class="color-pellette-4 short-column">
+                                        Admin
+                                    </td>
+                                    <td data-label="Mou Unit">MOU Collaboration in Research</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Contract number</td>
+                                    <td data-label="Mou Unit">20194185LAM/00</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Group code</td>
+                                    <td data-label="Mou Unit">L</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Location is Pretoria?</td>
+                                    <td data-label="Mou Unit"></td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Transaction Type</td>
+                                    <td data-label="Mou Unit">Non Financial</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Foreign amount</td>
+                                    <td data-label="Mou Unit">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Rand amount</td>
+                                    <td data-label="Mou Unit">0</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Agreement type</td>
+                                    <td data-label="Mou Unit">M</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Research contract?</td>
+                                    <td data-label="Mou Unit">YES</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Contract document</td>
+                                    <td data-label="Mou Unit">11/DEC/2015</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div id="table2" class="table-template" style="display: none;">
+                            <table id="event-table">
+                                <tr class="data-row">
+                                    <td data-label="Budget Year" class="color-pellette-4 short-column">
+
+                                        Start date
+                                    </td>
+                                    <td data-label="Mou Unit">	09/OCT/2019</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">End date</td>
+                                    <td data-label="Mou Unit">08/OCT/2024</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Registration date</td>
+                                    <td data-label="Mou Unit">09/OCT/2019</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Registration year</td>
+                                    <td data-label="Mou Unit">2019</td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+
+                        <div id="table3" class="table-template" style="display: none;">
+                            <table id="event-table">
+                                <tr class="data-row">
+                                    <td data-label="Budget Year" class="color-pellette-4 short-column">
+
+                                        Contracting party
+                                    </td>
+                                    <td data-label="Mou Unit">Kagiso Trust (KT)</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Responsible persons</td>
+                                    <td data-label="Mou Unit"></td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+
+                        <div id="table4" class="table-template" style="display: none;">
+                            <table id="event-table">
+                                <tr class="data-row">
+                                    <td data-label="Budget Year" class="color-pellette-4 short-column">
+
+                                        Country
+                                    </td>
+                                    <td data-label="Mou Unit">South Africa</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">City</td>
+                                    <td data-label="Mou Unit"></td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+
+
+                        <div id="table5" class="table-template" style="display: none;">
+                            <table id="event-table">
+                                <tr class="data-row">
+                                    <td data-label="Budget Year" class="color-pellette-4 short-column">
+                                        Description
+                                    </td>
+                                    <td data-label="Mou Unit"></td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">General comments	</td>
+                                    <td data-label="Mou Unit"></td>
+                                </tr>
+
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">HSRC followup	</td>
+                                    <td data-label="Mou Unit"></td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Areas of cooperation	</td>
+                                    <td data-label="Mou Unit"></td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Research programme	</td>
+                                    <td data-label="Mou Unit"></td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Budget Year" class="color-pellette-4">Additional information	</td>
+                                    <td data-label="Mou Unit"></td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--/***************************************/
+                  Java scripts
+    /***************************************/-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/js.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+
+    <!-- SmartMenus jQuery plugin -->
+    <script type="text/javascript" src="js/jquery.smartmenus.js"></script>
+
+    <!-- SmartMenus jQuery init -->
+    <script type="text/javascript">
+        $(function () {
+            $('#main-menu').smartmenus({
+                subMenusSubOffsetX: 1,
+                subMenusSubOffsetY: -8
+            });
+        });
+
+
+
+
+
+        //filter table using the search option
+        function FilterTable() {
+            const input = document.getElementById('search-input');
+            const filter = input.value.toUpperCase();
+            const table = document.getElementById('event-table');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    const cellText = cells[j].textContent || cells[j].innerText;
+                    if (cellText.toUpperCase().indexOf(filter) > -1) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+
+
+        //Table Animation start
+
+
+
+
+        //Table Animation end
+
+
+        //Text animation start
+
+        //Text animation end
+
+
+        //filter table on the numer of rows start
+        //display table based on the number row
+        function showNumberOfRows(selectElement) {
+            const numRows = parseInt(selectElement.value);
+            const tableRows = document.querySelectorAll('#event-table tbody tr');
+
+            for (let i = 0; i < tableRows.length; i++) {
+                if (i < numRows) {
+                    tableRows[i].style.display = '';
+                } else {
+                    tableRows[i].style.display = 'none';
+                }
+            }
+        }
+        //filter table on the numer of rows end
+
+
+
+
+
+    </script>
+    <script>
+        var textWrapper = document.querySelector('.anim-text');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        anime.timeline({ loop: true })
+            .add({
+                targets: '.anim-text .letter',
+                scale: [4, 1],
+                opacity: [0, 1],
+                translateZ: 0,
+                easing: "easeOutExpo",
+                duration: 950,
+                delay: (el, i) => 70 * i
+            }).add({
+                targets: '.anim-text',
+                opacity: 0,
+                duration: 1000,
+                easing: "easeOutExpo",
+                delay: 1000
+            });
+    </script>
+    <script>
+        // Function to reset all table rows
+        function resetTableRows() {
+            const rows = Array.from(document.querySelectorAll('tr'));
+            rows.forEach((row) => {
+                row.classList.remove('slide-out', 'slide-in');
+            });
+        }
+
+        // Function to show a specific table and apply slide-out and slide-in animations
+        function showTable(tableId) {
+            // Reset all table rows to initial state
+            resetTableRows();
+
+            // Hide all table templates
+            const tableTemplates = document.getElementsByClassName('table-template');
+            for (let i = 0; i < tableTemplates.length; i++) {
+                tableTemplates[i].style.display = 'none';
+            }
+
+            // Show the selected table template
+            const selectedTable = document.getElementById(tableId);
+            if (selectedTable) {
+                selectedTable.style.display = 'block';
+                const rows = Array.from(selectedTable.querySelectorAll('tr'));
+                rows.forEach(slideOut);
+                rows.forEach(slideIn);
+            }
+        }
+
+        function slideOut(row) {
+            row.classList.add('slide-out');
+        }
+
+        function slideIn(row, index) {
+            setTimeout(function () {
+                row.classList.remove('slide-out');
+                row.classList.add('slide-in');
+            }, (index + 5) * 200);
+        }
+    </script>
+
+
+
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+
+
+</body>

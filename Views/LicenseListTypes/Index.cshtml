@@ -1,0 +1,336 @@
+@{
+    ViewData["Title"] = "License";
+}
+
+
+
+
+<body>
+
+
+
+    <!--/***************************************/
+             ----   section-1  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section2 color-pellette-2">
+        <div class="row">
+            <div class="large-2 medium-12 small-12 padding_20 columns">
+                <img src="images/hsrclogo@2x.png" width="180px" class="logo" alt="" />
+
+            </div>
+
+            <div class="large-10 medium-12 small-12 columns padding_35 navigator">
+
+                <nav id="main-nav">
+
+                    <!-- Mobile menu toggle button (hamburger/x icon) -->
+                    <input id="main-menu-state" type="checkbox" />
+                    <label class="main-menu-btn" for="main-menu-state">
+                        <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+                    </label>
+
+
+                    <!-- Sample menu definition -->
+                    <ul id="main-menu" class="sm sm-mint">
+                        <li><a asp-controller="Projects1" asp-action="Index">Time Recording</a></li>
+
+                        <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="Projects1" asp-action="Index">Reports</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Perfomance indicators</a>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Projects Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Contract Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Program Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Employees Report </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Spend Procurement Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Project Budget Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Dataset Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Interns </a></li>
+
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MyGift" asp-action="Index">My Gift</a></l>
+
+                                    </ul>
+                                </li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportActiveMou" asp-action="Index">Active MoUs</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportAllMou" asp-action="Index">All MoUs</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportRequest" asp-action="Index">MoUs Request</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Projects1" asp-action="Index">Budget</a>
+                        </li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift Register </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Add Gift</a></l>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="License" asp-action="Index">License Adminstrator</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUCreate" asp-action="Index">Create MoU Request</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUActivity" asp-action="Index">MoU Activity</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage3" asp-action="Index">Manage MoU Requests(CEO)</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="TeamConfigure" asp-action="Index">TEAM MANAGEMENT</a></li>
+                        <li><a asp-controller="AccessGroups" asp-action="Index">ACCESS GROUPS</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--/***************************************/
+             ----   section-3  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section3 color-pellette-8 text-center">
+        <div class="row padding_40 ">
+            <div class="columns small-8 medium-centered small-centered large-centered">
+                <h4>License Types</h4>
+                <p class="anim-text">Social science that makes a difference</p>
+            </div>
+            <a asp-controller="LicenseList" asp-action="Index"
+               class="button radius padding_10">Back</a>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Home</a>
+        </div>
+    </div>
+
+
+
+
+    <div class="section5 color-pellette-5">
+        <div class="row collapse" data-equalizer>
+            <div class="large-12 medium-12 small-12 columns">
+                <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
+
+
+                    <div class="content-blocks content-blocks-0  ">
+                        @*                        <h3>   <a asp-controller="LicenseListTypesAdd" asp-action="Index">  Add new License Type</a> </h3>
+                        *@                          <div class="newbutton-indicator">
+                            <a asp-controller="LicenseListTypesAdd" asp-action="Index" style="display: flex; justify-content: center; align-items: center; color: white; text-decoration: none;">
+                                <div class="right-arrow-view" style="margin-left: 10px;">
+                                    <img src="images/new-file.png" class="logo" alt="" />
+                                </div>
+                                Add new License Type
+                            </a>
+                        </div>
+                        @*                        <h3>   <a asp-controller="License" asp-action="Index">Back To Dashboard</a> </h3>
+                        *@
+                        <div class="above-table">
+                            <div class="buttons-row ">
+
+
+                                <button class="download-buttons">Excel</button>
+                                <div class="custom-text1">Show </div>
+                                <select class="custom-select" onchange="showNumberOfRows(this)">
+                                    <option value="---">---</option>
+
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="10">25</option>
+                                    <option value="35">35</option>
+                                    <option value="50">50</option>
+
+                                </select>
+                                <div class="custom-text2"> entries</div>
+                            </div>
+                            <div>
+                                <div class="search-box">
+                                    <input type="text" placeholder="Search" id="search-input" onkeyup="filterTable()">
+                                </div>
+                            </div>
+                        </div>
+
+                        <table id="event-table">
+
+                            <thead>
+                                <tr class="color-pellette-0">
+
+                                    <th scope="col" width="5%">Type</th>
+
+                                    <th scope="col" width="5%">Status</th>
+                                    <th scope="col" width="5%">Action</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="table-row">
+
+
+                                    <td data-label="Status">
+                                        Statictical - Stata 15
+                                    </td>
+                                    <td data-label="Status">Active	</td>
+
+                                    <td data-label="Action">
+                                        <label>
+                                            <select id="action-select" onchange="handleActionChange('action-select')">
+                                                <option value="D -GE Support Service">-Please select-</option>
+                                                <option value="Edit3">Edit</option>
+
+                                            </select>
+                                        </label>
+
+
+                                    </td>
+                                </tr>
+                                <tr class="table-row">
+
+                                    <td data-label="Status">
+                                        Statistical - SPSS 28
+                                    </td>
+                                    <td data-label="Status">Active	</td>
+
+                                    <td data-label="Action">
+                                        <label>
+                                            <select id="action-select" onchange="handleActionChange('action-select')">
+                                                <option value="D -GE Support Service">-Please select-</option>
+                                                <option value="Edit3">Edit</option>
+
+                                            </select>
+                                        </label>
+
+
+                                    </td>
+                                </tr>
+                                <tr class="table-row">
+
+                                    <td data-label="Status">
+                                        Statistical - Stat Transfer 15
+                                    </td>
+                                    <td data-label="Status">Active	</td>
+
+                                    <td data-label="Action">
+                                        <label>
+                                            <select id="action-select" onchange="handleActionChange('action-select')">
+                                                <option value="D -GE Support Service">-Please select-</option>
+                                                <option value="Edit3">Edit</option>
+
+                                            </select>
+                                        </label>
+
+
+
+                                    </td>
+                                </tr>
+                                <tr class="table-row">
+
+                                    <td data-label="Status">
+                                        Statistical - SAS 9.4
+                                    </td>
+                                    <td data-label="Status">Active	</td>
+
+                                    <td data-label="Action">
+                                        <label>
+                                            <select id="action-select" onchange="handleActionChange('action-select')">
+                                                <option value="D -GE Support Service">-Please select-</option>
+                                                <option value="Edit3">Edit</option>
+
+                                            </select>
+                                        </label>
+
+
+
+                                    </td>
+                                </tr>
+                                <tr class="table-row">
+
+                                    <td data-label="Status">
+                                        Productivity - Adobe
+                                    </td>
+                                    <td data-label="Status">Active	</td>
+
+                                    <td data-label="Action">
+                                        <label>
+                                            <select id="action-select" onchange="handleActionChange('action-select')">
+                                                <option value="D -GE Support Service">-Please select-</option>
+                                                <option value="Edit3">Edit</option>
+
+                                            </select>
+                                        </label>
+
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--/***************************************/
+                  Java scripts
+    /***************************************/-->
+
+    <script>
+        function handleActionChange(selectElement) {
+            // Get the selected option value
+            var selectedOption = selectElement.value;
+
+            // Perform the action based on the selected option
+            switch (selectedOption) {
+                case "Edit":
+                    // Redirect to the "LicenseMSupplierEdit" view
+                    window.location.href = "/MoUManage1Edit";
+                    break;
+
+                default:
+                    // Handle invalid option or other cases
+                    break;
+            }
+        }
+    </script>
+    <script src="~/js/JavaScript.js"></script>
+
+    <script>
+        modalHandler.registerModal('myModal');
+
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            animationsHandler.applyTableAnimation(); // <!--responsible for text animation-- >
+
+        });
+    </script>
+
+</body>

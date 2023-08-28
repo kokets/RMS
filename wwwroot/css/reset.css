@@ -1,0 +1,27 @@
+@charset "utf-8";
+/****************************************
+			 	RESET
+****************************************/
+
+.list-style ul {
+  list-style-type: disc;
+  margin-left: 0rem; 
+  list-style-image:url(../images/bullet.png);
+/*  padding-left:25px;*/
+    list-style-position: inside;
+  
+  }
+  
+ .list-style li:nth-child(odd) {
+    background-color: #E6E7E7;
+}
+
+.nav-menu ul {
+    
+    margin-bottom: 0rem important;;
+}
+
+   
+    border-top: thin solid #DA9C19;
+    padding: 1px 1px 1px 1px;
+}
