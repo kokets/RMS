@@ -284,8 +284,12 @@
                                         <td data-label="LicenseOwner">@capture.LicenseOwner</td>
                                         <td data-label="Activations">
                                             @capture.Activations
-                                            <a asp-controller="LicenseMActivations" asp-action="Index"> 	Manage</a>
-                                        </td>
+                                            <form asp-controller="LicenseMActivations" asp-action="Index" method="get">
+                                                <input type="hidden" name="captureid" value="@capture.CaptureId" />
+                                                <button type="submit" class="submit-link-button"><a>Manage</a> </button>
+                                            </form>
+@*                                             <a asp-controller="LicenseMActivations" asp-action="Index"> 	Manage</a>
+ *@                                        </td>
                                         <td data-label="LicenseStatus">@capture.LicenseStatus	</td>
 
                                         <td data-label="Action">
@@ -298,13 +302,13 @@
 
                                                 </select>
                                             </label> *@
+                                        
                                             <form asp-controller="LicenseListView" asp-action="Index" method="get">
-                                                <input type="hidden" name="id" value="@capture.CaptureId" />
-                                                <button type="submit" class="edit-link-button">View</button>
+                                                <input type="hidden" name="captureid" value="@capture.CaptureId" />
+                                                <button type="submit" class="submit-link-button"><a>View</a> </button>
                                             </form>
-
                                             <form asp-controller="LicenseListEdit" asp-action="Index" method="get">
-                                                <input type="hidden" name="giftId" value="@capture.CaptureId" />
+                                                <input type="hidden" name="captureid" value="@capture.CaptureId" />
                                                 <button type="submit" class="submit-link-button" ><a>Edit</a> </button>
                                             </form>
                                         </td>

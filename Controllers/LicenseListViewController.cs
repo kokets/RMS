@@ -21,12 +21,29 @@ namespace HSRC_RMS.Controllers
         {
             try
             {
-                LicenseCaptureGet viewModel = new LicenseCaptureGet
+                LicenseCapture captureView = await _captureRepository.GetByIdAsync(captureId);
+                //TempData["CaptureData"] = captures;
+
+
+                LicenseViewGet viewModel = new LicenseViewGet
                 {
-                    //SelectedCaptureId = captureId,
-                    LicenseCaptureList = await _captureRepository.GetLicenseViewByCaptureIdAsync(captureId),
-                    NewLicenseCapture = new LicenseCapture()
+                    NewViewLicense = new LicenseCapture
+                    {
+                        LicenseOwner = captureView.LicenseOwner,
+                        ProductName = captureView.ProductName,
+                        ProductKey = captureView.ProductKey,
+                        LicenseType = captureView.LicenseType,
+                        AcquiredDate = captureView.AcquiredDate,
+                        ExpiryDate = captureView.ExpiryDate,
+                        Activations = captureView.Activations,
+                        LicenseStatus = captureView.LicenseStatus,
+                        Supplier = captureView.Supplier,
+                        PurchasePrice = captureView.PurchasePrice,
+                        CommentPrice = captureView.CommentPrice
+                    },
+                    CaptureId = captureId
                 };
+
 
                 return View(viewModel);
             }

@@ -1,3 +1,4 @@
+@model HSRC_RMS.Models.LicenseRemainderGet
 @{
     ViewData["Title"] = "License";
 }
@@ -262,6 +263,8 @@
         </div>
     </div>
 
+   
+
     <div id="myModal" class="my-modal">
         <div class="my-modal-content-indicator">
             <span class="my-close" onclick="modalHandler.closeModal('myModal')">&times;</span>
@@ -270,7 +273,10 @@
 
             </div>
             <div class="my-modal-content-body">
-                <form>
+                <form asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()">
+                    @Html.AntiForgeryToken()
+
+
                     <div class="">
                         <div class="search-section">
 
@@ -279,38 +285,36 @@
                                     Reminder for
                                     <span class="mandatory-star">*</span>
 
-                                    <select>
-                                        <option value="D -GE Support Service">Connectionz</option>
-                                        <option value="D -GE Support Service">Roefs</option>
-
-                                    </select>
+                                    @Html.DropDownListFor(model => model.NewLicenseRemainder.LicenseUser, Model.UsersOptionAsync, "--Please Select--", new { required = "required", id = "LicenseOwner" })
+                                    @Html.ValidationMessageFor(model => model.NewLicenseRemainder.LicenseUser)
                                 </label>
                             </div>
                             <div class="medium-12 cell">
                                 <label>
                                     Reminder date
-                                    <input type="date" />
-
+                                    @Html.EditorFor(model => model.NewLicenseRemainder.RemainderDate, new { htmlAttributes = new { @class = "form-control" , type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.NewLicenseRemainder.RemainderDate)
                                 </label>
                             </div>
 
                             <div class="medium-12 cell">
                                 <label>
                                     Comment
-                                    <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
+                                    @Html.TextAreaFor(model => model.NewLicenseRemainder.Comment, new {required = "required"  , id = "comment-input", rows = "1" })
 
                                 </label>
                             </div>
 
                         </div>
                     </div>
-
+                    <div class="my-clearfix">
+                        <br />
+                        <button type="button" class="my-cancelbtn" onclick="modalHandler.closeModal('myModal')">Cancel</button>
+                        <button type="submit" class="my-deletebtn1" >Add</button>
+                    </div>
                 </form>
             </div>
-            <div class="my-clearfix">
-                <button type="button" class="my-cancelbtn" onclick="modalHandler.closeModal('myModal')">Cancel</button>
-                <button type="button" class="my-deletebtn1" onclick="deleteAccount()">Add</button>
-            </div>
+         
         </div>
     </div>
 
@@ -322,6 +326,12 @@
     /***************************************/-->
 
     <script src="~/js/JavaScript.js"></script>
+    <script>
+        // Check if the modal should be closed
+        if (@TempData["CloseModal"]as bool ? == true) {
+            modalHandler.closeModal('myModal'); // Close the modal using modalHandler
+        }
+    </script>
 
     <script>
         modalHandler.registerModal('myModal');

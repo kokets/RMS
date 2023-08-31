@@ -1,8 +1,16 @@
-@model HSRC_RMS.Models.LicenseCaptureGet
+@model HSRC_RMS.Models.LicenseEditGet
 @using HSRC_RMS.Helpers
 @{
     ViewData["Title"] = "Event Page";
 }
+@{
+    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US"); // Specify the appropriate culture
+    string formattedAcquiredDate = Model.NewEditCapture.AcquiredDate.ToString("yyyy/MM/dd", culture);
+    string formattedExpiredDate = Model.NewEditCapture.ExpiryDate.ToString("yyyy/MM/dd", culture);
+
+}
+
+
 
 
 <body>
@@ -136,13 +144,27 @@
                 <h4>License edit Capture Form</h4>
                 <p class="anim-text">Social science that makes a difference</p>
             </div>
-            <a asp-controller="Home" asp-action="Index"
+            <a asp-controller="License" asp-action="Index"
                class="button radius padding_10">Back</a>
             <a asp-controller="Home" asp-action="Index"
                class="button radius padding_10">Home</a>
         </div>
     </div>
+    <!-- Display success message if available -->
+    @if (TempData.ContainsKey("SuccessMessage"))
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
 
+    <!-- Display error message if available -->
+    @if (TempData.ContainsKey("ErrorMessage"))
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
     
     <div class="section5 color-pellette-5  ">
         <div class="row collapse  " data-equalizer>
@@ -151,15 +173,30 @@
 
 
                     <div class="content-blocks content-blocks-0  ">
-                        <h3>   <a asp-controller="LicenseList" asp-action="Index">Back to License listing</a> </h3>
+                      @*   <h3>   <a asp-controller="LicenseList" asp-action="Index">Back to License listing</a> </h3>
 
-                        <h3>   <a asp-controller="License" asp-action="Index">Back To Dashboard</a> </h3>
+                        <h3>   <a asp-controller="License" asp-action="Index">Back To Dashboard</a> </h3> *@
 
+                        <div class="above-table">
+                            <div class="buttons-row ">
+                                <div class="add-buttons">
+                                    <a asp-controller="LicenseList" asp-action="Index" style="display: flex; align-items: center; color: white; text-decoration: none;">
+                                        <div class="right-arrow-view" style="margin-left: 10px">
+                                            <img src="images/back-arrow.png" class="logo" alt="" />
+                                        </div>
+                                        Listing
+                                    </a>
 
-                        <form asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()">
+                                </div>
+
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <form asp-controller="LicenseListEdit" asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()">
                             @Html.AntiForgeryToken()
 
-                            <input type="hidden" name="GiftId" value="@Model.CaptureId" />
+                            <input type="hidden" name="CaptureId" value="@Model.CaptureId" />
 
                             <div class="">
                                 <div class="search-section">
@@ -175,11 +212,11 @@
                                             {
                                             <option value="@Username">@Username</option>
                                             }
-                                            , Model.UsersOptionAsync
                                             </select>
                                             *@
-                                          @*   @Html.DropDownListFor(model => model.LicenseOwner, "--Please Select--", new { required = "required", id = "LicenseOwner" })
-                                            @Html.ValidationMessageFor(model => model.LicenseOwner) *@
+                                            @Html.DropDownListFor(model => model.NewEditCapture.LicenseOwner                                            , Model.UsersOptionAsync
+                                            , "--Please Select--", new { required = "required", id = "LicenseOwner" })
+                                            @Html.ValidationMessageFor(model => model.NewEditCapture.LicenseOwner)
                                         </label>
                                     </div>
                                     @*                                     @Html.HiddenFor(model => model.NewLicenseCapture.LicenseOwner, new { id = "LicenseOwner" })
@@ -188,8 +225,8 @@
                                         <label>
                                             Product Name
                                             <span class="mandatory-star">*</span>
-                                            @Html.TextBoxFor(model => model.NewLicenseCapture.ProductName, new { required = "required"  ,id = "ProductName"})
-                                            @Html.ValidationMessageFor(model => model.NewLicenseCapture.ProductName)
+                                            @Html.TextBoxFor(model => model.NewEditCapture.ProductName, new { required = "required"  ,id = "ProductName"})
+                                            @Html.ValidationMessageFor(model => model.NewEditCapture.ProductName)
 
                                         </label>
                                     </div>
@@ -197,8 +234,8 @@
                                         <label>
                                             Product Key
                                             <span class="mandatory-star">*</span>
-                                            @Html.TextBoxFor(model => model.NewLicenseCapture.ProductKey, new { required = "required"  ,id = "ProductKey"})
-                                            @Html.ValidationMessageFor(model => model.NewLicenseCapture.ProductKey)
+                                            @Html.TextBoxFor(model => model.NewEditCapture.ProductKey, new { required = "required"  ,id = "ProductKey"})
+                                            @Html.ValidationMessageFor(model => model.NewEditCapture.ProductKey)
                                         </label>
                                     </div><div class="medium-12 cell ">
                                         <label>
@@ -211,11 +248,10 @@
                                             {
                                             <option value="@type">@type</option>
                                             }
-                                            , Model.TypeOptionsAsync
                                             </select> *@
-                               @*              @Html.DropDownListFor(model => model.LicenseType, "--Please Select--", new { required = "required", id = "LicenseType" })
-                                            @Html.ValidationMessageFor(model => model.LicenseType)
- *@
+                                            @Html.DropDownListFor(model => model.NewEditCapture.LicenseType                                            , Model.TypeOptionsAsync, "--Please Select--", new { required = "required", id = "LicenseType" })
+                                            @Html.ValidationMessageFor(model => model.NewEditCapture.LicenseType)
+
                                         </label>
                                     </div>
                                     @*                                     @Html.HiddenFor(model => model.NewLicenseCapture.LicenseType, new { id = "LicenseType" })
@@ -223,18 +259,21 @@
                                         <label>
                                             Acquired Date
                                             <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.NewEditCapture.AcquiredDate, new { required = "required", @class = "form-control", type = "date", value = culture })
 
-                                            @Html.EditorFor(model => model.NewLicenseCapture.AcquiredDate, new { htmlAttributes = new { @class = "form-control" , type = "date" } })
-                                            @Html.ValidationMessageFor(model => model.NewLicenseCapture.AcquiredDate)
+@*                                             @Html.EditorFor(model => model.NewEditCapture.AcquiredDate, new { htmlAttributes = new { @class = "form-control" , type = "date" } })
+ *@                                            @Html.ValidationMessageFor(model => model.NewEditCapture.AcquiredDate)
 
                                         </label>
                                     </div><div class="medium-12 cell ">
                                         <label>
                                             Expiry Date
                                             <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.NewEditCapture.ExpiryDate, new { required = "required", @class = "form-control", type = "date", value = culture })
 
-                                            @Html.EditorFor(model => model.NewLicenseCapture.ExpiryDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-                                            @Html.ValidationMessageFor(model => model.NewLicenseCapture.ExpiryDate)
+
+@*                                             @Html.EditorFor(model => model.NewEditCapture.ExpiryDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+ *@                                            @Html.ValidationMessageFor(model => model.NewEditCapture.ExpiryDate)
 
                                         </label>
                                     </div><div class="medium-12 cell ">
@@ -242,8 +281,8 @@
                                             Activations
 
                                             <span class="mandatory-star">*</span>
-                                            @Html.TextBoxFor(model => model.NewLicenseCapture.Activations, new { required = "required"  ,id = "Activations"})
-                                            @Html.ValidationMessageFor(model => model.NewLicenseCapture.Activations)
+                                            @Html.TextBoxFor(model => model.NewEditCapture.Activations, new { required = "required"  ,id = "Activations"})
+                                            @Html.ValidationMessageFor(model => model.NewEditCapture.Activations)
 
                                         </label>
                                     </div><div class="medium-12 cell ">
@@ -252,8 +291,8 @@
                                             <span class="mandatory-star">*</span>
 
                                             <span class="mandatory-star">*</span>
-                                            @Html.DropDownListFor(model => model.NewLicenseCapture.LicenseStatus, DropdownHelpers.GetLicenseStatus(), "--Please Select--", new { required = "required" ,id = "LicenseStatus"})
-                                            @Html.ValidationMessageFor(model => model.NewLicenseCapture.LicenseStatus)
+                                            @Html.DropDownListFor(model => model.NewEditCapture.LicenseStatus, DropdownHelpers.GetLicenseStatus(), "--Please Select--", new { required = "required" ,id = "LicenseStatus"})
+                                            @Html.ValidationMessageFor(model => model.NewEditCapture.LicenseStatus)
 
                                         </label>
                                     </div><div class="medium-12 cell ">
@@ -265,10 +304,10 @@
                                             {
                                             <option value="@supplier">@supplier</option>
                                             }
-                                            , Model.SupplierOptionsAsync
                                             </select> *@
-                                  @*           @Html.DropDownListFor(model => model.Supplier, "--Please Select--", new { required = "required", id = "Supplier" })
-                                            @Html.ValidationMessageFor(model => model.Supplier) *@
+                                            @Html.DropDownListFor(model => model.NewEditCapture.Supplier                                            , Model.SupplierOptionsAsync
+                                            , "--Please Select--", new { required = "required", id = "Supplier" })
+                                            @Html.ValidationMessageFor(model => model.NewEditCapture.Supplier)
 
                                         </label>
                                     </div>
@@ -278,8 +317,8 @@
                                         <label>
                                             Purchase Price
                                             <span class="mandatory-star">*</span>
-                                            @Html.TextBoxFor(model => model.NewLicenseCapture.PurchasePrice, new { required = "required"  ,id = "PurchasePrice"})
-                                            @Html.ValidationMessageFor(model => model.NewLicenseCapture.PurchasePrice)
+                                            @Html.TextBoxFor(model => model.NewEditCapture.PurchasePrice, new { required = "required"  ,id = "PurchasePrice"})
+                                            @Html.ValidationMessageFor(model => model.NewEditCapture.PurchasePrice)
 
                                         </label>
                                     </div><div class="medium-12 cell ">
@@ -287,7 +326,7 @@
                                             Comments/Price
                                             <span class="mandatory-star">*</span>
 
-                                            @Html.TextAreaFor(model => model.NewLicenseCapture.CommentPrice, new {required = "required"  , id = "comment-input", rows = "1" })
+                                            @Html.TextAreaFor(model => model.NewEditCapture.CommentPrice, new {required = "required"  , id = "comment-input", rows = "1" })
 
                                         </label>
                                     </div>

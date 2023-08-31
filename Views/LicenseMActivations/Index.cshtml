@@ -1,3 +1,5 @@
+@model HSRC_RMS.Models.LicenseActivationGet
+
 @{
     ViewData["Title"] = "Event Page";
 }
@@ -25,7 +27,7 @@
         .view-mo-menu {
             display: flex;
             justify-content: center;
-            align-items:center;
+            align-items: center;
             padding: 10px;
             margin-top: -20px; /* Adjust this value as needed */
         }
@@ -33,9 +35,7 @@
         .view-mou-menu {
             display: flex;
             background-color: #f2f2f2;
-          
-           
-            justify-content:center;
+            justify-content: center;
             align-items: center;
         }
 
@@ -49,7 +49,7 @@
                 transition: 0.2s ease color;
             }
 
-              
+
 
                 .view-mou-menu a:before, .view-mou-menu a:after {
                     position: absolute;
@@ -184,12 +184,14 @@
                 <h4>License Activations</h4>
                 <p class="anim-text">Social science that makes a difference</p>
             </div>
-            <a asp-controller="Home" asp-action="Index"
+            <a asp-controller="License" asp-action="Index"
                class="button radius padding_10">Back</a>
             <a asp-controller="Home" asp-action="Index"
                class="button radius padding_10">Home</a>
         </div>
     </div>
+
+ 
 
 
     <div class="section5 color-pellette-5">
@@ -200,16 +202,33 @@
 
                     <div class="content-blocks content-blocks-0">
                         @* <h3><a asp-controller="MoUReportActiveMou" asp-action="Index">Back To List Of  Active MoU</a></h3>*@
-                        <h3>   <a asp-controller="LicenseList" asp-action="Index">Back to License Type listing</a> </h3>
+                       @*  <h3>   <a asp-controller="LicenseList" asp-action="Index">Back to License Type listing</a> </h3>
 
-                        <h3>   <a asp-controller="License" asp-action="Index">Back To Dashboard</a> </h3>
-                        
-                            <div style="width: 100%; background-color:grey; justify-content:center;align-items:center; display:flex; height:50px; border-radius:6px;">
-                                <h4 style="color: #fff;"> License Details</h4>
+                        <h3>   <a asp-controller="License" asp-action="Index">Back To Dashboard</a> </h3> *@
+                        <div class="above-table">
+                            <div class="buttons-row ">
+                                <div class="add-buttons">
+                                    <a asp-controller="LicenseList" asp-action="Index" style="display: flex; align-items: center; color: white; text-decoration: none;">
+                                        <div class="right-arrow-view" style="margin-left: 10px">
+                                            <img src="images/back-arrow.png" class="logo" alt="" />
+                                        </div>
+                                        Listing
+                                    </a>
+
+                                </div>
 
                             </div>
-                         
-                        <div id="table1" class="table-template" >
+                            <div>
+                            </div>
+                        </div>
+                        <div style="width: 100%; background-color:grey; justify-content:center;align-items:center; display:flex; height:50px; border-radius:6px;">
+                            <h4 style="color: #fff;"> License Details</h4>
+
+                        </div>
+
+                        <div id="table1" class="table-template">
+
+
                             <table id="event-table">
                                 <thead>
                                     <tr class="color-pellette-0">
@@ -217,37 +236,35 @@
                                         <th scope="col" width="10%">Caller ID</th>
                                         <th scope="col" width="10%">Owner</th>
                                         <th scope="col" width="10%">Supplier</th>
-                                       
+
 
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach (var capture in Model.LicenseActivationList)
+                                    {
+                                        <tr>
 
-                                    <tr>
-                                        
-                                        <td data-label="TITLE"><a asp-controller="LicenseListView" asp-action="Index">Thabang Mafa</a></td>
-                                        <td data-label="TITLE">123456789	</td>
-                                        <td data-label="STATUS">Mafa TL Mr</td>
-                                        <td data-label="FUNDING">
-                                            22
-                                        </td>
-                                     
+                                            <td data-label="TITLE"><a asp-controller="LicenseListView" asp-action="Index">@capture.ProductName</a></td>
+                                            <td data-label="TITLE">	</td>
+                                            <td data-label="STATUS">@capture.LicenseOwner</td>
+                                            <td data-label="FUNDING">
+                                                @capture.Supplier
+                                            </td>
 
-                                    </tr>
-                                  
+
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>
-                            <div style="width: 100%; background-color:grey; justify-content:center;align-items:center; display:flex; height:50px; border-radius:6px;">
-                                <h4 style="color: #fff;"> Users(1)</h4>
+                        <div style="width: 100%; background-color:grey; justify-content:center;align-items:center; display:flex; height:50px; border-radius:6px;">
+                            <h4 style="color: #fff;"> Users(1)</h4>
 
-                            </div>
-                         
-                          <div class="above-table">
+                        </div>
+
+                        <div class="above-table">
                             <div class="buttons-row ">
-
-                              
-                              
                             </div>
                             <div>
                                 <div class="search-box">
@@ -263,7 +280,7 @@
                                         <th scope="col" width="10%">Unit</th>
                                         <th scope="col" width="10%">Activation Date</th>
                                         <th scope="col" width="10%">Expiry Date</th>
-                                                                                <th scope="col" width="10%">Status</th>
+                                        <th scope="col" width="10%">Status</th>
                                         <th scope="col" width="10%">Form</th>
                                         <th scope="col" width="10%">Action</th>
 
@@ -277,23 +294,25 @@
                                         <td data-label="TITLE">GE Support Service		</td>
                                         <td data-label="STATUS">2020/05/01	</td>
                                         <td data-label="FUNDING">
-                                            2020/05/31	
+                                            2020/05/31
                                         </td>
                                         <td data-label="FUNDING">
                                             Expired
-                                        </td><td data-label="FUNDING">
+                                        </td>
+                                        <td data-label="FUNDING">
                                             Download
-                                        </td><td data-label="FUNDING">
-                                                <div class="right-arrow">
-                                            <div class="right-arrow-view">
-                                                <img src="images/close.png" class="logo" alt="" />
-                                            </div>
-                                            <div>
+                                        </td>
+                                        <td data-label="FUNDING">
+                                            <div class="right-arrow">
+                                                <div class="right-arrow-view">
+                                                    <img src="images/close.png" class="logo" alt="" />
+                                                </div>
+                                                <div>
 
-                                                <a asp-controller="MoUManage1Delete" asp-action="Index"> Remove</a>
+                                                    <a asp-controller="MoUManage1Delete" asp-action="Index"> Remove</a>
 
+                                                </div>
                                             </div>
-                                        </div>
                                         </td>
 
 
@@ -303,13 +322,16 @@
                             </table>
                         </div>
                         <div class="medium-12 cell " style="   display: flex; gap: 10px;">
-                            <button style="   background-color: grey;
-            height: 35px;
-            width: 150px;
-            border-radius: 6px;
-            color: white;
-            font-family: inherit;
-            margin-top: 15px;">
+
+                            <button onclick="modalHandler.openModal('myModal')" style="
+        background-color: grey;
+        height: 35px;
+        width: 150px;
+        border-radius: 6px;
+        color: white;
+        font-family: inherit;
+        margin-top: 15px;
+    ">
                                 Add User
                             </button>
                         </div>
@@ -321,44 +343,97 @@
     </div>
 
 
+  @*   <div id="myModal" class="my-modal1">
+        <div class="my-modal-content-indicator">
+            <span class="my-close" onclick="modalHandler.closeModal('myModal')">&times;</span>
+            <div class="my-modal-content-header">
+                <h4>Add user</h4>
+            </div>
+            <div class="required"><span class="mandatory-star">*</span> Required </div>
+
+            <div class="my-modal-content-body">
+                <form  asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()">
+                    <div class="">
+                        <div class="search-section">
+
+                            <div class="medium-12 cell ">
+                                <label>
+                                    Select user
+                                    <span class="mandatory-star">*</span>
+                                    @Html.DropDownListFor(model => model.NewActivation.LicenseUser                                            , Model.UsersOptionAsync
+                                    , "--Please Select--", new { required = "required", id = "LicenseOwner" })
+                                    @Html.ValidationMessageFor(model => model.NewActivation.LicenseUser)
+                                </label>
+                            </div>
+                            <div class="medium-12 cell ">
+                                <label>
+                                    Activation Date
+                                    <span class="mandatory-star">*</span>
+
+                                    @Html.EditorFor(model => model.NewActivation.ActivationDate, new { htmlAttributes = new { @class = "form-control" , type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.NewActivation.ActivationDate)
+
+                                </label>
+                            </div><div class="medium-12 cell ">
+                                <label>
+                                    Expiry Date
+                                    <span class="mandatory-star">*</span>
+
+                                    @Html.EditorFor(model => model.NewActivation.ExpiryDate, new { htmlAttributes = new { @class = "form-control" , type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.NewActivation.ExpiryDate)
+
+                                </label>
+                            </div>
+                            <div class="medium-12 cell">
+                                <label>
+                                    Accessform
+                                    <span class="mandatory-star">*</span>
+                                    <input type="file" id="AccessFile" name="NewLicenseActivation.AccessFile" accept=".pdf" required />
+                                    @Html.ValidationMessageFor(model => model.NewActivation.AccessFile)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-clearfix">
+                        <hr> <!-- Add a horizontal line here -->
+
+                        <button type="button" class="my-cancelbtn" onclick="modalHandler.closeModal('myModal')">Cancel</button>
+                        <button type="submit" class="my-deletebtn1">Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div> *@
+
 
     <!--/***************************************/
                   Java scripts
     /***************************************/-->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/js.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="~/js/JavaScript.js"></script>
 
 
-    <!-- SmartMenus jQuery plugin -->
-    <script type="text/javascript" src="js/jquery.smartmenus.js"></script>
 
-    <!-- SmartMenus jQuery init -->
-    <script type="text/javascript">
-        $(function () {
-            $('#main-menu').smartmenus({
-                subMenusSubOffsetX: 1,
-                subMenusSubOffsetY: -8
-            });
-        });
-
-    </script>
     <script>
-        const animationsHandler = new AnimationsHandler();
+        modalHandler.registerModal('myModal');
+
 
         document.addEventListener("DOMContentLoaded", () => {
-            animationsHandler.initTextAnimation();
             animationsHandler.applyTableAnimation();
         });
     </script>
+    <script>
+        // Check if the modal should be closed
+        if (@TempData["CloseModal"]as bool ? == true) {
+            modalHandler.closeModal('myModal'); // Close the modal using modalHandler
+        }
+    </script>
 
 
-    <script src="js/vendor/what-input.js"></script>
-    <script src="js/vendor/foundation.js"></script>
-    <script type="text/javascript" src="script.js"></script>
 
 
 </body>

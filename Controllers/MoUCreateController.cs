@@ -1,3 +1,4 @@
+using HSRC_RMS.Helpers;
 using HSRC_RMS.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -6,11 +7,13 @@ namespace HSRC_RMS.Controllers
 {
     public class MoUCreateController : Controller
     {
-        private readonly ILogger<MoUCreateController> _logger;
+        private readonly IRepository<MouCreate> _moucreateRepository;
+        private readonly IRepository<Users> _userRepository;
 
-        public MoUCreateController(ILogger<MoUCreateController> logger)
+        public MoUCreateController(IRepository<MouCreate> moucreateRepository, IRepository<Users> userRepository)
         {
-            _logger = logger;
+            _moucreateRepository = moucreateRepository;
+            _userRepository = userRepository;
         }
 
         public IActionResult Index()
@@ -18,15 +21,39 @@ namespace HSRC_RMS.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public  async Task<IActionResult> Index ()
+        //{
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Index(MouCreate model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            // Hardcoded user ID for testing
+        //            int hardcodedUserId = 1;
+        //            model.UserId = hardcodedUserId;
+
+        //            // Add the gift asynchronously
+        //            await _moucreateRepository.AddAsync(model);
+        //            await _moucreateRepository.SaveAsync();
+
+        //            TempData["SuccessMessage"] = "Gift registered successfully.";
+
+        //            return RedirectToAction("Index", "MoUManage1");
+        //        }
+        //        catch (Exception)
+        //        {
+        //            ModelState.AddModelError("", "An error occurred while saving the gift.");
+        //        }
+        //    }
+
+        //    return View(model);
+        //}
+
     }
 }

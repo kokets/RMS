@@ -1,4 +1,4 @@
-@model HSRC_RMS.Models.LicenseCaptureGet
+@model HSRC_RMS.Models.LicenseViewGet
 @using HSRC_RMS.Helpers
 
 @{
@@ -174,7 +174,7 @@
                 <h4>License details</h4>
                 <p class="anim-text">Social science that makes a difference</p>
             </div>
-            <a asp-controller="Home" asp-action="Index"
+            <a asp-controller="License" asp-action="Index"
                class="button radius padding_10">Back</a>
             <a asp-controller="Home" asp-action="Index"
                class="button radius padding_10">Home</a>
@@ -191,92 +191,104 @@
 
 
                     <div class="content-blocks content-blocks-0">
-
+@* 
                         <h3><a asp-controller="License" asp-action="Index"> Back to Dashboard</a></h3>
-                        <h3><a asp-controller="LicenseList" asp-action="Index"> Back to License Listing</a></h3>
+                        <h3><a asp-controller="LicenseList" asp-action="Index"> Back to License </a></h3> *@
 
+                            <div class="above-table">
+                                <div class="buttons-row ">
+                                    <div class="add-buttons">
+                                    <a asp-controller="LicenseList" asp-action="Index" style="display: flex; align-items: center; color: white; text-decoration: none;">
+                                            <div class="right-arrow-view" style="margin-left: 10px">
+                                            <img src="images/back-arrow.png" class="logo" alt="" />
+                                        </div>
+                                            Listing
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                                <div>
+                                </div>
+                            </div>
 
 
                         <div id="table2" class="table-template" >
                             <table id="event-table">
-                            @*     @foreach (var capture in Model.LicenseCaptureList)
-                                {
-                                    if (capture.CaptureId == Model.SelectedCaptureId)
-                                    { *@
+                          
                                         <tr class="data-row">
                                             <td data-label=" Call ID" class="color-pellette-4 short-column">
                                                 Call ID
                                             </td>
                                             <td data-label=" Call ID">
-@*                                                 @capture.CaptureId
- *@                                            </td>
+                                        @Model.NewViewLicense.CaptureId
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td data-label="ProductName" class="color-pellette-4">Product</td>
                                             <td data-label="ProductName">
-@*                                                 @capture.ProductName
- *@                                            </td>
+                                        @Model.NewViewLicense.ProductName
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td data-label=" ProductKey" class="color-pellette-4">Key		</td>
                                             <td data-label="ProductKey">
-@*                                                 @capture.ProductKey
- *@                                            </td>
+                                        @Model.NewViewLicense.ProductKey
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td data-label="LicenseType" class="color-pellette-4">Type		</td>
                                             <td data-label="LicenseType">
-@*                                                 @capture.LicenseType
- *@                                            </td>
+                                        @Model.NewViewLicense.LicenseType
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td data-label="AcquiredDate " class="color-pellette-4">Acquired Date			</td>
                                             <td data-label="AcquiredDate ">
-@*                                                 @capture.AcquiredDate
- *@                                            </td>
+                                        @Model.NewViewLicense.AcquiredDate
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td data-label="ExpiryDate" class="color-pellette-4">Expiry Date			</td>
                                             <td data-label="ExpiryDate">
-@*                                                 @capture.ExpiryDate
- *@                                            </td>
+                                        @Model.NewViewLicense.ExpiryDate
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td data-label="Activations" class="color-pellette-4">Activations		</td>
                                             <td data-label="Activations">
-@*                                                 @capture.Activations
- *@
+                                        @Model.NewViewLicense.Activations
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <td data-label="LicenseStatus" class="color-pellette-4">Status		</td>
                                             <td data-label="LicenseStatus">
-@*                                                 @capture.LicenseStatus
- *@
+                                        @Model.NewViewLicense.LicenseStatus
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <td data-label="Supplier" class="color-pellette-4">Supplier			</td>
                                             <td data-label="Supplier">
-@*                                                 @capture.Supplier
- *@
+                                        @Model.NewViewLicense.Supplier
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <td data-label="PurchasePrice" class="color-pellette-4">Price			</td>
                                             <td data-label="PurchasePrice">
-@*                                                 @capture.PurchasePrice
- *@
+                                        @Model.NewViewLicense.PurchasePrice
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <td data-label="CommentPrice" class="color-pellette-4">Comments			</td>
                                             <td data-label="CommentPrice">
-@*                                                 @capture.CommentPrice
- *@                                            </td>
+                                        @Model.NewViewLicense.CommentPrice
+                                            </td>
                                         </tr>
-                                    }
-                           @*      } *@
+                          
 
                             </table>
                        
@@ -284,7 +296,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
+    </div>
 
 
 

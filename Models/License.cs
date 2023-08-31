@@ -73,13 +73,10 @@ namespace HSRC_RMS.Models
         public string LicenseType { get; set; }
 
         [Required]
-        [Column(TypeName = "date")] // Specify the SQL Server DATE type
-
         public DateTime AcquiredDate { get; set; }
+     
 
         [Required]
-        [Column(TypeName = "date")] // Specify the SQL Server DATE type
-
         public DateTime ExpiryDate { get; set; }
 
         [Required]
@@ -102,6 +99,96 @@ namespace HSRC_RMS.Models
         public Users? User { get; set; } // Assuming you have a Users model
 
     }
+    public class LicenseActivation
+    {
+        [Key]
+        public int ActivationId { get; set; }
+
+        [Required]
+        public int UserId { get; set; }
+
+        [Required, StringLength(100)]
+        public string LicenseUser { get; set; }
+
+        [Required]
+        private DateTime _acquirecdDate;
+        public DateTime ActivationDate { 
+            get { return _acquirecdDate.Date; }
+            set { _acquirecdDate = value.Date; }
+        }
+
+        [Required]
+        private DateTime _expiryDate;
+        public DateTime ExpiryDate
+        {
+            get { return _expiryDate.Date; } // Extracts date part, time is avoided
+            set { _expiryDate = value.Date; } // Sets only the date part, time is ignored
+        }
+
+        [Required]
+        public byte[] AccessFile { get; set; }
+
+        // Navigation property to represent the User
+        public Users? User { get; set; }
+    }
+  
+    public class LicenseActivationGet
+    {
+        public LicenseActivation NewActivation { get; set; }
+        public LicenseCapture NewActivationView { get; set; }
+
+        public List<SelectListItem> UsersOptionAsync { get; set; } // New property
+        //public List<SelectListItem> TypeOptionsAsync { get; set; } // New property
+        //public List<SelectListItem> SupplierOptionsAsync { get; set; } // New property
+        public List<LicenseCapture> LicenseActivationList { get; set; }
+        public List<LicenseActivation> ActivationList { get; set; }
+
+        public int CaptureId { get; set; } // Add this property
+
+        public LicenseActivationGet()
+        {
+            NewActivation = new LicenseActivation();
+            UsersOptionAsync = new List<SelectListItem>(); // Initialize the list
+            //TypeOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            //SupplierOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            NewActivationView = new LicenseCapture();
+            LicenseActivationList = new List<LicenseCapture>();
+            ActivationList = new List<LicenseActivation>();
+
+
+
+        }
+    }
+    public class LicenseViewGet
+    {
+        public LicenseCapture NewViewLicense { get; set; }
+        public int CaptureId { get; set; } // Add this property
+
+        public LicenseViewGet()
+        {
+            NewViewLicense = new LicenseCapture();
+        }
+    }
+    public class LicenseCaptureForm
+    {
+      
+        public List<SelectListItem> UsersOptionAsync { get; set; } // New property
+        public List<SelectListItem> TypeOptionsAsync { get; set; } // New property
+        public List<SelectListItem> SupplierOptionsAsync { get; set; } // New property
+
+        public LicenseCapture NewCaptureForm { get; set; }
+        public LicenseCaptureForm()
+        {
+          
+            UsersOptionAsync = new List<SelectListItem>(); // Initialize the list
+            TypeOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            SupplierOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            NewCaptureForm = new LicenseCapture();
+      
+
+        }
+    }
+
 
     public class LicenseCaptureGet
     {
@@ -111,9 +198,13 @@ namespace HSRC_RMS.Models
         public List<SelectListItem> UsersOptionAsync { get; set; } // New property
         public List<SelectListItem> TypeOptionsAsync { get; set; } // New property
         public List<SelectListItem> SupplierOptionsAsync { get; set; } // New property
-    
-        public LicenseCapture NewLicenseCapture { get; set; }
         public List<LicenseCapture> LicenseCaptureList { get; set; }
+
+        public LicenseCapture NewLicenseCapture { get; set; }
+        public LicenseActivation NewLicenseUser { get; set; }
+        public LicenseRemainder NewLicenseRemainder { get; set; }
+
+
         public int CaptureId { get; set; } // Add this property
 
         public LicenseCaptureGet()
@@ -125,8 +216,95 @@ namespace HSRC_RMS.Models
             TypeOptionsAsync = new List<SelectListItem>(); // Initialize the list
             SupplierOptionsAsync = new List<SelectListItem>(); // Initialize the list
             NewLicenseCapture = new LicenseCapture();
-            LicenseCaptureList = new List<LicenseCapture>();
+            NewLicenseUser = new LicenseActivation();
+            NewLicenseRemainder = new LicenseRemainder();
+                LicenseCaptureList = new List<LicenseCapture>();
+            //CaptureId = 0; // You can set it to an initial value if needed
+
         }
     }
+    public class LicenseEditGet
+    {
+       
+        public List<SelectListItem> UsersOptionAsync { get; set; } // New property
+        public List<SelectListItem> TypeOptionsAsync { get; set; } // New property
+        public List<SelectListItem> SupplierOptionsAsync { get; set; } // New property
+
+        public LicenseCapture NewEditCapture { get; set; }
+        public List<LicenseCapture> LicenseEditList { get; set; }
+
+
+        public int CaptureId { get; set; } // Add this property
+
+
+        public LicenseEditGet()
+        {
+  
+            UsersOptionAsync = new List<SelectListItem>(); // Initialize the list
+            TypeOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            SupplierOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            NewEditCapture = new LicenseCapture();
+            LicenseEditList = new List<LicenseCapture>();
+
+
+
+        }
+    }
+    public class LicenseRemainder
+    {
+        [Key]
+        public int ReminderId { get; set; }
+
+        [Required]
+        public int UserId { get; set; }
+
+        [Required, StringLength(100)]
+        public string LicenseUser { get; set; }
+
+        [Required]
+        [Column(TypeName = "date")]
+        public DateTime RemainderDate { get; set; }
+
+        [MaxLength]
+        public string Comment { get; set; }
+
+        // Navigation property to represent the User
+        public Users? User { get; set; }
+    }
+    public class LicenseRemainderGet
+    {
+
+        public List<SelectListItem> UsersOptionAsync { get; set; } // New property
+        public LicenseRemainder NewLicenseRemainder { get; set; }
+
+        public int CaptureId { get; set; } // Add this property
+
+        public LicenseRemainderGet()
+        {
+         
+            UsersOptionAsync = new List<SelectListItem>(); // Initialize the list        
+            NewLicenseRemainder = new LicenseRemainder();
+         
+        }
+    }
+    //public class LicenseActivationGet
+    //{
+
+
+
+
+    //    public LicenseRemainder NewLicenseRemainder { get; set; }
+
+
+
+    //    public LicenseActivationGet()
+    //    {
+
+    //        NewLicenseRemainder = new LicenseRemainder();
+
+
+    //    }
+    //}
+
 
 }

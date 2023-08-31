@@ -17,6 +17,7 @@ namespace HSRC_RMS.Helpers
         Task<List<SelectListItem>> TypeOptionsAsync();
         Task<List<SelectListItem>> SupplierOptionsAsync();
         Task<List<LicenseType>> GetTypeByUserIdAsync(int userId);
+        Task<List<LicenseCapture>> GetLicenseIdAsync(int captureId);
 
         //List<string> GetLicenseCSuppliesList();
         //List<string> GetLicenseCTypeList();

@@ -29,7 +29,7 @@ namespace HSRC_RMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(LicenseCaptureGet model)
+        public async Task<IActionResult> Index(LicenseCaptureForm model)
         {
             if (ModelState.IsValid)
             {
@@ -37,10 +37,10 @@ namespace HSRC_RMS.Controllers
                 {
                     // Hardcoded user ID for testing
                     int hardcodedUserId = 1;
-                    model.NewLicenseCapture.UserId = hardcodedUserId;
+                    model.NewCaptureForm.UserId = hardcodedUserId;
 
                  
-                    _captureRepository.Add(model.NewLicenseCapture);
+                 await   _captureRepository.AddAsync(model.NewCaptureForm);
                     await _captureRepository.SaveAsync(); // Assuming SaveAsync is the asynchronous method
 
 
@@ -54,7 +54,21 @@ namespace HSRC_RMS.Controllers
                     ModelState.AddModelError("", "An error occurred while saving the gift.");
                 }
             }
-
+            else
+            {
+                // Log ModelState errors
+                foreach (var key in ModelState.Keys)
+                {
+                    foreach (var error in ModelState[key].Errors)
+                    {
+                        Console.WriteLine($"ModelState Error - Key: {key}, Error: {error.ErrorMessage}");
+                    }
+                }
+            }
+            // If ModelState is not valid, populate dropdown options and return to the edit view with the model
+            model.UsersOptionAsync = await _userRepository.UsersOptionAsync();
+            model.TypeOptionsAsync = await _typeRepository.TypeOptionsAsync();
+            model.SupplierOptionsAsync = await _supplyRepository.SupplierOptionsAsync();
             return View(model);
         }
 
@@ -62,7 +76,7 @@ namespace HSRC_RMS.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var licenseCaptureGet = new LicenseCaptureGet();
+            var licenseCaptureGet = new LicenseCaptureForm();
            
             licenseCaptureGet.UsersOptionAsync = await _userRepository.UsersOptionAsync();
             licenseCaptureGet.TypeOptionsAsync = await _typeRepository.TypeOptionsAsync();

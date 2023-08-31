@@ -122,6 +122,8 @@ namespace HSRC_RMS.Helpers
             .Where(capture => capture.UserId == userId)
             .Select(capture => new LicenseCapture
             {
+                CaptureId = capture.CaptureId,
+
                 LicenseOwner = capture.LicenseOwner,
                 ProductName = capture.ProductName,
                 LicenseType = capture.LicenseType,
@@ -131,14 +133,15 @@ namespace HSRC_RMS.Helpers
                 LicenseStatus = capture.LicenseStatus,
             })
             .ToListAsync();
-    }
-     public   async Task<List<LicenseCapture>> GetLicenseViewByCaptureIdAsync(int captureId)
+
+
+        }
+        public   async Task<List<LicenseCapture>> GetLicenseViewByCaptureIdAsync(int captureId)
         {
             return await _dbConnect.LicenseCapture
            .Where(capture => capture.CaptureId == captureId)
            .Select(capture => new LicenseCapture
            {
-               CaptureId = capture.CaptureId,
 
                LicenseOwner = capture.LicenseOwner,
 
@@ -156,14 +159,55 @@ namespace HSRC_RMS.Helpers
 
            })
            .ToListAsync();
+            //return await _dbConnect.Set<LicenseCapture>().Where(type => type.CaptureId == captureId).ToListAsync();
+
         }
+        public async Task<List<LicenseCapture>> GetLicenseIdAsync(int captureId)
+        {
+            return await _dbConnect.LicenseCapture
+           .Where(capture => capture.CaptureId == captureId)
+           .Select(capture => new LicenseCapture
+           {
 
-    
+               LicenseOwner = capture.LicenseOwner,
+
+               ProductName = capture.ProductName,
+             
+               Supplier = capture.Supplier,
+          
+
+           })
+           .ToListAsync();
+            //return await _dbConnect.Set<LicenseCapture>().Where(type => type.CaptureId == captureId).ToListAsync();
+
+        }
+        //public async Task<List<LicenseActivation>> GetActivationIdAsync(int userId)
+        //{
+        //    return await _dbConnect.LicenseCapture
+        //   .Where(userid => userid.UserId == userId)
+        //   .Select(userid => new LicenseActivation
+        //   {
+
+        //       LicenseUser = userid.LicenseUser,
+
+        //       ActivationDate = userid.ActivationDate,
+
+        //       ExpiryDate = userid.ExpiryDate,
+        //       AccessFile = userid.AccessFile,
+         
 
 
-     
+        //   })
+        //   .ToListAsync();
+        //    //return await _dbConnect.Set<LicenseCapture>().Where(type => type.CaptureId == captureId).ToListAsync();
 
-     
+        //}
+
+
+
+
+
+
 
 
         public T GetById(int id)
