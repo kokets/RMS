@@ -18,16 +18,26 @@ namespace HSRC_RMS.Controllers
         {
             try
             {
-                int userId = 1;
-                List<LicenseType> typeList = await _typeRepository.GetTypeByUserIdAsync(userId);
 
-                LicenseTypeGet viewModel = new LicenseTypeGet
+                int? userId = HttpContext.Session.GetInt32("UserId");
+
+                if (userId.HasValue)
                 {
-                    LicenseTypeList = typeList,
-                    NewLicenseType = new LicenseType()
-                };
+                    List<LicenseType> typeList = await _typeRepository.GetTypeByUserIdAsync(userId.Value);
 
-                return View(viewModel);
+                    LicenseTypeGet viewModel = new LicenseTypeGet
+                    {
+                        LicenseTypeList = typeList,
+                        NewLicenseType = new LicenseType()
+                    };
+
+                    return View(viewModel);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+
             }
             catch (Exception ex)
             {

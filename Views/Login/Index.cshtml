@@ -1,4 +1,4 @@
-﻿@model Users
+﻿@model HSRC_RMS.Models.Users
 @{
     ViewData["Title"] = "Login Page";
 }
@@ -29,6 +29,13 @@
             </div>
         </div>
     </div>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
 
     <!--/***************************************/
              ----   section-4  ----
@@ -86,27 +93,33 @@
                                 <div class="large-12 padding_40 patten-bg columns">
                                     <div class="">
                                         <div class="columns small-11 medium-10 large-6 color-pellette-2 padding_40 search-section-bg large-centered medium-centered small-centered">
-                                            <form>
+                                            <form id="myForm"  asp-action="Index" method="post">
+                                                @Html.AntiForgeryToken()
+
                                                 <div class="search-section">
                                                     <div class="search-section">
                                                         <div class="medium-12 cell padding_10">
 
                                                             <label>
                                                                 USERNAME
-                                                                <input type="text" placeholder="username" />
-                                                            </label>
+                                                                @Html.TextBoxFor(model => model.Username, new { required = "required"  ,id = "Username"})
+
+@*                                                                 <input type="text" placeholder="username" />
+ *@                                                            </label>
                                                         </div>
                                                         <div class="medium-12 cell padding_10">
                                                             <label>
                                                                 PASSWORD
-                                                                <input type="text"
-                                                                       placeholder="User Password" />
+                                                                @Html.TextBoxFor(model => model.Password, new { required = "required"  ,id = "Username"})
+
+                                                               @*  <input type="text"
+                                                                       placeholder="User Password" /> *@
                                                             </label>
                                                         </div>
 
                                                         <div class="padding_10">
-                                                            <a asp-controller="Home" asp-action="Index"
-                                                               class="button radius padding_10">SIGN IN</a>
+                                                            <a href="#" class="button radius padding_10" id="submitFormButton">SIGN IN</a>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -126,26 +139,31 @@
 				  Java scripts
 	/***************************************/-->
 
+
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="js/js.js"></script>
+    <script>
+        // Get a reference to the form and the submit button
+        const form = document.getElementById("myForm");
+        const submitButton = document.getElementById("submitFormButton");
 
-	<!-- SmartMenus jQuery plugin -->
-	<script type="text/javascript" src="js/jquery.smartmenus.js"></script>
+        // Add a click event listener to the link
+        submitButton.addEventListener("click", function (e) {
+            e.preventDefault(); // Prevent the default link behavior
+            form.submit(); // Trigger the form submission
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
-	<!-- SmartMenus jQuery init -->
-	<script type="text/javascript">
-		$(function() {
-			$('#main-menu').smartmenus({
-				subMenusSubOffsetX: 1,
-				subMenusSubOffsetY: -8
-			});
-		});
+    <script src="~/js/JavaScript.js"></script>
 
-	</script>
+    <script>
 
-	<script src="js/vendor/what-input.js"></script>
-	<script src="js/vendor/foundation.js"></script>
-	<script type="text/javascript" src="script.js">	</script>
+        document.addEventListener("DOMContentLoaded", () => {
+            animationsHandler.initTextAnimation();
+        });
+    </script>
 
 
 

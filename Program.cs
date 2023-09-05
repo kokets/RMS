@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HSRC_RMS.Helpers;
-using System;
+using Microsoft.AspNetCore.Identity; // Add this using directive
+using HSRC_RMS.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,13 +15,29 @@ builder.Services.AddControllersWithViews();
 // Add the configuration for accessing appsettings.json
 builder.Configuration.AddJsonFile("appsettings.json");
 
+
+// Register the IMemoryCache service for session
+//builder.Services.AddMemoryCache();
+
 // Register the DbContext using Entity Framework Core
 builder.Services.AddDbContext<RmsDbConnect>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
+
+
+
+
 // Register the IRepository<T> implementation
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".AdventureWorks.Session";
+    options.IdleTimeout = TimeSpan.FromHours(10);
+    options.Cookie.IsEssential = true;
+});
+
 
 
 var app = builder.Build();
@@ -38,6 +55,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Use session middleware
+app.UseSession();
+
+// Use Identity
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -48,6 +69,12 @@ app.MapControllerRoute(
     pattern: "GiftRegister/Index",
     defaults: new { controller = "GiftRegister", action = "Index" }
 );
+
+//app.MapControllerRoute(
+//    name: "fileUpload",
+//    pattern: "LicenseMActivationUser/Index", // Define a route for handling file uploads
+//    defaults: new { controller = "LicenseMActivationUser", action = "Index" } // pecify the controller and action for file uploads
+//);
 
 
 app.Run();

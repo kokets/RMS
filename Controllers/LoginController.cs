@@ -1,16 +1,22 @@
-﻿using HSRC_RMS.Models;
+﻿
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using Microsoft.Extensions.Configuration;
+using HSRC_RMS.Helpers;
+using HSRC_RMS.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HSRC_RMS.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly ILogger<LoginController> _logger;
+        private readonly RmsDbConnect _dbContext;
 
-        public LoginController(ILogger<LoginController> logger)
+        public LoginController(RmsDbConnect dbContext)
         {
-            _logger = logger;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
@@ -18,51 +24,63 @@ namespace HSRC_RMS.Controllers
             return View();
         }
 
-        public ActionResult Login(Users model)
+        [HttpPost]
+        public async Task<IActionResult> Index(Users model)
         {
-            if (Login(model.Username, model.Password))
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home");
-            }
+                try
+                {
+                    var user = await AuthenticateUserAsync(model);
 
-            ModelState.AddModelError("", "Invalid username or password");
+                    if (user != null)
+                    {
+                        // Set UserId and RoleName based on authentication
+                        HttpContext.Session.SetString("Username", model.Username);
+                        HttpContext.Session.SetInt32("UserId", user.UserId);
+                        HttpContext.Session.SetString("RoleName", user.RoleName);
+
+
+                        Console.WriteLine($"UserId: {user.UserId}, Username: {model.Username}, RoleName: {user.RoleName}");
+
+
+                        // Redirect to a secured area
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Invalid Username or password");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = ex.Message;
+                    ModelState.AddModelError(string.Empty, "An error occurred during login.");
+                }
+            }
             return View(model);
         }
 
-        private bool Login(string username, string password)
+        private async Task<Users> AuthenticateUserAsync(Users model)
         {
-            // TODO: Replace this with a more secure storage mechanism (e.g. hashing and salting)
-            Dictionary<string, string> users = new Dictionary<string, string>()
-        {
-            { "alice", "password1" },
-            { "bob", "password2" },
-            { "charlie", "password3" }
-        };
-
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-            if (users.TryGetValue(username, out string storedPassword))
+            try
             {
-                if (password == storedPassword)
-                {
-                    // Successful login
-                    return true;
-                }
+                // Implement your authentication logic using Entity Framework Core
+                var user =await  _dbContext.Users
+                    .Where(u => u.Username == model.Username && u.Password == model.Password)
+                    .FirstOrDefaultAsync();
+
+                // Log user and query for debugging
+                Console.WriteLine($"User: , Query: {model.Username} - {model.Password}");
+
+                return user; // This may be null if no user is found, indicating authentication failure.
             }
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-
-            // Invalid username or password
-            return false;
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            catch (Exception ex)
+            {
+                // Log any exceptions that occur during authentication
+                Console.WriteLine($"Authentication Error: {ex.Message}");
+                throw; // Rethrow the exception for further analysis
+            }
         }
     }
 }

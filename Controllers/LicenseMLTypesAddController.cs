@@ -27,18 +27,27 @@ namespace HSRC_RMS.Controllers
                 try
                 {
                     // Hardcoded user ID for testing
-                    int hardcodedUserId = 1;
-                    model.UserId = hardcodedUserId;
 
-                    //add the gift
-                    _typeRepository.Add(model);
-                    _typeRepository.Save();
+                    int? userId = HttpContext.Session.GetInt32("UserId");
+                    if (userId.HasValue)
+                    {
+                        model.UserId = userId.Value;
+
+                        //add the gift
+                        _typeRepository.Add(model);
+                        _typeRepository.Save();
 
 
 
-                    TempData["SuccessMessage"] = "License Type registered successfully.";
+                        TempData["SuccessMessage"] = "License Type registered successfully.";
 
-                    return RedirectToAction("Index", "LicenseMLTypes");
+                        return RedirectToAction("Index", "LicenseMLTypes");
+                    }
+                    else
+                    {
+                        return RedirectToAction(" Index", "Login");
+                    }
+                
                 }
                 catch (Exception)
                 {
