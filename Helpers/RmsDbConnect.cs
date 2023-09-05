@@ -1,10 +1,10 @@
-using Microsoft.Data.SqlClient;
-using System;
-using System.Data;
-using System.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using HSRC_RMS.Models;
 
 namespace HSRC_RMS.Helpers
@@ -16,9 +16,10 @@ namespace HSRC_RMS.Helpers
         public RmsDbConnect(DbContextOptions<RmsDbConnect> options) : base(options) { }
 
         //db properties for different tables
-        public DbSet<GiftRegister> Gift { get; set; }
         public DbSet<Users> Users { get; set; }
-        public DbSet<GiftComment> GiftComments { get; set; }
+
+        public DbSet<GiftRegister> Gift { get; set; }
+        public DbSet<GiftComment> GiftComment { get; set; }
         public DbSet<LicenseSupplies> LicenseSupply { get; set; }
         public DbSet<LicenseType> LicenseType { get; set; }
         public DbSet<LicenseCapture> LicenseCapture   { get; set; }
@@ -34,7 +35,12 @@ namespace HSRC_RMS.Helpers
                 .Property(g => g.Value)
                 .HasColumnType("decimal(18, 2)"); // Specify the appropriate precision and scale
 
+
+          
+
             base.OnModelCreating(modelBuilder);
+
+           
         }
 
     }

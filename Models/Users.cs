@@ -1,27 +1,29 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HSRC_RMS.Models
 {
+
     public class Users
     {
-        [Key] // This attribute marks GiftId as the primary key
+        [Key]
         public int UserId { get; set; }
 
         [Required]
-#pragma warning disable CS8618 // Non-nullable property 'Username' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.
+        [MaxLength(100)]
         public string Username { get; set; }
-#pragma warning restore CS8618 // Non-nullable property 'Username' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.
 
         [Required]
-        [DataType(DataType.Password)]
-#pragma warning disable CS8618 // Non-nullable property 'Password' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.
+        [MaxLength(256)]
         public string Password { get; set; }
-#pragma warning restore CS8618 // Non-nullable property 'Password' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.
 
-        [Required]
-        [EmailAddress]
-#pragma warning disable CS8618 // Non-nullable property 'Email' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.
-        public string Email { get; set; }
-#pragma warning restore CS8618 // Non-nullable property 'Email' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.
+        [MaxLength(100)]
+        public string? Email { get; set; }
+
+        [MaxLength(20)]
+        public string? RoleName { get; set; }
     }
+
 }
