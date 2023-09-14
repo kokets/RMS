@@ -5,12 +5,12 @@ using Microsoft.Extensions.Logging;
 
 namespace HSRC_RMS.Controllers
 {
-    public class GiftEditController : Controller
+    public class ProposalsEditController : Controller
     {
-        private readonly ILogger<GiftEditController> _logger;
-        private readonly IRepository<OpportunitiesRegister> _giftRepository;
+        private readonly ILogger<ProposalsEditController> _logger;
+        private readonly IRepository<ProposalsRegister> _giftRepository;
 
-        public GiftEditController(ILogger<GiftEditController> logger, IRepository<OpportunitiesRegister> giftRepository)
+        public ProposalsEditController(ILogger<ProposalsEditController> logger, IRepository<ProposalsRegister> giftRepository)
         {
             _logger = logger;
             _giftRepository = giftRepository;
@@ -24,7 +24,7 @@ namespace HSRC_RMS.Controllers
             {
                 return NotFound();
             }
-            var giftEdit = new OpportunitiesRegister
+            var giftEdit = new ProposalsRegister
             {
                 opportunityId = giftToEdit.opportunityId,
 
@@ -41,7 +41,7 @@ namespace HSRC_RMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(OpportunitiesRegister model)
+        public IActionResult Index(ProposalsRegister model)
         {
             if (ModelState.IsValid)
             {

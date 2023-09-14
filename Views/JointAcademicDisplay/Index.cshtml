@@ -1,60 +1,75 @@
-@model List<HSRC_RMS.Models.OpportunitiesDisplay>
+@model List<HSRC_RMS.Models.JointAcademicDisplay>
 
-@using HSRC_RMS.Helpers
+
 @{
-    ViewData["Title"] = "Gift";
+    ViewData["Title"] = "Collaborations Page";
 }
 
 <head>
 
     <style>
 
-        .gift-card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            max-width: 300px;
-            margin: auto;
-            text-align: center;
-            border-radius: 20px;
-            border-color: red;
-            background-color: darkgrey;
+        tr {
+            transition: all 1s ease-in-out;
         }
 
-        .contact-button {
-            border: none;
-            outline: 0;
-            display: inline-block;
-            color: white;
-            text-align: center;
-            cursor: pointer;
-            width: 100%;
-            font-size: 18px;
-            height: 25px;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
+            tr.slide-out {
+                transform: translateX(100%);
+            }
+
+            tr.slide-in {
+                transform: translateX(0);
+            }
+
+        .short-column {
+            width: 30%;
         }
 
-        .text-white {
-            color: white;
-        }
-
-        .text-size {
-            font-size: 35px;
-        }
-
-        .right-arrow {
+        .view-mo-menu {
             display: flex;
+            justify-content: center;
+            padding: 10px;
+            margin-top: -20px; /* Adjust this value as needed */
         }
 
-        .right-arrow-view {
-            width: 20px;
-            height: 20px
+        .view-mou-menu {
+            display: flex;
+            gap: 20px;
+            background-color: #f2f2f2;
+            padding: 5px;
+            border-radius: 5px;
+            list-style: none;
+            margin: 0;
         }
 
-        th {
-            3p'' position: sticky;
-            top: 0; /* Don't forget this, required for the stickiness */
-            box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
-        }
+            .view-mou-menu a {
+                position: relative;
+                width: 33.333%;
+                display: table-cell;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 10px 20px;
+                transition: 0.2s ease color;
+                border-right: 1px solid #ccc; /* Add right border to create a line separator */
+            }
+
+                .view-mou-menu a:last-child {
+                    border-right: none; /* Remove right border for the last link */
+                }
+
+                .view-mou-menu a:before, .view-mou-menu a:after {
+                    position: absolute;
+                    border-radius: 50%;
+                    transform: scale(0);
+                    transition: 0.2s ease transform;
+                }
+
+                .view-mou-menu a:after {
+                    top: 5%;
+                    left: 18px;
+                    width: 4px;
+                    height: 4px;
+                }
     </style>
 </head>
 <body>
@@ -87,6 +102,23 @@
                     <!-- Sample menu definition -->
                     <ul id="main-menu" class="sm sm-mint">
                         <li><a asp-controller="Projects1" asp-action="Index">Time Recording</a></li>
+                        <li>
+                            <a href="#">About</a>
+                            <ul>
+                                <li><a href="#">Introduction to SmartMenus jQuery</a></li>
+                                <li><a href="#">Demos + themes</a></li>
+                                <li><a href="#">The author</a></li>
+                                <li>
+                                    <a href="#">The company</a>
+                                    <ul>
+                                        <li><a href="#">About Vadikom</a></li>
+                                        <li><a href="#">Projects</a></li>
+                                        <li><a href="#">Services</a></li>
+                                        <li><a href="#">Privacy policy</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
                         <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
                         <li class="dropdowng color-pellette-0">
                             <a asp-controller="Projects1" asp-action="Index">Reports</a>
@@ -104,15 +136,14 @@
                                 <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
                                 <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
                                 <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Interns </a></li>
-                                <li class="has-submenu color-pellette-0">
-                                    <a asp-controller="" asp-action="Index">Gift </a>
+                                <li class="color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Gift </a>
                                     <ul class="subg-menu color-pellette-0">
-                                        <li class="color-pellette-0"><a asp-controller="GiftReport" asp-action="Index">My Gift</a></li>
-
+                                        <li class="color-pellette-0"><a asp-controller="MyGift" asp-action="Index">My Gift</a></l>
                                     </ul>
                                 </li>
                                 <li class="has-submenu color-pellette-0">
-                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <a asp-controller="GiftDisplay" asp-action="Index">MoUs </a>
                                     <ul class="subg-menu color-pellette-0">
                                         <li class="color-pellette-0"><a asp-controller="MoUReportActiveMou" asp-action="Index">Active MoUs</a></l>
                                         <li class="color-pellette-0"><a asp-controller="MoUReportAllMou" asp-action="Index">All MoUs</a></l>
@@ -122,29 +153,22 @@
                                 </li>
                             </ul>
                         </li>
-
                         <li>
                             <a asp-controller="Projects1" asp-action="Index">Budget</a>
                         </li>
-                        <li class="dropdowng color-pellette-0">
+                        <li>
                             <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
                             <ul class="dropdowng-menu color-pellette-0">
-                                <li class="has-submenu color-pellette-0">
-                                    <a asp-controller="" asp-action="Index">Gift Register </a>
-                                    <ul class="subg-menu color-pellette-0">
-                                        <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Add Gift</a></l>
-
-                                    </ul>
-                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Gift Register</a></li>
                                 <li class="color-pellette-0"><a asp-controller="License" asp-action="Index">License Adminstrator</a></li>
                                 <li class="has-submenu color-pellette-0">
                                     <a asp-controller="" asp-action="Index">MoUs </a>
                                     <ul class="subg-menu color-pellette-0">
                                         <li class="color-pellette-0"><a asp-controller="MoUCreate" asp-action="Index">Create MoU Request</a></l>
-                                        <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></l>
                                         <li class="color-pellette-0"><a asp-controller="MoUActivity" asp-action="Index">MoU Activity</a></li>
-                                        <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></li>
-                                        <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></l>
                                         <li class="color-pellette-0"><a asp-controller="MoUManage3" asp-action="Index">Manage MoU Requests(CEO)</a></li>
                                     </ul>
                                 </li>
@@ -162,7 +186,6 @@
     </div>
 
 
-
     <!--/***************************************/
              ----   section-3  ----
          ----   OTHER DEFENITIONS  ----
@@ -171,153 +194,134 @@
     <div class="section3 color-pellette-8 text-center">
         <div class="row padding_40 ">
             <div class="columns small-8 medium-centered small-centered large-centered">
-                <h4>Opportunites</h4>
+                <h4>Collaborations - Joint Academic Opportunities</h4>
                 <p class="anim-text">Social science that makes a difference</p>
             </div>
-            <a asp-controller="Proposals" asp-action="Index"
+            <a asp-controller="Collaborations1" asp-action="Index"
                class="button radius padding_10">Back</a>
             <a asp-controller="Home" asp-action="Index"
                class="button radius padding_10">Home</a>
         </div>
     </div>
+
+
     <div class="section5 color-pellette-5">
         <div class="row collapse" data-equalizer>
-            <div class="large-9 medium-12 small-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
                 <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
+
+
                     <div class="content-blocks content-blocks-0">
-                        <h3>     <a asp-controller="GiftRegister" asp-action="Index">REGISTER NEW OPPORTUNITY</a></h3>
-                        @* <div class="above-table">
-                        <div class="buttons-row ">
-                        <div class="add-buttons">
-                        <a asp-controller="GiftRegister" asp-action="Index" style="display: flex; align-items: center; color: white; text-decoration: none;">
-                        <div class="right-arrow-view" style="margin-left: 10px">
-                        <img src="images/new-file.png" class="logo" alt="" />
-                        </div>
-                        REGISTER NEW GIFT
-                        </a>
+                        @* <h3><a asp-controller="MoUReportActiveMou" asp-action="Index">Back To List Of  Active MoU</a></h3>*@
 
-                        </div>
-
-                        </div>
-                        <div>
-                        </div>
-                        </div> *@
-                        <div class="above-table">
-                            <div class="buttons-row ">
-
-                                <button class="download-buttons" onclick="generatePDF()">Print</button>
-                                <button class="download-buttons" onclick="copyTable(document.getElementById('event-table'))">Copy</button>
-                                @*                                 <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
-                                *@                                <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
-
-                                <button class="download-buttons" id="csvButton">CSV</button>
-                                <div class="custom-text1">Show </div>
-                                <select class="custom-select" onchange="showNumberOfRows(this)">
-                                    <option value="---">---</option>
-
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                    <option value="10">25</option>
-                                    <option value="35">35</option>
-                                    <option value="50">50</option>
-
-                                </select>
-                                <div class="custom-text2"> entries</div>
+                        <div class="view-mo-menu">
+                            <div class="view-mou-menu text-pellette-1">
+                                <a asp-controller="JointProjectsDisplay" asp-action="Index">Joint Projects</a>
+                                <a asp-controller="JointActivitiesDisplay" asp-action="Index">Joint Activities</a>
+                                <a asp-controller="JointAcademicDisplay" asp-action="Index">Joint Academic Opportunities</a>
+                                <a asp-controller="JointPublicationsDisplay" asp-action="Index">Joint Publications</a>
+                                <a asp-controller="JointSupervisionsDisplay" asp-action="Index">Joint Supervisions</a>
                             </div>
-                            <div>
-                                <div class="search-box">
-                                    <input type="text" placeholder="Search" id="search-input" onkeyup="methodHandler.filterTable()">
+                        </div>
+                        <div id="table1" class="table-template">
+                            <div class="above-table">
+                                <div class="buttons-row ">
+                                    <button class="download-buttons" onclick="generatePDF()">Print</button>
+                                    <button class="download-buttons" onclick="copyTable(document.getElementById('event-table'))">Copy</button>
+                                    @*                                 <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+                                    *@                                <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+
+                                    <button class="download-buttons" id="csvButton">CSV</button>
+                                    <div class="custom-text1">Show </div>
+                                    <select class="custom-select" onchange="showNumberOfRows(this)">
+                                        <option value="---">---</option>
+
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="10">25</option>
+                                        <option value="35">35</option>
+                                        <option value="50">50</option>
+
+                                    </select>
+                                    <div class="custom-text2"> entries</div>
+                                </div>
+                                <div>
+                                    <div class="search-box">
+                                        <input type="text" placeholder="Search" id="search-input" onkeyup="methodHandler.filterTable()">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <table id="event-table">
+                            <table id="event-table">
 
-                            <thead>
-                                <tr class="color-pellette-0">
-                                    <th scope="col" width="20%">Title</th>
-                                    <th scope="col" width="20">Funder</th>
-                                    <th scope="col" width="20%">Program</th>
-                                    <th scope="col" width="12%">Opportunity Status</th>
-                                    <th scope="col" width="12%">Source URL</th>
-                                    <th scope="col" width="15%">Submission Date</th>
-                                    <th scope="col" width="8%">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td> @Html.DisplayFor(modelItem => item.Title)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Funder)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Program)</td>
-                                        <td> Open</td>
-                                        <td> <a href="Example.com">Url</a></td>
-                                        <td> @Html.DisplayFor(modelItem => item.SubmissionDate)</td>
-                                        <td data-label="Action">
-
-                                            <div class="buttons">
-                                                <form asp-controller="GiftEdit" asp-action="Index">
-                                                    <input type="hidden" name="id" value="@item.opportunityId" />
-                                                    <button type="submit" class="edit-link-button"> <a>Edit</a> </button>
-                                                </form>
-                                                <form asp-controller="GiftDisplay" asp-action="Index" method="post">
-                                                    <input type="hidden" name="giftId" value="@item.opportunityId" />
-                                                    <button type="submit" class="submit-link-button" id="submitButton-@item.opportunityId"><a>Delete</a> </button>
-                                                </form>
-                                            </div>
-
-                                            @*   <div class="comments" style="display:none;">
-                                        <p class="comment-text" id="comment-@item.Id">@item.Comment</p>
-
-                                        </div> *@
-                                        </td>
+                                <h3>     <a asp-controller="JointAcademicRegister" asp-action="Index">REGISTER NEW JOINT ACADEMIC OPPORTUNITY</a></h3>
+                                <thead>
+                                    <tr class="color-pellette-0">
+                                        <th scope="col" width="8%">Budget Year</th>
+                                        <th scope="col" width="8%">Staff</th>
+                                        <th scope="col" width="15%">Institution</th>
+                                        <th scope="col" width="10%">Position</th>
+                                        <th scope="col" width="15%">Description</th>
+                                        <th scope="col" width="8%">Start Date</th>
+                                        <th scope="col" width="8%">End Date</th>
+                                        <th scope="col" width="10%">Document</th>
+                                        <th scope="col" width="8%">Status</th>
+                                        <th scope="col" width="8%">Action</th>
                                     </tr>
-                                }
+                                </thead>
+                                <tbody>
 
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td> @Html.DisplayFor(modelItem => item.Budgetyears)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.Staff)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.Institution)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.Position)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.Descriptions)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.StartDate)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.EndDate)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.Document)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.Status)</td>
+                                           
 
-                            </tbody>
-                        </table>
+                                            <td data-label="Action">
+
+                                                <div class="buttons">
+                                                    <form asp-controller="" asp-action="Index">
+                                                        <input type="hidden" name="id" value="@item.AcademicId" />
+                                                        <button type="submit" class="edit-link-button"> <a>Edit</a> </button>
+                                                    </form>
+                                                    <form asp-controller="" asp-action="Index" method="post">
+                                                        <input type="hidden" name="giftId" value="@item.AcademicId" />
+                                                        <button type="submit" class="submit-link-button" id="submitButton-@item.AcademicId"><a>Delete</a> </button>
+                                                    </form>
+                                                </div>
+
+                                                @*   <div class="comments" style="display:none;">
+                                            <p class="comment-text" id="comment-@item.Id">@item.Comment</p>
+
+                                            </div> *@
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
+
                 </div>
-
-
-
-
-
             </div>
-            @* <div class="large-3 medium-12 small-12 columns widgets">
-            <div class="large-12 medium-6 columns padding_10 data-equalizer-watch">
-            <div class="content-blocks content-blocks-widget-1">
-            <div class="wgt">
-            <h3>Help with Gift Register</h3>
-            </div>
-            </div>
-            </div>
-            <div class="large-12 medium-6 columns padding_10 data-equalizer-watch">
-            <div class="wgt1">
-            <div class="gift-card">
-            <img src="~/images/thulani.jpg" alt="thulani" style="width:100%">
-            <h1 class="text-white text-size">MrThulani Dlamini</h1>
-            <p class="text-white">thdlamini@hsrc.ac.za</p>
-            <p class="text-white">012 302 2062</p>
-            <a href="#"><i class="fa fa-linkedin" style="color:blue; "></i></a>
-            <p><button class="contact-button  color-pellette-0">Contact</button></p>
-            </div>
-            </div>
-
-            </div> *@
         </div>
     </div>
-    </div>
-
-
 
 
 
     <!--/***************************************/
                   Java scripts
     /***************************************/-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.10/xlsx.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
@@ -363,7 +367,7 @@
             const table = document.getElementById('event-table');
             const pdfOptions = {
                 margin: 10,
-                filename: 'gift.pdf',
+                filename: 'new.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2 },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
@@ -385,25 +389,25 @@
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 
     <script>
-        function ExportToExcel(type, fn, dl) {
-            var elt = document.getElementById('event-table');
-            var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+      function ExportToExcel(type, fn, dl) {
+    var elt = document.getElementById('event-table');
+    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
 
-            // Specify the desired date format
-            var dateFormat = 'yyyy-MM-dd';
+    // Specify the desired date format
+    var dateFormat = 'yyyy-MM-dd';
 
-            // Set date format for Excel
-            var ws = wb.Sheets["sheet1"];
-            ws["!cols"] = [
-                { wch: 15 }, { wch: 15 }, { wch: 15 }, /* ... other column widths ... */
-                { wch: dateFormat.length } // Set column width for date column
-            ];
-            ws["!dateFormats"] = [dateFormat]; // Set the desired date format
+    // Set date format for Excel
+    var ws = wb.Sheets["sheet1"];
+    ws["!cols"] = [
+        { wch: 15 }, { wch: 15 }, { wch: 15 }, /* ... other column widths ... */
+        { wch: dateFormat.length } // Set column width for date column
+    ];
+    ws["!dateFormats"] = [dateFormat]; // Set the desired date format
 
-            return dl ?
-                XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64', dateNF: dateFormat }) :
-                XLSX.writeFile(wb, fn || ('Gift.' + (type || 'xlsx')));
-        }
+    return dl ?
+        XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64', dateNF: dateFormat }) :
+        XLSX.writeFile(wb, fn || ('Gift.' + (type || 'xlsx')));
+}
 
 
         function download_csv(csv, filename) {

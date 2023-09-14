@@ -1,7 +1,7 @@
-@model HSRC_RMS.Models.GiftRegister
+@model HSRC_RMS.Models.OpportunitiesRegister
 @using HSRC_RMS.Helpers
 @{
-    ViewData["Title"] = "Gift";
+    ViewData["Title"] = "New Joint Projects";
 }
 
 <head>
@@ -195,10 +195,10 @@
     <div class="section3 color-pellette-8 text-center">
         <div class="row padding_40 ">
             <div class="columns small-8 medium-centered small-centered large-centered">
-                <h4>GIFT REGISTER - Register Gift</h4>
+                <h4>Collaborations - Register New Joint Projects</h4>
                 <p class="anim-text">Social science that makes a difference</p>
             </div>
-            <a asp-controller="GiftDisplay" asp-action="Index"
+            <a asp-controller="Collaborations1" asp-action="Index"
                class="button radius padding_10">Back</a>
             <a asp-controller="Home" asp-action="Index"
                class="button radius padding_10">Home</a>
@@ -221,27 +221,37 @@
 
                                     <div class="medium-12 cell ">
                                         <label>
-                                            Gift Sponsor
+                                            Budget Year
                                             <span class="mandatory-star">*</span>
 
-                                            @Html.TextBoxFor(model => model.GiftSponsor, new { required = "required"  ,id = "GiftSponsor"})
-                                            @Html.ValidationMessageFor(model => model.GiftSponsor)
+                                            @Html.TextBoxFor(model => model.Title, new { required = "required"  ,id = "Title"})
+                                            @Html.ValidationMessageFor(model => model.Title)
 
                                         </label>
                                     </div>
                                     <div class="medium-12 cell">
                                         <label>
-                                            Organization
-                                            @Html.TextBoxFor(model => model.GiftOrganization)
+                                            Project No.
+                                            @Html.TextBoxFor(model => model.Funder)
                                         </label>
                                     </div>
                                     <div class="medium-12 cell">
                                         <label>
-                                            Nature of the Business
+                                            Title
                                             <span class="mandatory-star">*</span>
 
-                                            @Html.DropDownListFor(model => model.NatureOfBusiness, DropdownHelpers.GetNatureOfBusinessOptions(), "--Please Select--", new {required = "required" ,  id = "NatureOfBusiness"})
-                                            @Html.ValidationMessageFor(model => model.NatureOfBusiness)
+                                            @Html.TextBoxFor(model => model.Program, new { required = "required"  ,id = "Program"})
+                                            @Html.ValidationMessageFor(model => model.Program)
+
+                                        </label>
+                                    </div>
+                                    <div class="medium-12 cell">
+                                        <label>
+                                            Institution
+                                            <span class="mandatory-star">*</span>
+
+                                            @Html.TextBoxFor(model => model.Program, new { required = "required"  ,id = "Program"})
+                                            @Html.ValidationMessageFor(model => model.Program)
 
                                         </label>
                                     </div>
@@ -250,9 +260,9 @@
 
                                         <div class="medium-12 cell">
                                             <label>
-                                                Gift Description
+                                            End Date
 
-                                            @Html.TextAreaFor(model => model.GiftDescription, new { id = "comment-input", rows = "1" })
+                                            @Html.TextBoxFor(model => model.SubmissionDate, new { id = "SubmissionDate" })
 
 
                                             </label>
@@ -260,36 +270,18 @@
 
                                         <div class="medium-12 cell">
                                             <label>
-                                                Value
-                                                <span class="mandatory-star">*</span>
-
-                                            @Html.TextBoxFor(model => model.Value, new { required = "required" , id = "Value"})
-                                            @Html.ValidationMessageFor(model => model.Value)
+                                            Document
+                                            @Html.TextBoxFor(model => model.Status, new { required = "required"  ,id = "Status"})
 
                                             </label>
                                         </div>
-                                        <div class="medium-12 cell">
-                                            <label>
-                                                Purpose of Gift
-                                            @Html.TextAreaFor(model => model.PurposeOfGift, new { id = "comment-input", rows = "1" })
-                                            </label>
-                                        </div>
-                                        <div class="medium-12 cell">
-                                            <label>
-                                                Was the gift received in appreciation of work done
-                                                <span class="mandatory-star">*</span>
-
-                                            @Html.DropDownListFor(model => model.ReceivedInAppreciation, DropdownHelpers.GetYesNoOption(), "--Please Select--", new { required = "required" ,id = "ReceivedInAppreciation"})
-                                            @Html.ValidationMessageFor(model => model.ReceivedInAppreciation)
-
-                                            </label>
-                                        </div>
+                                        
                                       
 
 
                                     <div class="medium-12 cell buttons-row">
-                                        <button type="submit" class="save-buttons" >Register Gift</button>
-                                        <button asp-controller="GiftDisplay" asp-action="Index" class="cancel-buttons">Cancel</button>
+                                        <button type="submit" class="save-buttons" >Register New Joint Project</button>
+                                        <button asp-controller="Collaborations1Display" asp-action="Index" class="cancel-buttons">Cancel</button>
                                     </div>
                                 </div>
                             </div>

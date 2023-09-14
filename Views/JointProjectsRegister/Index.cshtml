@@ -1,14 +1,10 @@
-@model HSRC_RMS.Models.OpportunitiesRegister
-
- @using HSRC_RMS.Helpers
+@model HSRC_RMS.Models.JointProjectsRegister
+@using HSRC_RMS.Helpers
 @{
-    ViewData["Title"] = "Gift ";
-
+    ViewData["Title"] = "Collaborations";
 }
 
-
 <head>
-
     <style>
 
 
@@ -64,6 +60,7 @@
             border: 1px solid red;
             background-color: #ffcccc;
         }
+
     </style>
 </head>
 <body>
@@ -130,10 +127,11 @@
                                 <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
                                 <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
                                 <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Interns </a></li>
-                                <li class="color-pellette-0">
-                                    <a asp-controller="GiftDisplay" asp-action="Index">Gift </a>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift </a>
                                     <ul class="subg-menu color-pellette-0">
-                                        <li class="color-pellette-0"><a asp-controller="MyGift" asp-action="Index">My Gift</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="GiftReport" asp-action="Index">My Gift</a></li>
+
                                     </ul>
                                 </li>
                                 <li class="has-submenu color-pellette-0">
@@ -196,22 +194,17 @@
     <div class="section3 color-pellette-8 text-center">
         <div class="row padding_40 ">
             <div class="columns small-8 medium-centered small-centered large-centered">
-                <h4>Opportunities And Proposals - Opportunities Edit</h4>
+                <h4>Collaborations - New Joint Project</h4>
                 <p class="anim-text">Social science that makes a difference</p>
             </div>
-            <a asp-controller="OpportunitiesDisplay" asp-action="Index"
+            <a asp-controller="JointProjectsDisplay" asp-action="Index"
                class="button radius padding_10">Back</a>
             <a asp-controller="Home" asp-action="Index"
                class="button radius padding_10">Home</a>
         </div>
     </div>
 
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger">
-            @TempData["ErrorMessage"]
-        </div>
-    }
+
 
     <div class="section5  color-pellette-5 ">
         <div class="row collapse   " data-equalizer>
@@ -222,65 +215,84 @@
 
                         <form id="giftForm" asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()">
                             @Html.AntiForgeryToken()
-                            <input type="hidden" name="GiftId" value="@Model.opportunityId" />
-
                             <div class="">
                                 <div class="search-section">
 
                                     <div class="medium-12 cell ">
                                         <label>
+                                            BudgetYear
+                                            <span class="mandatory-star">*</span>
+
+                                            @Html.DropDownListFor(model => model.Budgetyears, DropdownHelpers.GetBudgetYearOptions(), "--Please Select--", new { required = "required" ,id = "Budgetyears"})
+
+
+                                        </label>
+                                    </div>
+                                    <div class="medium-12 cell">
+                                        <label>
+                                            ProjectNumber
+                                            <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.ProjectNumber)
+                                        </label>
+                                    </div>
+                                    <div class="medium-12 cell">
+                                        <label>
                                             Title
                                             <span class="mandatory-star">*</span>
 
-                                            @Html.TextBoxFor(model => model.Title, new { required = "required"  ,id = "GiftSponsor"})
+                                            @Html.TextBoxFor(model => model.Title)
 
                                         </label>
                                     </div>
+
+
+
                                     <div class="medium-12 cell">
                                         <label>
-                                            Funder
-                                            @Html.TextBoxFor(model => model.Funder)
-                                        </label>
-                                    </div>
-                                    <div class="medium-12 cell">
-                                        <label>
-                                            Program
+                                            Institution
                                             <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.Institution)
 
-                                            @Html.TextBoxFor(model => model.Program, new { required = "required"  ,id = "Program"})
-                                            @Html.ValidationMessageFor(model => model.Program)
 
+                                        </label>
+                                    </div>
+
+                                    <div class="medium-12 cell">
+                                        <label>
+                                            StartDate
+                                            <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.StartDate, new { required = "required", @class = "form-control", type = "date" })
+                                        </label>
+                                    </div>
+                                    <div class="medium-12 cell">
+                                        <label>
+                                            EndDate
+                                            <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.EndDate, new { required = "required", @class = "form-control", type = "date" })
+                                        </label>
+                                    </div>
+                                    <div class="medium-12 cell">
+                                        <label>
+                                            Document
+                                            <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.Document)
                                         </label>
                                     </div>
                                     <div class="medium-12 cell">
                                         <label>
                                             Status
-
-                                            @Html.TextBoxFor(model => model.Status, new { required = "required"  ,id = "Url"})
-
-
-                                        </label>
-                                    </div>
-
-                                    <div class="medium-12 cell">
-                                        <label>
-                                            Url
                                             <span class="mandatory-star">*</span>
 
-                                            @Html.TextBoxFor(model => model.Url, new { required = "required"  ,id = "Url"})
+                                            @Html.DropDownListFor(model => model.Status, DropdownHelpers.GetStatusOption(), "--Please Select--", new { required = "required" ,id = "Status"})
 
                                         </label>
                                     </div>
-                                    <div class="medium-12 cell">
-                                        <label>
-                                            Submission Date
-                                            @Html.TextBoxFor(model => model.SubmissionDate, new { id = "SubmissionDate" })
-                                        </label>
-                                    </div>
-                                    
+
+
+
                                     <div class="medium-12 cell buttons-row">
-                                        <button type="submit" class="save-buttons">Update Opportunity</button>
-                                        <button asp-controller="OpportunityDisplay" asp-action="Index" class="cancel-buttons">Cancel</button>
+                                        <button type="submit" class="save-buttons">Register Project</button>
+                                        <button asp-controller="JointProjectsDisplay" asp-action="Index" class="cancel-buttons">Cancel</button>
                                     </div>
                                 </div>
                             </div>

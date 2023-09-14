@@ -6,17 +6,17 @@ using System.Diagnostics;
 
 namespace HSRC_RMS.Controllers
 {
-    public class GiftDisplayController : Controller
+    public class ProposalsDisplayController : Controller
     {
 
 
-        private readonly IRepository<OpportunitiesRegister> _giftRepository;
+        private readonly IRepository<ProposalsRegister> _giftRepository;
         private readonly IRepository<Users> _usersRepository;
         //private readonly IRepository<GiftComment> _commentRepository;
 
         private readonly RmsDbConnect  _context;
 
-        public GiftDisplayController(IRepository<OpportunitiesRegister> giftRepository, IRepository<Users> usersRepository, RmsDbConnect context)
+        public ProposalsDisplayController(IRepository<ProposalsRegister> giftRepository, IRepository<Users> usersRepository, RmsDbConnect context)
         {
             _giftRepository = giftRepository;
             _usersRepository = usersRepository;
@@ -28,7 +28,7 @@ namespace HSRC_RMS.Controllers
         public IActionResult Index()
         {
             var giftDisplayList = _giftRepository.GetAll()
-                   .Select(opportunities => new OpportunitiesDisplay
+                   .Select(opportunities => new ProposalsDisplay
                    {
                        opportunityId = opportunities.opportunityId,
 

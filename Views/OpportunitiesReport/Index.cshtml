@@ -1,0 +1,355 @@
+@model List<HSRC_RMS.Models.GiftDisplay>
+
+    @using HSRC_RMS.Helpers
+    @{
+    ViewData["Title"] = "Gift";
+    }
+
+    <head>
+
+        <style>
+
+            .gift-card {
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                max-width: 300px;
+                margin: auto;
+                text-align: center;
+                border-radius: 20px;
+                border-color: red;
+                background-color: darkgrey;
+            }
+
+            .contact-button {
+                border: none;
+                outline: 0;
+                display: inline-block;
+                color: white;
+                text-align: center;
+                cursor: pointer;
+                width: 100%;
+                font-size: 18px;
+                height: 25px;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+            }
+
+            .text-white {
+                color: white;
+            }
+
+            .text-size {
+                font-size: 35px;
+            }
+
+            .right-arrow {
+                display: flex;
+            }
+
+            .right-arrow-view {
+                width: 20px;
+                height: 20px
+            }
+        </style>
+    </head>
+    <body>
+
+
+
+        <!--/***************************************/
+                 ----   section-1  ----
+             ----   OTHER DEFENITIONS  ----
+        /***************************************/-->
+
+        <div class="section2 color-pellette-2">
+            <div class="row">
+                <div class="large-2 medium-12 small-12 padding_20 columns">
+                    <img src="images/hsrclogo@2x.png" width="180px" class="logo" alt="" />
+
+                </div>
+
+                <div class="large-10 medium-12 small-12 columns padding_35 navigator">
+
+                    <nav id="main-nav">
+
+                        <!-- Mobile menu toggle button (hamburger/x icon) -->
+                        <input id="main-menu-state" type="checkbox" />
+                        <label class="main-menu-btn" for="main-menu-state">
+                            <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+                        </label>
+
+
+                        <!-- Sample menu definition -->
+                        <ul id="main-menu" class="sm sm-mint">
+                            <li><a asp-controller="Projects1" asp-action="Index">Time Recording</a></li>
+                            <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
+                            <li class="dropdowng color-pellette-0">
+                                <a asp-controller="Projects1" asp-action="Index">Reports</a>
+                                <ul class="dropdowng-menu color-pellette-0">
+                                    <li class="has-submenu color-pellette-0">
+                                        <a asp-controller="GiftDisplay" asp-action="Index">Perfomance indicators</a>
+                                    </li>
+                                    <li class="color-pellette-0"><a asp-controller="" asp-action="Index">Projects Reports</a></li>
+                                    <li class="color-pellette-0"><a asp-controller="" asp-action="Index">Contract Reports</a></li>
+                                    <li class="color-pellette-0"><a asp-controller="" asp-action="Index">Program Reports</a></li>
+                                    <li class="color-pellette-0"><a asp-controller="" asp-action="Index">Employees Report </a></li>
+                                    <li class="color-pellette-0"><a asp-controller="" asp-action="Index">Spend Procurement Report</a></li>
+                                    <li class="color-pellette-0"><a asp-controller="" asp-action="Index">Project Budget Report</a></li>
+                                    <li class="color-pellette-0"><a asp-controller="" asp-action="Index">Dataset Report</a></li>
+                                    <li class="color-pellette-0"><a asp-controller="" asp-action="Index">Resourse Output</a></li>
+                                    <li class="color-pellette-0"><a asp-controller="" asp-action="Index">Time Recording </a></li>
+                                    <li class="color-pellette-0"><a asp-controller="" asp-action="Index">Interns </a></li>
+                                    <li class="has-submenu color-pellette-0">
+                                        <a asp-controller="" asp-action="Index">Gift </a>
+                                        <ul class="subg-menu color-pellette-0">
+                                            <li class="color-pellette-0"><a asp-controller="GiftReport" asp-action="Index">My Gift</a></li>
+
+                                        </ul>
+                                    </li>
+                                    <li class="has-submenu color-pellette-0">
+                                        <a asp-controller="" asp-action="Index">MoUs </a>
+                                        <ul class="subg-menu color-pellette-0">
+                                            <li class="color-pellette-0"><a asp-controller="MoUReportActiveMou" asp-action="Index">Active MoUs</a></l>
+                                            <li class="color-pellette-0"><a asp-controller="MoUReportAllMou" asp-action="Index">All MoUs</a></l>
+                                            <li class="color-pellette-0"><a asp-controller="MoUReportRequest" asp-action="Index">MoUs Request</a></li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a asp-controller="Projects1" asp-action="Index">Budget</a>
+                            </li>
+                            <li class="dropdowng color-pellette-0">
+                                <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
+                                <ul class="dropdowng-menu color-pellette-0">
+                                    <li class="has-submenu color-pellette-0">
+                                        <a asp-controller="" asp-action="Index">Gift Register </a>
+                                        <ul class="subg-menu color-pellette-0">
+                                            <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Add Gift</a></l>
+
+                                        </ul>
+                                    </li>
+                                    <li class="color-pellette-0"><a asp-controller="License" asp-action="Index">License Adminstrator</a></li>
+                                    <li class="has-submenu color-pellette-0">
+                                        <a asp-controller="" asp-action="Index">MoUs </a>
+                                        <ul class="subg-menu color-pellette-0">
+                                            <li class="color-pellette-0"><a asp-controller="MoUCreate" asp-action="Index">Create MoU Request</a></l>
+                                            <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></l>
+                                            <li class="color-pellette-0"><a asp-controller="MoUActivity" asp-action="Index">MoU Activity</a></li>
+                                            <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></l>
+                                            <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></l>
+                                            <li class="color-pellette-0"><a asp-controller="MoUManage3" asp-action="Index">Manage MoU Requests(CEO)</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a asp-controller="TeamConfigure" asp-action="Index">TEAM MANAGEMENT</a></li>
+                            <li><a asp-controller="AccessGroups" asp-action="Index">ACCESS GROUPS</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!--/***************************************/
+                 ----   section-3  ----
+             ----   OTHER DEFENITIONS  ----
+        /***************************************/-->
+
+        <div class="section3 color-pellette-8 text-center">
+            <div class="row padding_40 ">
+                <div class="columns small-8 medium-centered small-centered large-centered">
+                    <h4>GIFT REGISTER- Report</h4>
+                <p class="anim-text">Social science that makes a difference</p>
+                </div>
+                <a asp-controller="Home" asp-action="Index"
+                   class="button radius padding_10">Back</a>
+                <a asp-controller="Home" asp-action="Index"
+                   class="button radius padding_10">Home</a>
+            </div>
+        </div>
+        <div class="section5 color-pellette-5">
+            <div class="row collapse" data-equalizer>
+                <div class="large-12 medium-12 small-12 columns">
+                    <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
+                        <div class="content-blocks content-blocks-0">
+                            <div class="above-table">
+                                <div class="buttons-row "></div>
+
+                                <div>
+                                    <div class="search-box">
+                                    <input type="text" placeholder="Search" id="search-input" onkeyup="methodHandler.filterTable()">
+                                </div>
+                                </div>
+                            </div>
+                            <table id="event-table">
+
+                                <thead>
+                                    <tr class="color-pellette-0">
+                                        <th scope="col" width="14%">Staff</th>
+                                        <th scope="col" width="11%">Gift Sponsor</th>
+                                        <th scope="col" width="14%">Organization</th>
+                                        <th scope="col" width="16%">Nature of the Business </th>
+                                        <th scope="col" width="12%">Gift Description</th>
+                                        <th scope="col" width="8%">Value</th>
+                                        <th scope="col" width="12%">Purpose of Gift </th>
+                                        <th scope="col" width="14%">Was the gift received in appreciation of work done </th>
+                                        <th scope="col" width="14%">Date of declaration</th>
+                                        <th scope="col" width="10%">Comments</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    @foreach (var gift in Model)
+                                {
+                                    <tr class="table-row">
+                                        <td data-label="UserName" class="color-pellette-4">@gift.UserName</td>
+                                        <td data-label="GiftSponsor">@gift.GiftSponsor</td>
+                                        <td data-label="GiftOrganization">@gift.GiftOrganization</td>
+                                        <td data-label="NatureOfBusiness">@gift.NatureOfBusiness</td>
+                                        <td data-label="GiftDescription">@gift.GiftDescription</td>
+                                        <td data-label="Value">@gift.Value.ToString("C")</td>
+                                        <td data-label="PurposeOfGift">@gift.PurposeOfGift</td>
+                                        <td data-label="ReceivedInAppreciation">@gift.ReceivedInAppreciation</td>
+                                        <td data-label="CurrentDate">@gift.CurrentDate.ToString("dd/MMM/yy")</td>
+                                        <td data-label="Comments">
+                                           @gift.Comment
+                                        </td>
+                                    </tr>
+
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+       
+
+
+
+        <!--/***************************************/
+                      Java scripts
+        /***************************************/-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.10/xlsx.full.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>  <!--responsible for text animation-->
+            <script src="~/js/JavaScript.js"></script>
+
+
+            <script>
+                const methodHandler = new MethodHandler();
+
+                // Function to handle the search input for table filtering
+                function handleFilterInput() {
+                    methodHandler.filterTable();
+                }
+            </script>
+
+
+        <script>
+        // Function to convert a table to CSV format
+        function tableToCSV(table) {
+            let csv = [];
+            const rows = table.querySelectorAll('tr');
+
+            for (const row of rows) {
+                const rowData = [];
+                const cells = row.querySelectorAll('td');
+
+                for (const cell of cells) {
+                    rowData.push(cell.innerText);
+                }
+
+                csv.push(rowData.join(','));
+            }
+
+            return csv.join('\n');
+        }
+
+        // Excel button click event
+        document.getElementById("excelButton").addEventListener("click", function () {
+            const table = document.getElementById("event-table");
+            const csvData = tableToCSV(table);
+            const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            window.location.href = url; // Opens the CSV in Excel
+        });
+
+        // CSV button click event
+        document.getElementById("csvButton").addEventListener("click", function () {
+            const table = document.getElementById("event-table");
+            const excelData = XLSX.utils.table_to_book(table);
+            XLSX.write(excelData, { bookType: 'csv', bookSST: true, type: 'blob' });
+        });
+        </script>
+
+@* 
+        <script>
+        function filterTable() {
+            const searchInput = document.getElementById('search-input');
+            const filterValue = searchInput.value.toLowerCase();
+
+            const tbody = document.querySelector('#event-table tbody');
+            const rows = tbody.getElementsByTagName('tr');
+
+            for (const row of rows) {
+                const cells = row.getElementsByTagName('td');
+                let found = false;
+
+                for (const cell of cells) {
+                    if (cell.textContent.toLowerCase().indexOf(filterValue) > -1) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                row.style.display = found ? '' : 'none';
+            }
+        }
+        </script> *@
+
+
+        <script>
+        async function generatePDF() {
+            const table = document.getElementById('event-table');
+            const pdfOptions = {
+                margin: 10,
+                filename: 'gift.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+            };
+
+            const pdf = await html2pdf().from(table).set(pdfOptions).outputPdf();
+
+            const blob = new Blob([pdf], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = pdfOptions.filename;
+            a.click();
+        }
+        </script>
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+    </body>

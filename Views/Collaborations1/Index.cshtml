@@ -1,5 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Event Page";
+﻿@model List<HSRC_RMS.Models.OpportunitiesDisplay>
+
+
+@{
+    ViewData["Title"] = "Collaborations Page";
 }
 
 <head>
@@ -214,15 +217,43 @@
                         <div class="view-mo-menu">
                             <div class="view-mou-menu text-pellette-1">
                                 <a onclick="animationsHandler.showTable('table1')">Joint Projects</a>
-                                <a onclick="animationsHandler.showTable('table2')">Jopint Activities</a>
+                                <a onclick="animationsHandler.showTable('table2')">Joint Activities</a>
                                 <a onclick="animationsHandler.showTable('table3')">Joint Academic Opportunities</a>
                                 <a onclick="animationsHandler.showTable('table4')">Joint Publications</a>
                                 <a onclick="animationsHandler.showTable('table5')">Joint Supervisions</a>
                             </div>
                         </div>
                         <div id="table1" class="table-template" style="display: none;">
+                            <div class="above-table">
+                                <div class="buttons-row ">
+
+                                    <button class="download-buttons" onclick="generatePDF()">Print</button>
+                                    <button class="download-buttons" onclick="copyTable(document.getElementById('event-table'))">Copy</button>
+                                    @*                                 <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+                                    *@                                <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+
+                                    <button class="download-buttons" id="csvButton">CSV</button>
+                                    <div class="custom-text1">Show </div>
+                                    <select class="custom-select" onchange="showNumberOfRows(this)">
+                                        <option value="---">---</option>
+
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="10">25</option>
+                                        <option value="35">35</option>
+                                        <option value="50">50</option>
+
+                                    </select>
+                                    <div class="custom-text2"> entries</div>
+                                </div>
+                                <div>
+                                    <div class="search-box">
+                                        <input type="text" placeholder="Search" id="search-input" onkeyup="methodHandler.filterTable()">
+                                    </div>
+                                </div>
+                            </div>
                             <table id="event-table">
-                                <h3>Joint Projects</h3>
+                                <h3>     <a asp-controller="GiftRegister" asp-action="Index">REGISTER NEW JOINT PROJECT</a></h3>
                                 <thead>
                                     <tr class="color-pellette-0">
                                         <th scope="col" width="8%">Budget Year</th>
@@ -238,57 +269,71 @@
                                 </thead>
                                 <tbody>
 
-                                    <tr>
-                                        <td data-label="TITLE">2022/23</td>
-                                        <td data-label="TITLE">OPPVF</td>
-                                        <td data-label="STATUS">IT FUNDING</td>
-                                        <td data-label="FUNDING">University of Limpopo</td>
-                                        <td data-label="PROJECT LEVEL">01/01/20</td>
-                                        <td data-label="PROJECT TYPE">01/01/23</td>
-                                        <td data-label="PROJECT LEADER">BBYUIVBSIA.pdf</td>
-                                        <td data-label="PROJECT LEADER">Approved</td>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td> 2022/23</td>
+                                            <td> @Html.DisplayFor(modelItem => item.Title)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.Funder)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.Program)</td>
+                                            <td> Open</td>
+                                            <td> <a href="Example.com">Url</a></td>
+                                            <td> @Html.DisplayFor(modelItem => item.SubmissionDate)</td>
+                                            <td data-label="Action">
 
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TITLE">2022/23</td>
-                                        <td data-label="TITLE">OPPVF</td>
-                                        <td data-label="STATUS">IT FUNDING</td>
-                                        <td data-label="FUNDING">University of Limpopo</td>
-                                        <td data-label="PROJECT LEVEL">01/01/20</td>
-                                        <td data-label="PROJECT TYPE">01/01/23</td>
-                                        <td data-label="PROJECT LEADER">BBYUIVBSIA.pdf</td>
-                                        <td data-label="PROJECT LEADER">Approved</td>
+                                                <div class="buttons">
+                                                    <form asp-controller="GiftEdit" asp-action="Index">
+                                                        <input type="hidden" name="id" value="@item.opportunityId" />
+                                                        <button type="submit" class="edit-link-button"> <a>Edit</a> </button>
+                                                    </form>
+                                                    <form asp-controller="GiftDisplay" asp-action="Index" method="post">
+                                                        <input type="hidden" name="giftId" value="@item.opportunityId" />
+                                                        <button type="submit" class="submit-link-button" id="submitButton-@item.opportunityId"><a>Delete</a> </button>
+                                                    </form>
+                                                </div>
 
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TITLE">2022/23</td>
-                                        <td data-label="TITLE">OPPVF</td>
-                                        <td data-label="STATUS">IT FUNDING</td>
-                                        <td data-label="FUNDING">University of Limpopo</td>
-                                        <td data-label="PROJECT LEVEL">01/01/20</td>
-                                        <td data-label="PROJECT TYPE">01/01/23</td>
-                                        <td data-label="PROJECT LEADER">BBYUIVBSIA.pdf</td>
-                                        <td data-label="PROJECT LEADER">Approved</td>
+                                                @*   <div class="comments" style="display:none;">
+                                            <p class="comment-text" id="comment-@item.Id">@item.Comment</p>
 
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TITLE">2022/23</td>
-                                        <td data-label="TITLE">OPPVF</td>
-                                        <td data-label="STATUS">IT FUNDING</td>
-                                        <td data-label="FUNDING">University of Limpopo</td>
-                                        <td data-label="PROJECT LEVEL">01/01/20</td>
-                                        <td data-label="PROJECT TYPE">01/01/23</td>
-                                        <td data-label="PROJECT LEADER">BBYUIVBSIA.pdf</td>
-                                        <td data-label="PROJECT LEADER">Approved</td>
-
-                                    </tr>
+                                            </div> *@
+                                            </td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>
 
                         <div id="table2" class="table-template" style="display: none;">
+                            <div class="above-table">
+                                <div class="buttons-row ">
+
+                                    <button class="download-buttons" onclick="generatePDF()">Print</button>
+                                    <button class="download-buttons" onclick="copyTable(document.getElementById('event-table'))">Copy</button>
+                                    @*                                 <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+                                    *@                                <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+
+                                    <button class="download-buttons" id="csvButton">CSV</button>
+                                    <div class="custom-text1">Show </div>
+                                    <select class="custom-select" onchange="showNumberOfRows(this)">
+                                        <option value="---">---</option>
+
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="10">25</option>
+                                        <option value="35">35</option>
+                                        <option value="50">50</option>
+
+                                    </select>
+                                    <div class="custom-text2"> entries</div>
+                                </div>
+                                <div>
+                                    <div class="search-box">
+                                        <input type="text" placeholder="Search" id="search-input" onkeyup="methodHandler.filterTable()">
+                                    </div>
+                                </div>
+                            </div>
                             <table id="event-table">
-                                <h3>Joint Activities</h3>
+                                <h3>     <a asp-controller="GiftRegister" asp-action="Index">REGISTER NEW JOINT ACTIVITIES</a></h3>
                                 <thead>
                                     <tr class="color-pellette-0">
                                         <th scope="col" width="8%">Budget Year</th>
@@ -329,8 +374,36 @@
 
 
                         <div id="table3" class="table-template" style="display: none;">
+                            <div class="above-table">
+                                <div class="buttons-row ">
+
+                                    <button class="download-buttons" onclick="generatePDF()">Print</button>
+                                    <button class="download-buttons" onclick="copyTable(document.getElementById('event-table'))">Copy</button>
+                                    @*                                 <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+                                    *@                                <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+
+                                    <button class="download-buttons" id="csvButton">CSV</button>
+                                    <div class="custom-text1">Show </div>
+                                    <select class="custom-select" onchange="showNumberOfRows(this)">
+                                        <option value="---">---</option>
+
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="10">25</option>
+                                        <option value="35">35</option>
+                                        <option value="50">50</option>
+
+                                    </select>
+                                    <div class="custom-text2"> entries</div>
+                                </div>
+                                <div>
+                                    <div class="search-box">
+                                        <input type="text" placeholder="Search" id="search-input" onkeyup="methodHandler.filterTable()">
+                                    </div>
+                                </div>
+                            </div>
                             <table id="event-table">
-                                <h3>Joint Academic Opportunities</h3>
+                                <h3>     <a asp-controller="GiftRegister" asp-action="Index">REGISTER NEW JOINT ACADEMIC OPPORTUNITITES</a></h3>
                                 <thead>
                                     <tr class="color-pellette-0">
                                         <th scope="col" width="8%">Budget Year</th>
@@ -369,8 +442,36 @@
                         </div>
 
                         <div id="table4" class="table-template" style="display: none;">
+                            <div class="above-table">
+                                <div class="buttons-row ">
+
+                                    <button class="download-buttons" onclick="generatePDF()">Print</button>
+                                    <button class="download-buttons" onclick="copyTable(document.getElementById('event-table'))">Copy</button>
+                                    @*                                 <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+                                    *@                                <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+
+                                    <button class="download-buttons" id="csvButton">CSV</button>
+                                    <div class="custom-text1">Show </div>
+                                    <select class="custom-select" onchange="showNumberOfRows(this)">
+                                        <option value="---">---</option>
+
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="10">25</option>
+                                        <option value="35">35</option>
+                                        <option value="50">50</option>
+
+                                    </select>
+                                    <div class="custom-text2"> entries</div>
+                                </div>
+                                <div>
+                                    <div class="search-box">
+                                        <input type="text" placeholder="Search" id="search-input" onkeyup="methodHandler.filterTable()">
+                                    </div>
+                                </div>
+                            </div>
                             <table id="event-table">
-                                <h3>Joint Publications</h3>
+                                <h3>     <a asp-controller="GiftRegister" asp-action="Index">REGISTER NEW JOINT PUBLICATIONS</a></h3>
                                 <thead>
                                     <tr class="color-pellette-0">
                                         <th scope="col" width="8%">Budget Year</th>
@@ -442,8 +543,36 @@
 
 
                         <div id="table5" class="table-template" style="display: none;">
+                            <div class="above-table">
+                                <div class="buttons-row ">
+
+                                    <button class="download-buttons" onclick="generatePDF()">Print</button>
+                                    <button class="download-buttons" onclick="copyTable(document.getElementById('event-table'))">Copy</button>
+                                    @*                                 <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+                                    *@                                <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+
+                                    <button class="download-buttons" id="csvButton">CSV</button>
+                                    <div class="custom-text1">Show </div>
+                                    <select class="custom-select" onchange="showNumberOfRows(this)">
+                                        <option value="---">---</option>
+
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="10">25</option>
+                                        <option value="35">35</option>
+                                        <option value="50">50</option>
+
+                                    </select>
+                                    <div class="custom-text2"> entries</div>
+                                </div>
+                                <div>
+                                    <div class="search-box">
+                                        <input type="text" placeholder="Search" id="search-input" onkeyup="methodHandler.filterTable()">
+                                    </div>
+                                </div>
+                            </div>
                             <table id="event-table">
-                                <h3>Joint Supervisions</h3>
+                                <h3>     <a asp-controller="GiftRegister" asp-action="Index">REGISTER NEW JOINT SUPERVISIONS</a></h3>
                                 <thead>
                                     <tr class="color-pellette-0">
                                         <th scope="col" width="8%">Budget Year</th>

@@ -7,13 +7,13 @@ namespace HSRC_RMS.Controllers
 {
     public class GiftRegisterController : Controller
     {
-        private readonly IRepository<GiftRegister> _giftRepository;
-        private readonly IRepository<GiftComment> _commentRepository;
+        private readonly IRepository<OpportunitiesRegister> _giftRepository;
+        //private readonly IRepository<GiftComment> _commentRepository;
 
-        public GiftRegisterController(IRepository<GiftRegister> giftRepository, IRepository<GiftComment> commentRepository)
+        public GiftRegisterController(IRepository<OpportunitiesRegister> giftRepository)
         {
             _giftRepository = giftRepository;
-            _commentRepository = commentRepository;
+            //_commentRepository = commentRepository;
         }
 
         public IActionResult Index()
@@ -25,12 +25,43 @@ namespace HSRC_RMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
+        public IActionResult Index(OpportunitiesRegister model)
+=======
         public async Task<IActionResult> Index(GiftRegister model)
+>>>>>>> 895b5587976a042806091964f353211f599442ce
         {
+
+            Random random = new Random();
+
+            // Generate a random integer between 1 and 100 (inclusive)
+            int randomNumber = random.Next(1, 10000);
+
+            int hardcodedUserId = 1;
+            model.UserId = hardcodedUserId;
+            model.opportunityId = randomNumber;
             if (ModelState.IsValid)
             {
                 try
                 {
+<<<<<<< HEAD
+                    // Hardcoded user ID for testing
+                    
+
+                    //add the gift
+                    _giftRepository.Add(model);
+                    _giftRepository.Save();
+
+                    //add the default comment
+                    //var defaultComment = new GiftComment
+                    //{
+                    //    GiftId = model.GiftId,
+                    //    Comment = "Not Submitted to ERM"
+                    //};
+
+                    //_commentRepository.Add(defaultComment);
+                    //_commentRepository.Save();
+=======
                     // Retrieve the UserId from the session
                     int? userId = HttpContext.Session.GetInt32("UserId");
 
@@ -42,6 +73,7 @@ namespace HSRC_RMS.Controllers
                         // Add the gift
                        await  _giftRepository.AddAsync(model);
                       await  _giftRepository.SaveAsync();
+>>>>>>> 895b5587976a042806091964f353211f599442ce
 
                         // Add the default comment
                         var defaultComment = new GiftComment

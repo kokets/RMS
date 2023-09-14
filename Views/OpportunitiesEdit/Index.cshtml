@@ -196,10 +196,10 @@
     <div class="section3 color-pellette-8 text-center">
         <div class="row padding_40 ">
             <div class="columns small-8 medium-centered small-centered large-centered">
-                <h4>Opportunities And Proposals - Opportunities Edit</h4>
+                <h4>GIFT REGISTER - Edit Gift</h4>
                 <p class="anim-text">Social science that makes a difference</p>
             </div>
-            <a asp-controller="OpportunitiesDisplay" asp-action="Index"
+            <a asp-controller="GiftDisplay" asp-action="Index"
                class="button radius padding_10">Back</a>
             <a asp-controller="Home" asp-action="Index"
                class="button radius padding_10">Home</a>
@@ -244,11 +244,10 @@
                                     </div>
                                     <div class="medium-12 cell">
                                         <label>
-                                            Program
+                                            Program         
                                             <span class="mandatory-star">*</span>
 
-                                            @Html.TextBoxFor(model => model.Program, new { required = "required"  ,id = "Program"})
-                                            @Html.ValidationMessageFor(model => model.Program)
+                                            @Html.DropDownListFor(model => model.Program, DropdownHelpers.GetNatureOfBusinessOptions(), "--Please Select--", new {  id = "NatureOfBusiness"})
 
                                         </label>
                                     </div>
@@ -256,7 +255,7 @@
                                         <label>
                                             Status
 
-                                            @Html.TextBoxFor(model => model.Status, new { required = "required"  ,id = "Url"})
+                                            @Html.DropDownListFor(model => model.Status, DropdownHelpers.GetYesNoOption(), "--Please Select--", new { required = "required" ,id = "ReceivedInAppreciation"})
 
 
                                         </label>
@@ -267,20 +266,19 @@
                                             Url
                                             <span class="mandatory-star">*</span>
 
-                                            @Html.TextBoxFor(model => model.Url, new { required = "required"  ,id = "Url"})
+                                            @Html.TextBoxFor(model => model.Url, new { required = "required" , id = "Value"})
 
                                         </label>
                                     </div>
                                     <div class="medium-12 cell">
                                         <label>
-                                            Submission Date
-                                            @Html.TextBoxFor(model => model.SubmissionDate, new { id = "SubmissionDate" })
+                                            SubmissionDate
+                                            @Html.TextBoxFor(model => model.SubmissionDate, new { id = "comment-input", rows = "1" })
                                         </label>
                                     </div>
-                                    
                                     <div class="medium-12 cell buttons-row">
-                                        <button type="submit" class="save-buttons">Update Opportunity</button>
-                                        <button asp-controller="OpportunityDisplay" asp-action="Index" class="cancel-buttons">Cancel</button>
+                                        <button type="submit" class="save-buttons">Update Gift</button>
+                                        <button asp-controller="GiftDisplay" asp-action="Index" class="cancel-buttons">Cancel</button>
                                     </div>
                                 </div>
                             </div>
