@@ -1,0 +1,25 @@
+﻿@model int // Specify the correct data type for CreateId
+
+@{
+}
+<form asp-controller="MoUManage1Delete" asp-action="Delete" method="post">
+    <input type="hidden" name="creatId" value="@Model" />
+    <button type="submit" class="btn btn-danger">Cancel MoU</button>
+</form>
+@* 
+<form method="post" asp-controller="MoUManage1Delete" asp-action="Delete">
+    <input type="hidden" name="CreateId" value="@Model.MouViewDelete.CreateId
+" />
+
+    <div class="add-buttons">
+        <button type="submit"> Cancel Mou</button>
+        <a asp-controller="" asp-action="Index" style="display: flex; align-items: center; color: white; text-decoration: none;">
+            <div class="right-arrow-view" style="margin-left: 10px">
+                <img src="images/new-file.png" class="logo" alt="" />
+            </div>
+            Cancel Mou
+        </a>
+
+    </div>
+</form>
+ *@

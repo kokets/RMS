@@ -1,3 +1,4 @@
+using HSRC_RMS.Helpers;
 using HSRC_RMS.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -6,27 +7,41 @@ namespace HSRC_RMS.Controllers
 {
     public class MoUManage1Controller : Controller
     {
-        private readonly ILogger<MoUManage1Controller> _logger;
+        private readonly IRepository<MouCreate> _moucreateRepository;
+        private readonly IRepository<Users> _userRepository;
 
-        public MoUManage1Controller(ILogger<MoUManage1Controller> logger)
+        public MoUManage1Controller(IRepository<MouCreate> moucreateRepository, IRepository<Users> userRepository)
         {
-            _logger = logger;
+            _moucreateRepository = moucreateRepository;
+            _userRepository = userRepository;
         }
 
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
+
+
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
-        }
+            var mouList = _moucreateRepository.GetAll()
+                    .Select(mou => new MouCreate
+                    {
+                        CreateId = mou.CreateId,
+                       
+                        Requester = mou.Requester,
+                        DateCapture = mou.DateCapture,
+                        ReferenceNumber = mou.ReferenceNumber,
+                        MouRequest = mou.MouRequest,
+                        Division = mou.Division,
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+                        AgreementType = mou.AgreementType,
+                    
+                    })
+                    .ToList();
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(mouList);
         }
     }
 }

@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model HSRC_RMS.Models.LicenseActivationGet
+
+
+<table id="event-table">
+    <thead>
+        <tr class="color-pellette-0">
+            <th scope="col" width="10%">Product</th>
+            <th scope="col" width="10%">Caller ID</th>
+            <th scope="col" width="10%">Owner</th>
+            <th scope="col" width="10%">Supplier</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var capture in Model.LicenseActivationList)
+        {
+            <tr>
+
+                <td data-label="TITLE"><a asp-controller="LicenseListView" asp-action="Index">@capture.ProductName</a></td>
+                <td data-label="TITLE">	</td>
+                <td data-label="STATUS">@capture.LicenseOwner</td>
+                <td data-label="FUNDING">
+                    @capture.Supplier
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

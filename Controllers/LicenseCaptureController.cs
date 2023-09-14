@@ -36,18 +36,27 @@ namespace HSRC_RMS.Controllers
                 try
                 {
                     // Hardcoded user ID for testing
-                    int hardcodedUserId = 1;
-                    model.NewCaptureForm.UserId = hardcodedUserId;
+                    int? userId = HttpContext.Session.GetInt32("UserId");
 
+                    if(userId.HasValue)
+                    {
+                        model.NewCaptureForm.UserId = userId.Value;
+
+
+                        await _captureRepository.AddAsync(model.NewCaptureForm);
+                        await _captureRepository.SaveAsync(); // Assuming SaveAsync is the asynchronous method
+
+
+
+                        TempData["SuccessMessage"] = "License  registered successfully.";
+
+                        return RedirectToAction("Index", "LicenseList");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Login");
+                    }
                  
-                 await   _captureRepository.AddAsync(model.NewCaptureForm);
-                    await _captureRepository.SaveAsync(); // Assuming SaveAsync is the asynchronous method
-
-
-
-                    TempData["SuccessMessage"] = "License  registered successfully.";
-
-                    return RedirectToAction("Index", "LicenseList");
                 }
                 catch (Exception)
                 {
@@ -84,8 +93,6 @@ namespace HSRC_RMS.Controllers
             // Populate other properties if needed
             return View(licenseCaptureGet);
         }
-        //model.LicenseCSuppliesList = _supplyRepository.GetLicenseCSuppliesList();
-        //model.LicenseCUsersList = _userRepository.GetLicenseCUserList();
-        //model.LicenseCTypeList = _typeRepository.GetLicenseCTypeList();
+    
     }
 }

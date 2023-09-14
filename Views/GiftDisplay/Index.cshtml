@@ -202,13 +202,16 @@
                             </div>
                         </div> *@
                         <div class="above-table">
+                            
                             <div class="buttons-row ">
 
-                                <button class="download-buttons" onclick="printData()">Print</button>
-                                <button class="download-buttons" onclick="copyTable(document.getElementById('event-table'))">Copy</button>
-@*                                 <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
- *@                                <button class="download-buttons" onclick="pdfCopyExcelCsv.ExportToExcel('xlsx')">Excel</button>
+@*                                 <button class="download-buttons" onclick="printData()">Print</button>
+                                *@                                <button class="download-buttons" onclick="methodHandler.printTableData()">Print</button>
 
+                                <button class="download-buttons" onclick="copyTable(document.getElementById('event-table'))">Copy</button>
+                                <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
+@*                                 <button class="download-buttons" onclick="pdfCopyExcelCsv.ExportToExcel('xlsx')">Excel</button>
+ *@
                                 <button class="download-buttons" id="csvButton">CSV</button>
 
                                 <div class="custom-text1">Show </div>

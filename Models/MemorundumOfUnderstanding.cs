@@ -8,13 +8,19 @@ namespace HSRC_RMS.Models
     public class Files
     {
         [Key]
-        public string DocumentId { get; set; }
+        public int DocumentId { get; set; }
         [MaxLength(100)]
 
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+		[MaxLength(100)]
+
+		public string SecondName { get; set; }
+		[MaxLength(100)]
+
+        public string FirstFileType { get; set; }
         [MaxLength(100)]
 
-        public string FileType { get; set; }
+        public string SecondFileType { get; set; }
         [MaxLength]
 
         public byte[] FirstContent { get; set; }
@@ -58,8 +64,36 @@ namespace HSRC_RMS.Models
         [StringLength(100)]
 
         public string ReferenceNumber { get; set; }
-    }
 
+        [MaxLength(100)]
+
+        public string? FirstName { get; set; }
+        [MaxLength(100)]
+
+        public string? SecondName { get; set; }
+        [MaxLength(100)]
+
+        public string? FirstFileType { get; set; }
+        [MaxLength(100)]
+
+        public string? SecondFileType { get; set; }
+        [MaxLength]
+
+        public byte[]? FirstContent { get; set; }
+        [MaxLength]
+
+        public byte[]? SecondContent { get; set; }
+    }
+    public class MouCreateEdit
+    {
+        public MouCreate MouViewEdit { get; set; }
+        public int MouCreateId { get; set; } // Add this property
+
+        public MouCreateEdit()
+        {
+            MouViewEdit = new MouCreate();
+        }
+    }
     public class MouCreateDelete
     {
         public MouCreate MouViewDelete { get; set; }
@@ -68,6 +102,26 @@ namespace HSRC_RMS.Models
         public MouCreateDelete()
         {
             MouViewDelete = new MouCreate();
+        }
+    }
+    public class MoUView
+    {
+        public MouCreate MouView { get; set; }
+        public int MouCreateId { get; set; } // Add this property
+
+        public MoUView()
+        {
+            MouView = new MouCreate();
+        }
+    }
+    public class MoUViewRequest
+    {
+        public MouCreate MouViewRequestById { get; set; }
+        public int MouCreateId { get; set; } // Add this property
+
+        public MoUViewRequest()
+        {
+            MouViewRequestById = new MouCreate();
         }
     }
 }

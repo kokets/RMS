@@ -1,3 +1,4 @@
+using HSRC_RMS.Helpers;
 using HSRC_RMS.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -6,11 +7,11 @@ namespace HSRC_RMS.Controllers
 {
     public class MoUManage1DeleteController : Controller
     {
-        private readonly ILogger<MoUManage1DeleteController> _logger;
+        private readonly IRepository<MouCreate> _moucreateRepository;
 
-        public MoUManage1DeleteController(ILogger<MoUManage1DeleteController> logger)
+        public MoUManage1DeleteController(IRepository<MouCreate> moucreateRepository )
         {
-            _logger = logger;
+            _moucreateRepository = moucreateRepository;
         }
 
         public IActionResult Index()
@@ -18,15 +19,64 @@ namespace HSRC_RMS.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+
+        [HttpGet]
+        public async Task<IActionResult> Index(int CreateId)
         {
-            return View();
+            try
+            {
+                MouCreate mou = await _moucreateRepository.GetByIdAsync(CreateId);
+                //TempData["CaptureData"] = captures;
+
+
+                MouCreateDelete mouMode = new MouCreateDelete
+                {
+                    MouViewDelete = new MouCreate
+                    {
+                        CreateId = mou.CreateId,
+                        ReferenceNumber = mou.ReferenceNumber,
+                        AgreementType = mou.AgreementType,
+                        MouRequest = mou.MouRequest,
+                        Division = mou.Division,
+                        
+                    },
+                    MouCreateId = CreateId
+                };
+
+
+                return View(mouMode);
+               
+
+
+                //return View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "An error occurred: " + ex.Message;
+                return View();
+            }
+
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        public async Task<IActionResult> Delete(int creatId)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            try
+            {
+                Console.WriteLine(creatId);
+
+                await _moucreateRepository.DeleteByCreateIdAsync(creatId);
+
+                return RedirectToAction("Index", "MoUManage1");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return RedirectToAction("Index", "MoUManage1Delete");
+
+            }
+
+
         }
     }
 }

@@ -344,7 +344,7 @@ class MethodHandler {
             row.style.display = found ? '' : 'none';
         }
     }
-
+    
     ExportToExcel(type) {
         var elt = document.getElementById('event-table');
         var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
@@ -373,6 +373,13 @@ class MethodHandler {
         window.location.href = url; // Opens the file in Excel or downloads the CSV
     }
 
+    printTableData() {
+    var divToPrint = document.getElementById("event-table");
+    var newWin = window.open("");
+    newWin.document.write(divToPrint.outerHTML);
+    newWin.print();
+    newWin.close();
+}
 }
 class PdfCopyExcelCsv {
     static ExportToExcel(type, fn, dl) {

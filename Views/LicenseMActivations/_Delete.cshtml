@@ -1,0 +1,11 @@
+﻿@model int // Specify the correct data type for CreateId
+@* <a asp-controller="LicenseMActivations" asp-action="Index" asp-route-activationId="@Model">Remove</a>
+ *@
+<form asp-controller="LicenseMActivations" asp-action="Delete" method="post">
+    <input type="hidden" name="activationId" value="@Model" />
+
+    <button type="submit"> <a> Remove</a></button>
+
+   
+
+</form>

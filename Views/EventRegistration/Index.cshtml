@@ -1,3 +1,5 @@
+@model HSRC_RMS.Models.EventCapture
+@using HSRC_RMS.Helpers
 @{
     ViewData["Title"] = "Event Page";
 }
@@ -258,29 +260,42 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach(var events in Model.EventList)
+                                {
+                                    <tr class="table-row">
+                                        <td data-label="TITLE" class="color-pellette-4">@events.Title</td>
+                                        <td data-label="SUBMITTED BY"></td>
+                                        <td data-label="UNIT">@events.Unit</td>
+                                        <td data-label="SUBMITTED DATE">@events.SubmissionDate.ToString("yyyy-MM-dd")</td>
+                                        <td data-label="STATUS">@events.EventStatus</td>
+                                        <td data-label="EVENT DATE">@events.EventDate.ToString("yyyy-MM-dd")</td>
+                                        <td data-label="TYPE">@events.EventType</td>
+                                        <td data-label="DOCUMENTS">
 
-                                <tr class="table-row">
-                                    <td data-label="TITLE" class="color-pellette-4">Community based research</td>
-                                    <td data-label="SUBMITTED BY">Govender K</td>
-                                    <td data-label="UNIT">DCSC</td>
-                                    <td data-label="SUBMITTED DATE">14-07-2023</td>
-                                    <td data-label="STATUS">Approved</td>
-                                    <td data-label="EVENT DATE">17-07-2023</td>
-                                    <td data-label="TYPE">Research related engagement with communities an civel society</td>
-                                    <td data-label="DOCUMENTS">Latchu, Ashely (Mr A)</td>
-                                    <td data-label="COMMENTS">(R)</td>
-                                    <td data-label="ACTION">
-                                        
+                                            @if (events.FirstContent != null && events.FirstContent.Length > 0)
+                                            {
+                                                       <a asp-controller="EventRegistration" asp-action="DownloadFirstPdf" asp-route-eventId="@events.EventId ">View PDF</a>
+                                            }
+                                            else{
+                                                <a asp-controller="EventRegistration" asp-action="DownloadFirstPdf" asp-route-eventId="@events.EventId ">No PDF</a>
+
+                                            }
+                                        </td>
+                                        <td data-label="COMMENTS">@events.EventComments</td>
+                                        <td data-label="ACTION">
+
                                             <select>
                                                 <option value="2021/22">--select--</option>
                                                 <option value="2021/22">2021/22</option>
                                                 <option value="2021/22">2021/22</option>
                                                 <option value="2021/22">2021/22</option>
                                             </select>
-                                        
-                                    </td>
-                                </tr>
 
+                                        </td>
+                                    </tr>
+                                }
+                          
+@* 
                              <tr class="table-row">
                                     <td data-label="TITLE" class="color-pellette-4">Community based research</td>
                                     <td data-label="SUBMITTED BY">Govender K</td>
@@ -383,7 +398,7 @@
                                         
                                     </td>
                                 </tr>
-
+ *@
 
                           
                              

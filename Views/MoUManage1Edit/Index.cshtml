@@ -1,3 +1,5 @@
+@model HSRC_RMS.Models.MouCreateEdit
+
 @{
     ViewData["Title"] = "Event Page";
 }
@@ -466,27 +468,35 @@
                                         Type of agreement:
                                     </td>
                                     <td data-label="Mou Unit">
-                                        National/Regional/International
+                                        @Model.MouViewEdit.AgreementType
                                     </td>
                                 </tr>
                                 <tr>
                                     <td data-label="Budget Year" class="color-pellette-4">Unit:	</td>
                                     <td data-label="Mou Unit">
-                                        [DGSD] Service Delivery, Democracy and Governance
+                                        @Model.MouViewEdit.Division
                                     </td>
                                 </tr>
+                                <form enctype="multipart/form-data" asp-controller="MoUManage1Edit" asp-action="Index" method="post">
+                                    <input type="hidden" name="id" value="@Model.MouViewEdit.CreateId" />
+
                                 <tr>
                                     <td data-label="Budget Year" class="color-pellette-4">Upload template	</td>
                                     <td data-label="Mou Unit">
-                                        <input type="file" accept=".pdf, .jpg, .png" />
+                                        <input class="form-control" name="templateFile" type="file" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td data-label="Budget Year" class="color-pellette-4">Upload unit head approved form	</td>
                                     <td data-label="Mou Unit">
-                                        <input type="file" accept=".pdf, .jpg, .png" />
+                                        <input class="form-control" name="approvedFormFile" type="file" />
                                     </td>
                                 </tr>
+                                <button style=" background-color: grey;   height: 35px;        width: 150px;        border-radius: 6px;        color: white;      font-family: inherit;       margin-top: 15px;">
+                                    Upload and send document
+                                </button>
+                                </form>
+
                             </table>
                             <div class="medium-12 cell " style="            display: flex; 
             gap: 10px;">

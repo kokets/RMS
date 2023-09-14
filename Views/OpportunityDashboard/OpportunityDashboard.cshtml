@@ -1,46 +1,7 @@
-@model HSRC_RMS.Models.LicenseRemainderGet
+﻿@model HSRC_RMS.Models.LicenseRemainderGet
 @{
     ViewData["Title"] = "License";
 }
-<head>
-    <style>
-        .green-bg {
-            background-color: green;
-            color: white; /* Set text color to white */
-        }
-
-        .yellow-bg {
-            background-color: yellow;
-            color: black; /* Set text color to black */
-        }
-
-        .red-bg {
-            background-color: red;
-            color: white; /* Set text color to white */
-        }
-
-        .position-relative {
-            position: relative;
-        }
-
-        .delete-icon {
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 5px;
-            background-color: red;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* Show the icon when hovering over the parent <td> */
-        .position-relative:hover .delete-icon {
-            display: inline-block;
-        }
-    </style>
-
-</head>
-
 
 <body>
 
@@ -177,7 +138,7 @@
     <div class="section3 color-pellette-8 text-center">
         <div class="row padding_40 ">
             <div class="columns small-8 medium-centered small-centered large-centered">
-                <h4>License Management System</h4>
+                <h4>Proposal tracking system</h4>
                 <p class="anim-text">Social science that makes a difference</p>
             </div>
 
@@ -202,8 +163,7 @@
                     <div class="content-blocks content-blocks-1">
                         <h4>System Configuration</h4>
                         <ul>
-                            <li><a asp-controller="LicenseMSupplier" asp-action="Index">Manage  Suppliers</a></li>
-                            <li><a asp-controller="LicenseMLTypes" asp-action="Index">Manage License Types</a></li>
+                            <li><a asp-controller="LicenseMSupplier" asp-action="Index">Configuration</a></li>
 
                         </ul>
                     </div>
@@ -243,37 +203,6 @@
                                     <div class="">
                                         <div class="search-section">
                                             <div class="medium-12 cell ">
-                                                <div id="table1" class="table-template">
-                                                    <table id="event-table">
-                                                        <thead>
-                                                     
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach (var Remainder in Model.RemainderList)
-                                                            {
-                                                                <tr>
-                                                                    <td data-label="TITLE">	@Remainder.RemainderDate.ToString("yyyy-MM-dd")	</td>
-                                                                    <td data-label="TITLE">	@Remainder.LicenseUser	</td>
-                                                                    <td data-label="TITLE">	@Remainder.Comment	</td>
-                                                                    <td data-label="TITLE" class="position-relative">
-                                                                        <span  id="countdown-@Remainder.ReminderId">
-                                                                            @Remainder.RemainderDate.ToString("yyyy-MM-dd")
-                                                                        </span>
-                                                                        <span class="delete-icon" data-reminder-id="@Remainder.ReminderId" style="display: none;">
-                                                                            <div class="right-arrow-view">
-                                                                                <img src="images/close.png" class="logo" alt="" />
-                                                                            </div>
-                                                                        </span>
-                                                                    </td>
-
-
-                                                   
-                                                                </tr>
-                                                            }
-
-
-                                                        </tbody>
-                                                    </table>
                                             </div>
                                         </div>
                                     </div>
@@ -333,7 +262,7 @@
         </div>
     </div>
 
-   
+
 
     <div id="myModal" class="my-modal">
         <div class="my-modal-content-indicator">
@@ -354,10 +283,8 @@
                                 <label>
                                     Reminder for
                                     <span class="mandatory-star">*</span>
-                                    <input type="text" id="LicenseUser" name="NewLicenseRemainder.LicenseUser" value="@Context.Session.GetString("Username")" readonly />
 
-                     @*                @Html.DropDownListFor(model => model.NewLicenseRemainder.LicenseUser, Model.UsersOptionAsync, "--Please Select--", new { required = "required", id = "LicenseOwner" })
-                                    @Html.ValidationMessageFor(model => model.NewLicenseRemainder.LicenseUser) *@
+                                   
                                 </label>
                             </div>
                             <div class="medium-12 cell">
@@ -381,11 +308,11 @@
                     <div class="my-clearfix">
                         <br />
                         <button type="button" class="my-cancelbtn" onclick="modalHandler.closeModal('myModal')">Cancel</button>
-                        <button type="submit" class="my-deletebtn1" >Add</button>
+                        <button type="submit" class="my-deletebtn1">Add</button>
                     </div>
                 </form>
             </div>
-         
+
         </div>
     </div>
 
@@ -414,42 +341,6 @@
 
         });
     </script>
-    <script>
-        // Function to update the countdown and color the column cell
-        function updateCountdownAndColor(reminderId, remainderDate) {
-            var currentTime = new Date().getTime();
-            var remainderTime = new Date(remainderDate).getTime();
-            var timeRemaining = remainderTime - currentTime;
-            var daysRemaining = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-
-            var countdownElement = document.getElementById("countdown-" + reminderId);
-            if (countdownElement) {
-                countdownElement.innerHTML = daysRemaining + " days remaining";
-
-                // Apply background color to the entire column cell based on daysRemaining
-                if (daysRemaining >= 25) {
-                    countdownElement.parentElement.classList.remove("yellow-bg", "red-bg"); // Remove other classes
-                    countdownElement.parentElement.classList.add("green-bg"); // Add green class
-                } else if (daysRemaining >= 14) {
-                    countdownElement.parentElement.classList.remove("green-bg", "red-bg"); // Remove other classes
-                    countdownElement.parentElement.classList.add("yellow-bg"); // Add yellow class
-                } else {
-                    countdownElement.parentElement.classList.remove("green-bg", "yellow-bg"); // Remove other classes
-                    countdownElement.parentElement.classList.add("red-bg"); // Add red class
-                }
-            }
-        }
-
-        // Update countdown and color for each remainder periodically (every second)
-        setInterval(function () {
-            // Replace the following with your actual data
-        @foreach (var remainder in Model.RemainderList)
-        {
-            <text>updateCountdownAndColor(@remainder.ReminderId, '@remainder.RemainderDate.ToString("yyyy-MM-ddTHH:mm:ss")'); </text>
-        }
-            }, 1000);
-    </script>
-
 
 
 

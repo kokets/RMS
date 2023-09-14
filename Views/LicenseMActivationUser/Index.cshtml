@@ -1,7 +1,7 @@
-@model HSRC_RMS.Models.LicenseCaptureForm
+﻿@model HSRC_RMS.Models.LicenseActivationUserGet
 @using HSRC_RMS.Helpers
 @{
-    ViewData["Title"] = "License Capture";
+    ViewData["Title"] = "License Activation";
 }
 
 
@@ -133,7 +133,7 @@
     <div class="section3 color-pellette-8 text-center">
         <div class="row padding_40 ">
             <div class="columns small-8 medium-centered small-centered large-centered">
-                <h4>License Capture Form</h4>
+                <h4>License Activation - Add User</h4>
                 <p class="anim-text">Social science that makes a difference</p>
             </div>
             <a asp-controller="License" asp-action="Index"
@@ -157,148 +157,66 @@
                                 <div class="right-arrow-view" style="margin-left: 10px;">
                                     <img src="images/back-arrow.png" class="logo" alt="" />
                                 </div>
-                               Listing
+                                Listing
                             </a>
                         </div>
 
-                        <form asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()">
-                            @Html.AntiForgeryToken()
 
-                            <div class="">
-                                <div class="search-section">
-
-                                    <div class="medium-12 cell ">
-                                        <label>
-                                            License Owner
-                                            <span class="mandatory-star">*</span>
-
-                                         @*    <select id="selectType" name="User" onchange="updateLicenseUser(this)">
-                                                    <option value="">-- Select License Owner --</option>
-                                                @foreach (var Username in Model.LicenseCUsersList)
-                                                    {
-                                                    <option value="@Username">@Username</option>
-                                                    }
-                                                </select>
-                                                 *@
-                                            @Html.DropDownListFor(model => model.NewCaptureForm.LicenseOwner, Model.UsersOptionAsync, "--Please Select--", new { required = "required", id = "LicenseOwner" })
-                                            @Html.ValidationMessageFor(model => model.NewCaptureForm.LicenseOwner)
-                                        </label>
-                                    </div>
-@*                                     @Html.HiddenFor(model => model.NewLicenseCapture.LicenseOwner, new { id = "LicenseOwner" })
- *@
-                                    <div class="medium-12 cell">
-                                        <label>
-                                           Product Name
-                                            <span class="mandatory-star">*</span>
-                                            @Html.TextBoxFor(model => model.NewCaptureForm.ProductName, new { required = "required"  ,id = "ProductName"})
-                                            @Html.ValidationMessageFor(model => model.NewCaptureForm.ProductName)
-
-                                        </label>
-                                    </div>
-                                    <div class="medium-12 cell ">
-                                        <label>
-                                            Product Key
-                                            <span class="mandatory-star">*</span>
-                                            @Html.TextBoxFor(model => model.NewCaptureForm.ProductKey, new { required = "required"  ,id = "ProductKey"})
-                                            @Html.ValidationMessageFor(model => model.NewCaptureForm.ProductKey)
-                                        </label>
-                                    </div><div class="medium-12 cell ">
-                                        <label>
-                                            License Type
-                                            <span class="mandatory-star">*</span>
-
-                                       @*      <select id="selectType" name="Type" onchange="updateLicenseType(this)">
-                                                    <option value="">-- Select Type --</option>
-                                                    @foreach (var type in Model.LicenseCTypeList)
-                                                    {
-                                                        <option value="@type">@type</option>
-                                                    }
-                                                </select> *@
-                                            @Html.DropDownListFor(model => model.NewCaptureForm.LicenseType, Model.TypeOptionsAsync, "--Please Select--", new { required = "required", id = "LicenseType" })
-                                            @Html.ValidationMessageFor(model => model.NewCaptureForm.LicenseType)
-
-                                        </label>
-                                    </div>
-@*                                     @Html.HiddenFor(model => model.NewLicenseCapture.LicenseType, new { id = "LicenseType" })
- *@                                    <div class="medium-12 cell ">
-                                        <label>
-                                            Acquired Date
-                                            <span class="mandatory-star">*</span>
-                                            @Html.TextBoxFor(model => model.NewCaptureForm.AcquiredDate, new { required = "required", @class = "form-control", type = "date" })
-
-@*                                             @Html.EditorFor(model => model.NewLicenseCapture.AcquiredDate, new { htmlAttributes = new { @class = "form-control" , type = "date" } })
-                                            *@                                            @Html.ValidationMessageFor(model => model.NewCaptureForm.AcquiredDate)
-
-                                        </label>
-                                    </div><div class="medium-12 cell ">
-                                        <label>
-                                            Expiry Date
-                                            <span class="mandatory-star">*</span>
-                                            @Html.TextBoxFor(model => model.NewCaptureForm.ExpiryDate, new { required = "required", @class = "form-control", type = "date" })
+                        <form asp-asp-controller="LicenseMActivationUser" asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()" enctype="multipart/form-data">
+                                @Html.AntiForgeryToken()
 
 
-@*                                             @Html.EditorFor(model => model.NewLicenseCapture.ExpiryDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-                                            *@                                            @Html.ValidationMessageFor(model => model.NewCaptureForm.ExpiryDate)
+                                <div class="">
+                                    <div class="search-section">
 
-                                        </label>
-                                    </div><div class="medium-12 cell ">
-                                        <label>
-                                            Activations
+                                        <div class="medium-12 cell ">
+                                            <label>
+                                                Select user
+                                                <span class="mandatory-star">*</span>
+                                            @Html.DropDownListFor(model => model.NewActivation.LicenseUser     , Model.UsersOptionAsync
+                                                , "--Please Select--", new { required = "required", id = "LicenseOwner" })
+                                            @Html.ValidationMessageFor(model => model.NewActivation.LicenseUser)
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell ">
+                                            <label>
+                                                Activation Date
+                                                <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.NewActivation.ActivatedDate, new { required = "required", @class = "form-control", type = "date" })
 
-                                            <span class="mandatory-star">*</span>
-                                            <input type="text" id="Activations" name="NewCaptureForm.Activations" required="required" placeholder="Enter the number of activations" />
+                                            @Html.ValidationMessageFor(model => model.NewActivation.ActivatedDate)
 
-@*                                             @Html.TextBoxFor(model => model.NewCaptureForm.Activations, new { required = "required"  ,id = "Activations" , placeholder = "Enter the number of activations"})
- *@                                            @Html.ValidationMessageFor(model => model.NewCaptureForm.Activations)
+                                            </label>
+                                        </div><div class="medium-12 cell ">
+                                            <label>
+                                                Expiry Date
+                                                <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.NewActivation.ExpiryDate, new { required = "required", @class = "form-control", type = "date" })
 
-                                        </label>
-                                    </div><div class="medium-12 cell ">
-                                        <label>
-                                            License Status
+                                                @Html.ValidationMessageFor(model => model.NewActivation.ExpiryDate)
 
-                                            <span class="mandatory-star">*</span>
-                                            @Html.DropDownListFor(model => model.NewCaptureForm.LicenseStatus, DropdownHelpers.GetLicenseStatus(), "--Please Select--", new { required = "required" ,id = "LicenseStatus"})
-                                            @Html.ValidationMessageFor(model => model.NewCaptureForm.LicenseStatus)
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Accessform
+                                                <span class="mandatory-star">*</span>
+                                          @*   <input  type="file" name="NewActivation.Accessform" class="form-control" />
+                                            <span asp-validation-for="NewActivation.Accessform" class="text-danger"></span> *@
+                                            <input class="form-control" name="templateFile" type="file" />
 
-                                        </label>
-                                    </div><div class="medium-12 cell ">
-                                        <label>
-                                            Supplier
-                                         
-                                            @Html.DropDownListFor(model => model.NewCaptureForm.Supplier, Model.SupplierOptionsAsync, "--Please Select--", new { required = "required", id = "Supplier" })
-                                            @Html.ValidationMessageFor(model => model.NewCaptureForm.Supplier)
-
-                                        </label>
-                                    </div>
-
-                                    <div class="medium-12 cell ">
-                                        <label>
-                                            Purchase Price
-                                            <span class="mandatory-star">*</span>
-                                            <input type="text" id="PurchasePrice" name="NewCaptureForm.PurchasePrice" required="required" placeholder="Enter Purchase Price" />
-
-@*                                             @Html.TextBoxFor(model => model.NewCaptureForm.PurchasePrice, new { required = "required"  ,id = "PurchasePrice" , placeholder = "Purchase Price"})
- *@                                            @Html.ValidationMessageFor(model => model.NewCaptureForm.PurchasePrice)
-
-                                        </label>
-                                    </div>
-                                    <div class="medium-12 cell ">
-                                        <label>
-                                            Comments/Price
-                                            <span class="mandatory-star">*</span>
-
-                                            @Html.TextAreaFor(model => model.NewCaptureForm.CommentPrice, new {required = "required"  , id = "comment-input", rows = "1" })
-
-                                        </label>
-                                    </div>
-                                    <div class="medium-12 cell " style=" display: flex;gap: 10px;">
-                                        <button type="submit" style="background-color: grey;height: 35px;  width: 100px; border-radius: 6px;color: white;font-family: inherit; margin-top: 15px;">
-                                            Save
-                                        </button>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+
+                                <div class="my-clearfix">
+                                    <hr> <!-- Add a horizontal line here -->
+
+                                    @* <button type="button" class="my-cancelbtn" onclick="modalHandler.closeModal('myModal')">Cancel</button> *@
+                                    <button type="submit" class="my-deletebtn1">Save</button>
+                                </div>
+                            </form>
                     </div>
                 </div>
             </div>

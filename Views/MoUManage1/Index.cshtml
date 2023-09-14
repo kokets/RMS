@@ -1,3 +1,6 @@
+@model List<HSRC_RMS.Models.MouCreate>
+
+
 @{
     ViewData["Title"] = "Event Page";
 }
@@ -261,109 +264,44 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                    @foreach (var mou in Model)
+                                {
                                 <tr class="table-row">
-                                    <td data-label="Budget Year" class="color-pellette-4">Govender, Koshenthree (Ms, K)		</td>
-                                    <td data-label="Mou Unit">2018/19	</td>
-                                    <td data-label="Reference Number">
-                                        19/MAR/19
-                                    </td>
-                                    <td data-label="MoU Name">2441	</td>
-                                    <td data-label="Type of Agreement">University of Alberta	</td>
-                                    <td data-label="Status">DGSD	</td>
-                                                                        <td data-label="Status">National/Regional/International		</td>
-                                    <td data-label="Status">3	</td>
-                                    <td data-label="Status">09/NOV/16		</td>
+                                    <td data-label="Budget Year" class="color-pellette-4">@mou.Requester		</td>
+                                    <td data-label="Mou Unit">	</td>
+                                        <td data-label="Reference Number"> @mou.DateCapture.ToString("yyyy-MM-dd")</td>
+                                    <td data-label="Reference Number">@mou.ReferenceNumber</td>
+                                    <td data-label="MoU Name">@mou.MouRequest	</td>
+                                    <td data-label="Mou Unit">	</td>
+                                    <td data-label="Type of Agreement">@mou.AgreementType</td>
+                                    <td data-label="Status">	</td>
+                                    <td data-label="Date vetted">	</td>
 
                                     <td data-label="Action">
-                                        <label>
+                                     @*    <label>
                                             <select id="action-select" onchange="modalHandler.handleActionNavigation('action-select')">
                                                 <option value="--">---select--</option>
                                                 <option value="Edit1">Edit</option>
                                                 <option value="Delete">Delete</option>
 
-                                            </select>
-                                        </label>
+                                        </select>    </label> *@
+@*                                             <a href="@Url.Action("Index", "MoUManage1Edit", new { id = mou.CreateId })">Edit</a>
+ *@
+                                            <form asp-controller="MoUManage1Edit" asp-action="Index" method="get">
+                                                <input type="hidden" name="CreateId" value="@mou.CreateId" />
+                                                    <button type="submit" class="submit-link-button"><a>Edit</a> </button>
+                                                </form>
+                                            <form asp-controller="MoUManage1Delete" asp-action="Index" method="get">
+                                                <input type="hidden" name="CreateId" value="@mou.CreateId" />
+                                                    <button type="submit" class="submit-link-button"><a>Delete</a> </button>
+                                                </form>
+                                    
                             
                                     </td>
                                     </tr>
+                                    }
                                   
-                                      <tr class="table-row">
-                                    <td data-label="Budget Year" class="color-pellette-4">Govender, Koshenthree (Ms, K)		</td>
-                                    <td data-label="Mou Unit">2018/19	</td>
-                                    <td data-label="Reference Number">
-                                        19/MAR/19
-                                    </td>
-                                    <td data-label="MoU Name">2441	</td>
-                                    <td data-label="Type of Agreement">University of Alberta	</td>
-                                    <td data-label="Status">DGSD	</td>
-                                                                        <td data-label="Status">National/Regional/International		</td>
-                                    <td data-label="Status">3	</td>
-                                    <td data-label="Status">09/NOV/16		</td>
-
-                                    <td data-label="Action">
-                                        <label>
-                                            <select id="action-select" onchange="modalHandler.handleActionNavigation('action-select')">
-                                                <option value="--">---select--</option>
-                                                <option value="Edit1">Edit</option>
-                                                <option value="Delete">Delete</option>
-
-                                            </select>
-                                        </label>
-                           
-                                    </td>
-                                    </tr>
-
-                                      <tr class="table-row">
-                                    <td data-label="Budget Year" class="color-pellette-4">Govender, Koshenthree (Ms, K)		</td>
-                                    <td data-label="Mou Unit">2018/19	</td>
-                                    <td data-label="Reference Number">
-                                        19/MAR/19
-                                    </td>
-                                    <td data-label="MoU Name">2441	</td>
-                                    <td data-label="Type of Agreement">University of Alberta	</td>
-                                    <td data-label="Status">DGSD	</td>
-                                                                        <td data-label="Status">National/Regional/International		</td>
-                                    <td data-label="Status">3	</td>
-                                    <td data-label="Status">09/NOV/16		</td>
-
-                                    <td data-label="Action">
-                                        <label>
-                                            <select id="action-select" onchange="modalHandler.handleActionNavigation('action-select')">
-                                                <option value="--">--- select--</option>
-                                                <option value="Edit1">Edit</option>
-                                                <option value="Delete">Delete</option>
-
-                                            </select>
-                                        </label>
-                               
-                                    </td>
-                                </tr>
-                                <tr class="table-row">
-                                    <td data-label="Budget Year" class="color-pellette-4">Govender, Koshenthree (Ms, K)		</td>
-                                    <td data-label="Mou Unit">2018/19	</td>
-                                    <td data-label="Reference Number">
-                                        19/MAR/19
-                                    </td>
-                                    <td data-label="MoU Name">2441	</td>
-                                    <td data-label="Type of Agreement">University of Alberta	</td>
-                                    <td data-label="Status">DGSD	</td>
-                                    <td data-label="Status">National/Regional/International		</td>
-                                    <td data-label="Status">3	</td>
-                                    <td data-label="Status">09/NOV/16		</td>
-
-                                    <td data-label="Action">
-                                        <label>
-                                            <select id="action-select" onchange="modalHandler.handleActionNavigation('action-select')">
-                                                <option value="--">---select--</option>
-                                                <option value="Edit1">Edit</option>
-                                                <option value="Delete">Delete</option>
-
-                                            </select>
-                                        </label>
-                                    
-                                    </td>
-                                </tr>
+                                   
                             </tbody>
                         </table>
                     </div>

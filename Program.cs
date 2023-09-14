@@ -36,6 +36,8 @@ builder.Services.AddSession(options =>
     options.Cookie.Name = ".AdventureWorks.Session";
     options.IdleTimeout = TimeSpan.FromHours(10);
     options.Cookie.IsEssential = true;
+    options.Cookie.HttpOnly = true;
+
 });
 
 
@@ -69,7 +71,9 @@ app.MapControllerRoute(
     pattern: "GiftRegister/Index",
     defaults: new { controller = "GiftRegister", action = "Index" }
 );
-
+app.MapControllerRoute(
+    name: "captureId",
+    pattern: "{controller=LicenseMActivationUser}/{action=Index}/{captureId?}");
 //app.MapControllerRoute(
 //    name: "fileUpload",
 //    pattern: "LicenseMActivationUser/Index", // Define a route for handling file uploads

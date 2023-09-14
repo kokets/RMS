@@ -1,6 +1,7 @@
 ﻿using HSRC_RMS.Helpers;
 using HSRC_RMS.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.FlowAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -20,17 +21,25 @@ namespace HSRC_RMS.Controllers
         {
             try
             {
-                int userId = 1;
-                List<LicenseCapture> captureList = await _captureRepository.GetLicensefieldsByUserIdAsync(userId);
 
-
-                LicenseCaptureGet viewModel = new LicenseCaptureGet
+                int? userId = HttpContext.Session.GetInt32("UserId");
+                if (userId.HasValue)
                 {
-                    LicenseCaptureList = captureList,
-                    NewLicenseCapture = new LicenseCapture()
-                };
+                    List<LicenseCapture> captureList = await _captureRepository.GetLicensefieldsByUserIdAsync(userId.Value);
 
-                return View(viewModel);
+
+                    LicenseCaptureGet viewModel = new LicenseCaptureGet
+                    {
+                        LicenseCaptureList = captureList,
+                        NewLicenseCapture = new LicenseCapture()
+                    };
+
+                    return View(viewModel);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Login");
+                }
             }
             catch (Exception ex)
             {

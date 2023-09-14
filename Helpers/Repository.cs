@@ -18,7 +18,6 @@ namespace HSRC_RMS.Helpers
         {
             _dbConnect = dbConnect;
         }
-
         public async Task<List<LicenseSupplies>> GetSuppliesByUserIdAsync(int userId)
         {
             return await _dbConnect.Set<LicenseSupplies>()
@@ -45,37 +44,6 @@ namespace HSRC_RMS.Helpers
         {
             return await _dbConnect.Set<LicenseType>().Where(type => type.UserId == userId).ToListAsync();
         }
-
-        //public List<SelectListItem> usersOption()
-        //{
-        //    var usersOptions = _dbConnect.Users.Select(type => new SelectListItem
-        //    {
-        //        Value = type.Username,
-        //        Text = type.Username
-        //    }).ToList();
-
-        //    return usersOptions;
-        //}
-        //public List<SelectListItem> typeOptions()
-        //{
-        //    var typeOptions = _dbConnect.LicenseType.Select(type => new SelectListItem
-        //    {
-        //        Value = type.Type,
-        //        Text = type.Type
-        //    }).ToList();
-
-        //    return typeOptions;
-        //}
-        //public List<SelectListItem> supplierOptions()
-        //{
-        //    var supplierOptions = _dbConnect.LicenseSupply.Select(type => new SelectListItem
-        //    {
-        //        Value = type.Supplier,
-        //        Text = type.Supplier
-        //    }).ToList();
-
-        //    return supplierOptions;
-        //}
         public async Task<List<SelectListItem>> UsersOptionAsync()
         {
             var usersOptions = await _dbConnect.Users
@@ -101,7 +69,6 @@ namespace HSRC_RMS.Helpers
 
             return typeOptions;
         }
-
         public async Task<List<SelectListItem>> SupplierOptionsAsync()
         {
             var supplierOptions = await _dbConnect.LicenseSupply
@@ -114,8 +81,6 @@ namespace HSRC_RMS.Helpers
 
             return supplierOptions;
         }
-
-
         public async Task<List<LicenseCapture>> GetLicensefieldsByUserIdAsync(int userId)
     {
         return await _dbConnect.LicenseCapture
@@ -181,36 +146,106 @@ namespace HSRC_RMS.Helpers
             //return await _dbConnect.Set<LicenseCapture>().Where(type => type.CaptureId == captureId).ToListAsync();
 
         }
-        //public async Task<List<LicenseActivation>> GetActivationIdAsync(int userId)
-        //{
-        //    return await _dbConnect.LicenseCapture
-        //   .Where(userid => userid.UserId == userId)
-        //   .Select(userid => new LicenseActivation
-        //   {
+        public async Task<List<LicenseActivation>> GetLicenseActivations(int captureId)
+        {
+            return await _dbConnect.LicenseActivation
+                .Where(activation =>  activation.CaptureId == captureId)
+                .ToListAsync();
+        }
+        public async Task<List<LicenseRemainder>> GetRemindersForUser(int userId)
+        {
+            var reminders = await _dbConnect.LicenseRemainder
+                .Where(r => r.UserId == userId)
+                .ToListAsync();
 
-        //       LicenseUser = userid.LicenseUser,
+            return reminders;
+        }
+        public async Task<bool> DeleteActivationIdAsync(int activationId)
+        {
+            try
+            {
+                // Find the entity by CreateId
+                var entity = await _dbConnect.LicenseActivation.FindAsync(activationId);
 
-        //       ActivationDate = userid.ActivationDate,
+                if (entity != null)
+                {
+                    _dbConnect.LicenseActivation.Remove(entity);
 
-        //       ExpiryDate = userid.ExpiryDate,
-        //       AccessFile = userid.AccessFile,
-         
+                    await _dbConnect.SaveChangesAsync();
+                    return true; // Deletion was successful
+                }
+                else
+                {
+                    return false; // Entity not found
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions, log errors, or return appropriate responses
+                // Example: Logging the error and returning false
+                return false;
+            }
+        }
 
 
-        //   })
-        //   .ToListAsync();
-        //    //return await _dbConnect.Set<LicenseCapture>().Where(type => type.CaptureId == captureId).ToListAsync();
 
-        //}
+        public async Task<bool> DeleteByCreateIdAsync(int createId)
+        {
+            try
+            {
+                // Find the entity by CreateId
+                var entity = await _dbConnect.MouCreate.FindAsync(createId);
+
+                if (entity != null)
+                {
+                    _dbConnect.MouCreate.Remove(entity);
+
+                    await _dbConnect.SaveChangesAsync();
+                    return true; // Deletion was successful
+                }
+                else
+                {
+                    return false; // Entity not found
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions, log errors, or return appropriate responses
+                // Example: Logging the error and returning false
+                return false;
+            }
+        }
 
 
 
+        /**EVENT REGISTRATION MODULE START**/
+  
+    public async Task<List<Event>> GetEvents()
+    {
+        var eventGet = await _dbConnect.Event
+            .Select(events => new Event
+            {
+                EventId = events.EventId,
+                EventType = events.EventType,
+                Unit = events.Unit,
+                Title = events.Title,
+                SubmissionDate = events.SubmissionDate,
+                EventDate = events.EventDate,
+                EventComments = events.EventComments,
+                
+                FirstContent = events.FirstContent,
+                SecondContent = events.SecondContent,
+                ThirdContent = events.ThirdContent,
+                FourthContent = events.FourthContent,
+                FifthContent = events.FifthContent,
+            })
+            .ToListAsync();
+
+        return eventGet;
+    }
 
 
-
-
-
-        public T GetById(int id)
+    public T GetById(int id)
         {
             try
             {
@@ -218,10 +253,6 @@ namespace HSRC_RMS.Helpers
             }
             catch (Exception ex)
             {
-                // Handle exceptions, log errors, and return an appropriate result
-                // For example, you might return null or throw a custom exception
-                // depending on how you want to handle database-related errors.
-                // Make sure to log the exception details for debugging.
                 return null;
             }
         }
@@ -269,6 +300,7 @@ namespace HSRC_RMS.Helpers
         public async Task DeleteAsync(int id)
         {
             var entity = await _dbConnect.Set<T>().FindAsync(id);
+
             if (entity != null)
             {
                 _dbConnect.Set<T>().Remove(entity);

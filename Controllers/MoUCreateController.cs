@@ -22,38 +22,89 @@ namespace HSRC_RMS.Controllers
         }
 
         //[HttpGet]
-        //public  async Task<IActionResult> Index ()
+        //public async Task<IActionResult> Index()
         //{
+        //    int hardcoded = 1;
 
         //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Index(MouCreate model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            // Hardcoded user ID for testing
-        //            int hardcodedUserId = 1;
-        //            model.UserId = hardcodedUserId;
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(MouCreate model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    int? userId = HttpContext.Session.GetInt32("UserId");
+                    if (userId.HasValue)
+                    {
 
-        //            // Add the gift asynchronously
-        //            await _moucreateRepository.AddAsync(model);
-        //            await _moucreateRepository.SaveAsync();
+                        //model.UserId = userId.Value;
+                        Console.WriteLine($"UserId: {model.UserId}");
+                        //model.DateCapture = DateTime.Now;
 
-        //            TempData["SuccessMessage"] = "Gift registered successfully.";
+                        var moU = new MouCreate
+                        {
+                            UserId = userId.Value,
+                            Division = model.Division,
+                            Requester = model.Requester,
+                            ContactDetails = model.ContactDetails,
+                            MouRequest = model.MouRequest,
+                            AgreementType = model.AgreementType,
+                            PartnerName = model.PartnerName,
+                            InstitutionType = model.InstitutionType,
+                            MouPurpose = model.MouPurpose,
+                            DateCapture = DateTime.Now,
+                            ReferenceNumber = model.ReferenceNumber,
+                        };
 
-        //            return RedirectToAction("Index", "MoUManage1");
-        //        }
-        //        catch (Exception)
-        //        {
-        //            ModelState.AddModelError("", "An error occurred while saving the gift.");
-        //        }
-        //    }
+                        // Add the gift asynchronously
+                        await _moucreateRepository.AddAsync(moU);
+                        await _moucreateRepository.SaveAsync();
 
-        //    return View(model);
-        //}
+
+                        return RedirectToAction("Index", "MoUManage1");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Login");
+
+                    }
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError("", "An error occurred while saving the gift.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Model is not valid. Validation errors:");
+
+                foreach (var key in ModelState.Keys)
+                {
+                    foreach (var error in ModelState[key].Errors)
+                    {
+                        Console.WriteLine("Property: " + key + ", Error: " + error.ErrorMessage);
+                    }
+                }
+            }
+
+            return View(model);
+        }
+        public string GenerateMouReference()
+        {
+            // Generate a timestamp as part of the reference
+            string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+            // Generate a unique identifier (UUID)
+            string uniqueId = Guid.NewGuid().ToString("N");
+
+            // Combine the prefix, timestamp, and unique identifier
+            string reference = "MOU-" + timestamp + "-" + uniqueId;
+
+            return reference;
+        }
+
 
     }
 }

@@ -3,6 +3,8 @@ using HSRC_RMS.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Globalization;
+
 namespace HSRC_RMS.Controllers
 {
     public class LicenseListEditController : Controller
@@ -82,7 +84,8 @@ namespace HSRC_RMS.Controllers
             {
                 try
                 {
-                    var LicenseToUpdate = await _captureRepository.GetByIdAsync(model.NewEditCapture.CaptureId);
+                
+                    var LicenseToUpdate = await _captureRepository.GetByIdAsync(model.CaptureId);
                     if (LicenseToUpdate == null)
                     {
                         TempData["ErrorMessage"] = "License  not found.";
@@ -95,6 +98,7 @@ namespace HSRC_RMS.Controllers
                     LicenseToUpdate.ProductKey = model.NewEditCapture.ProductKey;
                     LicenseToUpdate.LicenseType = model.NewEditCapture.LicenseType;
                     LicenseToUpdate.AcquiredDate = model.NewEditCapture.AcquiredDate;
+
                     LicenseToUpdate.ExpiryDate = model.NewEditCapture.ExpiryDate;
                     LicenseToUpdate.Activations = model.NewEditCapture.Activations;
                     LicenseToUpdate.LicenseStatus = model.NewEditCapture.LicenseStatus;

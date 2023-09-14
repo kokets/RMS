@@ -1,3 +1,5 @@
+@model List<HSRC_RMS.Models.MouCreate>
+
 @{
     ViewData["Title"] = "Memorandum of Understanding";
 }
@@ -243,8 +245,8 @@
                                 <tr class="color-pellette-0">
                                     <th scope="col" width="8%">Requester Name</th>
                                     <th scope="col" width="7%">Reference Number</th>
-                                    <th scope="col" width="18%">MoU Name</th>
-                                    <th scope="col" width="4%">Mou Unit</th>
+                                    <th scope="col" width="12%">MoU Name</th>
+                                    <th scope="col" width="10%">Mou Unit</th>
                                     <th scope="col" width="14%">Other </th>
                                     <th scope="col" width="6%">Date Captured</th>
                                     <th scope="col" width="6%">Action</th>
@@ -253,16 +255,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                      @foreach (var mou in Model)
+                                {
                                 <tr class="table-row">
-                                    <td data-label="Budget Year" class="color-pellette-4">Coert, Samantha Linn (Ms, SL)	</td>
-                                    <td data-label="Mou Unit">4201</td>
+                                    <td data-label="Budget Year" class="color-pellette-4">@mou.Requester	</td>
+                                    <td data-label="Mou Unit">@mou.ReferenceNumber</td>
                                     <td data-label="Reference Number">
-                                        National Commission on Research, Science and Technology (NCRST)
+                                        @mou.MouRequest
                                     </td>
-                                    <td data-label="MoU Name">CesTII</td>
-                                    <td data-label="Type of Agreement">National/Regional/Internationa</td>
-                                    <td data-label="Status">11/OCT/22	</td>
+                                    <td data-label="MoU Name">@mou.Division</td>
+                                        <td data-label="Type of Agreement">@mou.AgreementType</td>
+                                    <td data-label="Status">@mou.DateCapture.ToString("yyyy-MM-dd")	</td>
                                     <td data-label="Action">  
                                         <div class="right-arrow">
                                             <div class="right-arrow-view">
@@ -270,120 +273,17 @@
                                             </div>
                                             <div>
 
-                                                <a asp-controller="MoUViewRequest" asp-action="Index"> View</a>
-
+                                                    <form asp-controller="MoUViewRequest" asp-action="Index" method="get">
+                                                        <input type="hidden" name="CreateId" value="@mou.CreateId" />
+                                                        <button type="submit" class="submit-link-button"><a>View</a> </button>
+                                                    </form>
+@*                                                 <a asp-controller="MoUViewRequest" asp-action="Index"> View</a>
+ *@
                                             </div>
                                         </div></td>
                                     </tr>
-                                          <tr class="table-row">
-                                    <td data-label="Budget Year" class="color-pellette-4">Coert, Samantha Linn (Ms, SL)	</td>
-                                    <td data-label="Mou Unit">4201</td>
-                                    <td data-label="Reference Number">
-                                        National Commission on Research, Science and Technology (NCRST)
-                                    </td>
-                                    <td data-label="MoU Name">CesTII</td>
-                                    <td data-label="Type of Agreement">National/Regional/Internationa</td>
-                                    <td data-label="Status">11/OCT/22	</td>
-                                    <td data-label="Action">  
-                                        <div class="right-arrow">
-                                            <div class="right-arrow-view">
-                                                <img src="images/view.png" class="logo" alt="" />
-                                            </div>
-                                            <div>
-                                                <a asp-controller="MoUViewRequest" asp-action="Index"> View</a>
-                                            </div>
-                                        </div></td>
-                                    </tr>     <tr class="table-row">
-                                    <td data-label="Budget Year" class="color-pellette-4">Coert, Samantha Linn (Ms, SL)	</td>
-                                    <td data-label="Mou Unit">4201</td>
-                                    <td data-label="Reference Number">
-                                        National Commission on Research, Science and Technology (NCRST)
-                                    </td>
-                                    <td data-label="MoU Name">CesTII</td>
-                                    <td data-label="Type of Agreement">National/Regional/Internationa</td>
-                                    <td data-label="Status">11/OCT/22	</td>
-                                    <td data-label="Action">  
-                                        <div class="right-arrow">
-                                            <div class="right-arrow-view">
-                                                <img src="images/view.png" class="logo" alt="" />
-                                            </div>
-                                            <div>
-                                                <a asp-controller="MoUViewRequest" asp-action="Index"> View</a>
-                                            </div>
-                                        </div></td>
-                                    </tr>     <tr class="table-row">
-                                    <td data-label="Budget Year" class="color-pellette-4">Coert, Samantha Linn (Ms, SL)	</td>
-                                    <td data-label="Mou Unit">4201</td>
-                                    <td data-label="Reference Number">
-                                        National Commission on Research, Science and Technology (NCRST)
-                                    </td>
-                                    <td data-label="MoU Name">CesTII</td>
-                                    <td data-label="Type of Agreement">National/Regional/Internationa</td>
-                                    <td data-label="Status">11/OCT/22	</td>
-                                    <td data-label="Action">  
-                                        <div class="right-arrow">
-                                            <div class="right-arrow-view">
-                                                <img src="images/view.png" class="logo" alt="" />
-                                            </div>
-                                            <div>
-                                                <a asp-controller="MoUViewRequest" asp-action="Index"> View</a>
-                                            </div>
-                                        </div></td>
-                                    </tr>     <tr class="table-row">
-                                    <td data-label="Budget Year" class="color-pellette-4">Coert, Samantha Linn (Ms, SL)	</td>
-                                    <td data-label="Mou Unit">4201</td>
-                                    <td data-label="Reference Number">
-                                        National Commission on Research, Science and Technology (NCRST)
-                                    </td>
-                                    <td data-label="MoU Name">CesTII</td>
-                                    <td data-label="Type of Agreement">National/Regional/Internationa</td>
-                                    <td data-label="Status">11/OCT/22	</td>
-                                    <td data-label="Action">  
-                                        <div class="right-arrow">
-                                            <div class="right-arrow-view">
-                                                <img src="images/view.png" class="logo" alt="" />
-                                            </div>
-                                            <div>
-                                                <a asp-controller="MoUViewRequest" asp-action="Index"> View</a>
-                                            </div>
-                                        </div></td>
-                                    </tr>     <tr class="table-row">
-                                    <td data-label="Budget Year" class="color-pellette-4">Coert, Samantha Linn (Ms, SL)	</td>
-                                    <td data-label="Mou Unit">4201</td>
-                                    <td data-label="Reference Number">
-                                        National Commission on Research, Science and Technology (NCRST)
-                                    </td>
-                                    <td data-label="MoU Name">CesTII</td>
-                                    <td data-label="Type of Agreement">National/Regional/Internationa</td>
-                                    <td data-label="Status">11/OCT/22	</td>
-                                    <td data-label="Action">  
-                                        <div class="right-arrow">
-                                            <div class="right-arrow-view">
-                                                <img src="images/view.png" class="logo" alt="" />
-                                            </div>
-                                            <div>
-                                                <a asp-controller="MoUViewRequest" asp-action="Index"> View</a>
-                                            </div>
-                                        </div></td>
-                                </tr>     <tr class="table-row">
-                                    <td data-label="Budget Year" class="color-pellette-4">Coert, Samantha Linn (Ms, SL)	</td>
-                                    <td data-label="Mou Unit">4201</td>
-                                    <td data-label="Reference Number">
-                                        National Commission on Research, Science and Technology (NCRST)
-                                    </td>
-                                    <td data-label="MoU Name">CesTII</td>
-                                    <td data-label="Type of Agreement">National/Regional/Internationa</td>
-                                    <td data-label="Status">11/OCT/22	</td>
-                                    <td data-label="Action">  
-                                        <div class="right-arrow">
-                                            <div class="right-arrow-view">
-                                                <img src="images/view.png" class="logo" alt="" />
-                                            </div>
-                                            <div>
-                                                <a asp-controller="MoUViewRequest" asp-action="Index"> View</a>
-                                            </div>
-                                        </div></td>
-                                    </tr>
+                                    }
+                
                             </tbody>
                         </table>
                     </div>

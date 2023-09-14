@@ -1,5 +1,8 @@
+@model HSRC_RMS.Models.MouCreate
+
+@using HSRC_RMS.Helpers
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Memorundum of Understanding";
 }
 
 <head>
@@ -300,18 +303,15 @@
 
                             <div class="required"><span class="mandatory-star">*</span> Required </div>
 
-                            <form>
-                                <div class="">
+                        <form id="mouCreateForm"  asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()">
+                            <div class="">
                                     <div class="search-section">
 
                                         <div class="medium-12 cell ">
                                             <label>
                                                 Division/Unit/Centre
-                                                <select>
-                                                    <option value="D -GE Support Service">-----</option>
-                                                    <option value="D -GE Support Service">D -GE Support Service</option>
-
-                                                </select>
+                                            @Html.DropDownListFor(model => model.Division, DropdownHelpers.GetDivisionOptions(), "--Please Select--", new { required = "required" ,id = "LicenseStatus"})
+                                            @Html.ValidationMessageFor(model => model.Division)
 
                                             </label>
                                         </div>
@@ -319,19 +319,17 @@
                                             <label>
                                                 Requester  <span class="mandatory-star">*</span>
 
-                                                <select>
-                                                    <option value="D -GE Support Service">-----</option>
-                                                    <option value="D -GE Support Service">D -GE Support Service</option>
+                                            <input type="text" id="Requester" name="Requester" value="@Context.Session.GetString("Username")" readonly />
 
-                                                </select>
                                             </label>
                                         </div>
                                         <div class="medium-12 cell">
                                             <label>
                                                 Representative contact details                                            <span class="mandatory-star">*</span>
 
-                                                <input type="text" />
-                                            </label>
+                                            @Html.TextBoxFor(model => model.ContactDetails, new { required = "required"  ,id = "ProductKey"})
+                                            @Html.ValidationMessageFor(model => model.ContactDetails)
+                                        </label>
                                         </div>
 
 
@@ -340,8 +338,8 @@
                                             <label>
                                                 MoU requested <span class="mandatory-star">*</span>
 
-                                                <input type="text" />
-
+                                            @Html.TextBoxFor(model => model.MouRequest, new { required = "required"  ,id = "ProductKey"})
+                                            @Html.ValidationMessageFor(model => model.MouRequest)
                                             </label>
                                         </div>
 
@@ -350,43 +348,38 @@
                                                 Type of agreement
                                                 <span class="mandatory-star">*</span>
 
-                                                <select>
-                                                    <option value="D -GE Support Service">-----</option>
-                                                    <option value="D -GE Support Service">D -GE Support Service</option>
-
-                                                </select>
+                                            @Html.DropDownListFor(model => model.AgreementType, DropdownHelpers.GetAgreementTypeptions(), "--Please Select--", new { required = "required" ,id = "LicenseStatus"})
+                                            @Html.ValidationMessageFor(model => model.AgreementType)
                                             </label>
                                         </div>
                                         <div class="medium-12 cell">
                                             <label>
                                                 Name of Institution of partner  <span class="mandatory-star">*</span>
-                                                <input type="text" />
-
+                                            @Html.TextBoxFor(model => model.PartnerName, new { required = "required"  ,id = "ProductKey"})
+                                            @Html.ValidationMessageFor(model => model.PartnerName)
                                             </label>
                                         </div>
                                         <div class="medium-12 cell">
                                             <label>
                                                 Type of institution                                          <span class="mandatory-star">*</span>
 
-                                                <select>
-                                                    <option value="D -GE Support Service">-----</option>
-                                                    <option value="D -GE Support Service">D -GE Support Service</option>
-
-                                                </select>
+                                            @Html.DropDownListFor(model => model.InstitutionType, DropdownHelpers.GetInstitutionTypeptions(), "--Please Select--", new { required = "required" ,id = "LicenseStatus"})
+                                            @Html.ValidationMessageFor(model => model.InstitutionType)
                                             </label>
                                         </div>
                                         <div class="medium-12 cell">
                                             <label>
                                                 Purpose for the MOU (Strategic alignment)                                        <span class="mandatory-star">*</span>
 
-                                                <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
+                                            @Html.TextAreaFor(model => model.MouPurpose, new {required = "required"  , id = "comment-input", rows = "1" })
+                                            <input type="hidden" id="referenceNumber" name="ReferenceNumber" value="">
 
                                             </label>
                                         </div>
 
 
                                         <div class="medium-12 cell buttons-row">
-                                            <button class="save-buttons">Create Request</button>
+                                            <button type="submit" class="save-buttons">Create Request</button>
                                             <button asp-controller="GiftDisplay" asp-action="Index" class="cancel-buttons">Cancel</button>
                                         </div>
                                     </div>
@@ -444,9 +437,29 @@
                 subMenusSubOffsetY: -8
             });
         });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#mouCreateForm').submit(function (event) {
+                event.preventDefault(); // Prevent the default form submission
 
+                // Generate the reference number
+                var referenceNumber = generateMouReference();
 
-   
+                // Set the reference number in the hidden input field
+                $('#referenceNumber').val(referenceNumber);
+
+                // Submit the form
+                this.submit();
+            });
+
+            function generateMouReference() {
+                // Implement your reference number generation logic here
+                // This could be similar to the C# logic provided earlier in your controller
+                // For simplicity, let's assume it's a random 6-digit number.
+                return Math.floor(100000 + Math.random() * 900000).toString();
+            }
+        });
     </script>
     <script>
         const animationsHandler = new AnimationsHandler();

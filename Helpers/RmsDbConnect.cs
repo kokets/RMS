@@ -16,18 +16,48 @@ namespace HSRC_RMS.Helpers
         public RmsDbConnect(DbContextOptions<RmsDbConnect> options) : base(options) { }
 
         //db properties for different tables
+
+        /**Users Tables Start**/
         public DbSet<Users> Users { get; set; }
+        /**Users Tables End**/
+
+        public DbSet<Files> Files { get; set; }
+
+        /**Gift Register Tables Start**/
 
         public DbSet<GiftRegister> Gift { get; set; }
         public DbSet<GiftComment> GiftComment { get; set; }
+
+        /**Gift Register Tables End**/
+
+
+        /**License Tables start**/
+
         public DbSet<LicenseSupplies> LicenseSupply { get; set; }
         public DbSet<LicenseType> LicenseType { get; set; }
         public DbSet<LicenseCapture> LicenseCapture   { get; set; }
         public DbSet<LicenseActivation> LicenseActivation { get; set; }
         public DbSet<LicenseRemainder> LicenseRemainder { get; set; }
-        //mou 
+
+        /**License Tables End**/
+
+
+
+
+        /**Memorundum of understanding Tables Start**/
+
         public DbSet<MouCreate> MouCreate { get; set; }
 
+        /**Memorundum of understanding Tables End**/
+
+
+
+        /**Event Registration Tables Start**/
+
+        public DbSet<Event> Event { get; set; }
+        public DbSet<EventFiles> EventFiles { get; set; }
+
+        /**Event Registration Tables End**/
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

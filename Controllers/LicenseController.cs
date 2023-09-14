@@ -8,7 +8,7 @@ namespace HSRC_RMS.Controllers
 {
     public class LicenseController : Controller
     {
-    
+
         private readonly IRepository<LicenseRemainder> _remainderRepository;
         private readonly IRepository<Users> _userRepository;
 
@@ -18,6 +18,7 @@ namespace HSRC_RMS.Controllers
             _userRepository = userRepository;
 
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(LicenseRemainderGet model)
@@ -26,9 +27,14 @@ namespace HSRC_RMS.Controllers
             {
                 try
                 {
-                    // Hardcoded user ID for testing
-                    int hardcodedUserId = 1;
-                    model.NewLicenseRemainder.UserId = hardcodedUserId;
+                    int? userId = HttpContext.Session.GetInt32("UserId");
+                    Console.WriteLine(" ID: " + userId); // Log the ID
+
+                    if (!userId.HasValue)
+                    {
+                        return RedirectToAction("Index", "Login");
+                    }
+                    model.NewLicenseRemainder.UserId = userId.Value;
 
                     await _remainderRepository.AddAsync(model.NewLicenseRemainder);
                     await _remainderRepository.SaveAsync();
@@ -48,33 +54,84 @@ namespace HSRC_RMS.Controllers
             }
             else
             {
-                // Collect validation errors
-                var validationErrors = ModelState.Values.SelectMany(v => v.Errors)
-                                                         .Select(e => e.ErrorMessage)
-                                                         .ToList();
+                Console.WriteLine("Model is not valid. Validation errors:");
 
-                // Store validation errors in TempData
-                TempData["ValidationErrors"] = validationErrors;
+                foreach (var key in ModelState.Keys)
+                {
+                    foreach (var error in ModelState[key].Errors)
+                    {
+                        Console.WriteLine("Property: " + key + ", Error: " + error.ErrorMessage);
+                    }
+                }
             }
-            // Collect validation errors
 
-
-            // Pass validation errors to the view
-
-            // Return the view with model and validation errors
-            return View(model);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var licenseCaptureGet = new LicenseRemainderGet();
+            try
+            {
+                int? userId = HttpContext.Session.GetInt32("UserId");
+                Console.WriteLine(" ID: " + userId); // Log the ID
 
-            licenseCaptureGet.UsersOptionAsync = await _userRepository.UsersOptionAsync();
-           
-            // Populate other properties if needed
-            return View(licenseCaptureGet);
+                if (!userId.HasValue)
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+                List<LicenseRemainder> remainderList = await _remainderRepository.GetRemindersForUser(userId.Value);
+
+                LicenseRemainderGet remainderGet = new LicenseRemainderGet
+                {
+                    RemainderList = remainderList,
+                    NewLicenseRemainder = new LicenseRemainder(),
+                };
+                return View(remainderGet);
+
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
-    
+        //[HttpGet]
+        //public async Task<IActionResult> Index()
+        //{
+        //    try
+        //    {
+        //       var remainder = await _remainderRepository.GetAllAsync();
+        //        //TempData["CaptureData"] = captures;
+
+
+        //        //LicenseViewGet viewModel = new LicenseViewGet
+        //        //{
+        //        //    NewViewLicense = new LicenseCapture
+        //        //    {
+        //        //        LicenseOwner = captureView.LicenseOwner,
+        //        //        ProductName = captureView.ProductName,
+        //        //        ProductKey = captureView.ProductKey,
+        //        //        LicenseType = captureView.LicenseType,
+        //        //        AcquiredDate = captureView.AcquiredDate,
+        //        //        ExpiryDate = captureView.ExpiryDate,
+        //        //        Activations = captureView.Activations,
+        //        //        LicenseStatus = captureView.LicenseStatus,
+        //        //        Supplier = captureView.Supplier,
+        //        //        PurchasePrice = captureView.PurchasePrice,
+        //        //        CommentPrice = captureView.CommentPrice
+        //        //    },
+        //        //    CaptureId = captureId
+        //        //};
+
+
+        //        return View(remainder);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TempData["ErrorMessage"] = "An error occurred: " + ex.Message;
+        //        return View();
+        //    }
+
+        //}
     }
 }

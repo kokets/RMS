@@ -10,6 +10,8 @@ namespace HSRC_RMS.Helpers
 {
     public interface IRepository<T> where T : class
     {
+
+        /**LICENSE MODULE START**/
         Task<List<LicenseSupplies>> GetSuppliesByUserIdAsync(int userId);
         Task<List<LicenseCapture>> GetLicensefieldsByUserIdAsync(int userId);
         Task<List<LicenseCapture>> GetLicenseViewByCaptureIdAsync(int captureId);
@@ -18,15 +20,25 @@ namespace HSRC_RMS.Helpers
         Task<List<SelectListItem>> SupplierOptionsAsync();
         Task<List<LicenseType>> GetTypeByUserIdAsync(int userId);
         Task<List<LicenseCapture>> GetLicenseIdAsync(int captureId);
-
-        //List<string> GetLicenseCSuppliesList();
-        //List<string> GetLicenseCTypeList();
-        //List<string> GetLicenseCUserList();
-        //public List<SelectListItem> typeOptions();
-        //public List<SelectListItem> usersOption();
-        //public List<SelectListItem> supplierOptions();
-
+        Task<List<LicenseActivation>> GetLicenseActivations(int captureId);
+        Task<List<LicenseRemainder>> GetRemindersForUser(int userId);
         List<LicenseType> GetTypeByUserId(int userId);
+        Task<bool> DeleteActivationIdAsync(int activationId);
+
+        /**LICENSE MODULE END**/
+
+
+        /**MEMORUNDUM OF UNDERSTANDING  MODULE START**/
+
+        Task<bool> DeleteByCreateIdAsync(int createId);
+
+        /**MEMORUNDUM OF UNDERSTANDING  MODULE END**/
+
+
+        Task<List<Event>> GetEvents();
+
+
+        /**FUNCTIONS START**/
 
         T GetById(int id);
         IEnumerable<T> GetAll();
@@ -42,6 +54,7 @@ namespace HSRC_RMS.Helpers
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
         Task AddAsync(T entity);
         Task SaveAsync();
+        /**FUNCTIONS END**/
 
     }
 }

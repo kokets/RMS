@@ -1,3 +1,5 @@
+@model HSRC_RMS.Models.MoUViewRequest
+
 @{
     ViewData["Title"] = "Memorandum of Understanding";
 }
@@ -265,36 +267,39 @@
                                 <tr class="data-row">
                                     <td data-label="Budget Year" class="color-pellette-4 short-column">
 
-                                        Reference number:
+                                        Reference number
                                     </td>
                                     <td data-label="Mou Unit">
-                                        4142
+                                        @Model.MouViewRequestById.ReferenceNumber
                                     </td>
                                 </tr>
                                 <tr>
                                     <td data-label="Budget Year" class="color-pellette-4">Request by:	</td>
                                     <td data-label="Mou Unit">
-                                        Connectionz, Blue Connectionz (Mr, BC)
+                                        @Model.MouViewRequestById.Requester
                                     </td>
                                 </tr>
                                 <tr>
                                     <td data-label="Budget Year" class="color-pellette-4">Type of agreement:		</td>
                                     <td data-label="Mou Unit">
-                                        National/Regional/International
+                                    @*  National/Regional/International*@
+                                    @Model.MouViewRequestById.AgreementType
+
 
                                     </td>
                                 </tr>
                                    <tr>
                                     <td data-label="Budget Year" class="color-pellette-4">MoU requested:		</td>
                                     <td data-label="Mou Unit">
-                                        The Partnership for African Social and Governance Research (PASGR)
+                                    @* The Partnership for African Social and Governance Research (PASGR) *@                                       
+                                        @Model.MouViewRequestById.MouRequest
 
                                     </td>
                                 </tr>
                                 <tr>
                                     <td data-label="Budget Year" class="color-pellette-4">MoU from:		</td>
                                     <td data-label="Mou Unit">
-                                        [IC] Impact Centre
+                                        @Model.MouViewRequestById.Division
 
                                     </td>
                                 </tr>

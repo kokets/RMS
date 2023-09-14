@@ -1,8 +1,10 @@
+@model  HSRC_RMS.Models.EventCapture
+@using HSRC_RMS.Helpers
+
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Event Registration";
 }
-<!DOCTYPE html>
-<html>
+
 <head>
     <style>
         .mandatory-star {
@@ -177,35 +179,38 @@
                     <div class="content-blocks content-blocks-0 ">
                         <div class="required"><span class="mandatory-star">*</span> Required </div>
 
-                    <form>
-                        <div class="">
+                        <form asp-asp-controller="EventAdd" asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()" enctype="multipart/form-data">
+                            <div class="">
                             <div class="search-section">
 
                                 <div class="medium-12 cell ">
                                     <label>
                                         Event Type
                                         <span class="mandatory-star" >*</span>
+                                            @Html.DropDownListFor(model => model.NewEvent.EventType,DropdownHelpers.GetEventTypeOptions(), "Please Choose Output type", new { required = "required" ,id = "LicenseStatus", onchange = "showOrHideForm()" })
 
-                                        <select id="event-type-select" onchange="showUploadSection()">
-                                            <option value="1">Please Choose Output type</option>
+                                    @*     <select id="event-type-select" onchange="showUploadSection()">
+                                            <option value="1"></option>
                                             <option value="2">Community innovations supported or enabled by HSRC research</option>
                                             <option value="3">Conferences or training academics for young african scholars</option>
                                             <option value="4">Event dealing with the eradication of poverty , reduction of inequalities and/or promotion of employment convened by the HSRC</option>
                                             <option value="5">Research related engagements with communities and civil society forums</option>
                                             <option value="6">Conferences or training academics for young african scholars</option>
 
-                                        </select>
+                                        </select> *@
                                     </label>
                                 </div>
                                 <div class="medium-12 cell">
                                     <label>
                                         Programme/Unit
                                         <span class="mandatory-star">*</span>
-                                        <select>
+                                            @Html.DropDownListFor(model => model.NewEvent.Unit,DropdownHelpers.GetDivisionOptions(), "Please Choose Output type", new { required = "required" ,id = "LicenseStatus", onchange = "showOrHideForm()" })
+
+                                        @* <select>
                                             <option value="D -GE Support Service">-----</option>
                                             <option value="D -GE Support Service">D -GE Support Service</option>
 
-                                        </select>
+                                        </select> *@
                                     </label>
                                 </div>
                                 <div class="medium-12 cell">
@@ -213,73 +218,302 @@
                                         Title
                                         <span class="mandatory-star">*</span>
 
-                                        <input type="text" />
-                                    </label>
+                                            @Html.TextBoxFor(model => model.NewEvent.Title, new { required = "required", @class = "form-control" })
+                                        </label>
                                 </div>
+                                    <div class="medium-12 cell">
+                                        <label>
+                                            Institution
+                                            <span class="mandatory-star">*</span>
+
+                                            @Html.TextBoxFor(model => model.NewEvent.Institution, new { required = "required", @class = "form-control" })
+                                        </label>
+                                    </div>
                                 <div class="medium-12 cell">
                                     <label>
                                         Date
                                         <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.NewEvent.EventDate, new { required = "required", @class = "form-control", type = "date" })
 
-                                        <input type="text" />
                                     </label>
                                 </div>
 
 
-                                <div id="upload-section" class="upload form-center " style="display:none">
+                                    <div id="event-form1" class="upload form-center " style="display:none">
                                     <div class="medium-12 cell">
                                         <label>
-                                            Invitation poster - [Must demonstrate at least half day event with 20+ participants]
-                                            <span class="mandatory-star">*</span>
+                                                [Description of the innovation identified or enabled in the course of the a research intervention and written up with community participation]
+                                                <span class="mandatory-star">*</span>
 
-                                            <input type="file" accept=".pdf, .jpg, .png" />
+                                                <input class="form-control" name="FirstTemplateFile" type="file" />
 
                                         </label>
                                     </div>
 
                                     <div class="medium-12 cell">
                                         <label>
-                                            Attendance register
-                                            <span class="mandatory-star">*</span>
+                                                [Determination of validity by the Head: Intellectual Property and Technological Transfer (IPTT) within Legal services]
+                                                <span class="mandatory-star">*</span>
 
-                                            <input type="file" accept=".pdf, .jpg, .png" />
-
-                                        </label>
-                                    </div>
-                                    <div class="medium-12 cell">
-                                        <label>
-                                            Event Report - [Must demonstrate interdisciplinary approach; two or more institutions involved; resolution adopted by participants at conclusion of event]
-                                            <span class="mandatory-star">*</span>
-
-                                            <input type="file" accept=".pdf, .jpg, .png" />
+                                                <input class="form-control" name="SecondTemplateFile" type="file" />
 
                                         </label>
                                     </div>
                                     <div class="medium-12 cell">
                                         <label>
-                                            Upload completed checklist
-                                            <span class="mandatory-star">*</span>
+                                                Upload completed checklist
+                                                <span class="mandatory-star">*</span>
 
-                                            <input type="file" accept=".pdf, .jpg, .png" />
+                                                <input class="form-control" name="ThirdTemplateFile" type="file" />
 
                                         </label>
                                     </div>
                                     <div class="medium-12 cell">
                                         <label>
-                                            Upload other supporting document
+                                                Upload other supporting document
+                                                <span class="mandatory-star">*</span>
 
-                                            <input type="file" accept=".pdf, .jpg, .png" />
+                                                <input class="form-control" name="FourthTemplateFile" type="file" />
 
                                         </label>
                                     </div>
+                                   
                                 </div>
+
+
+                                    <div id="event-form2" class="upload form-center " style="display:none">
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Event programme - [Must demonstrate that HSRC staff, other experts and young African scholars actively participated]
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="FirstTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Attendance register - [List of sessions with young scholars / evaluation and feedback forms]
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="SecondTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Event Report - [Published proceedings]
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="ThirdTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Upload completed checklist
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="FourthTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Upload other supporting document
+
+                                                <input class="form-control" name="FifthTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div id="event-form3" class="upload form-center " style="display:none">
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Invitation poster - [Must demonstrate at least half day event with 20+ participants]
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="FirstTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Attendance register
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="SecondTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Event Report - [Must demonstrate interdisciplinary approach; two or more institutions involved; resolution adopted by participants at conclusion of event]
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="ThirdTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Upload completed checklist
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="FourthTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Upload other supporting document
+
+                                                <input class="form-control" name="FifthTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+                                    <div id="event-form4" class="upload form-center " style="display:none">
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Invitation poster - [Arranged by Director or higher, at least half day event; may involve consultation, gatekeeper permission, feedback about findings but NOT data gathering]
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="FirstTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Attendance register - [Must demonstrate community related affiliation of participants]
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="SecondTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Event Report - [PI-approved or ED-approved meeting report]
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="ThirdTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Upload completed checklist
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="FourthTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Upload other supporting document
+
+                                                <input class="form-control" name="FifthTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+                                    <div id="event-form5" class="upload form-center " style="display:none">
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Event Report - [Report by convenor of COP, must demonstrate information on web landing page we well as COP activities and communications]
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="FirstTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Upload completed checklist
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="SecondTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Upload other supporting document
+
+                                                <input class="form-control" name="ThirdTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+                                    
+                                    <div id="event-form6" class="upload form-center " style="display:none">
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Invitation poster - [Must demonstrate at least half day event with 15+ participants of which majority (50%+1) must be Non-HSRC participants]
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="FirstTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Attendance register - [Must demonstrate government, policy makers or implementer affiliation of participants]
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="SecondTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Event Report - [ED-approved meeting report circulated to participants to encourage follow-up action or further communication]
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="ThirdTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Upload completed checklist
+                                                <span class="mandatory-star">*</span>
+
+                                                <input class="form-control" name="FourthTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                        <div class="medium-12 cell">
+                                            <label>
+                                                Upload other supporting document
+
+                                                <input class="form-control" name="FifthTemplateFile" type="file" />
+
+                                            </label>
+                                        </div>
+                                    </div>
+
 
 
                                 <div class="medium-12 comments-container ">
                                     <label>
                                         Comments
-                                        <textarea id="comment-input" rows="1" oninput="adjustHeight()"></textarea>
-                                    </label>
+                                            @Html.TextAreaFor(model => model.NewEvent.EventComments, new {required = "required"  , id = "comment-input", rows = "1" })
+                                        </label>
                                 </div>
 
 
@@ -310,7 +544,48 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/js.js"></script>
+    <script>
+        function showOrHideForm() {
+            // Get the selected option
+            var selectedOption = document.getElementById("LicenseStatus").value;
 
+            // Get references to the forms
+            var form1 = document.getElementById("event-form1");
+            var form2 = document.getElementById("event-form2");
+            var form3 = document.getElementById("event-form3");
+            var form4 = document.getElementById("event-form4");
+                        var form5 = document.getElementById("event-form5");
+            var form6 = document.getElementById("event-form6");
+
+
+            // Hide both forms by default
+            form1.style.display = "none";
+            form2.style.display = "none";
+            form3.style.display = "none";
+            form4.style.display = "none";
+            form5.style.display = "none";
+            form6.style.display = "none";
+
+
+            // Show the relevant form based on the selected option
+            if (selectedOption === "Community innovations supported or enabled by HSRC research") {
+                form1.style.display = "block";
+            } else if (selectedOption === "Conferences or training academics for young african scholars") {
+                form2.style.display = "block";
+            }
+            else if (selectedOption === "Hospitality-Luncheon invitation by service provider") {
+                form3.style.display = "block";
+            }
+            else if (selectedOption === "Event dealing with the eradication of poverty, reduction of inequalities and / or promotion of employment convened by the HSRC") {
+                form4.style.display = "block";
+            }
+            else if (selectedOption === "Research related engagements with communities and civil society forums") {
+                form5.style.display = "block";
+            } else if (selectedOption === "Conferences or training academics for young african scholars") {
+                form6.style.display = "block";
+            }
+        }
+    </script>
 
     <!-- SmartMenus jQuery plugin -->
     <script type="text/javascript" src="js/jquery.smartmenus.js"></script>

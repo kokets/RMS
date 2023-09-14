@@ -6,6 +6,8 @@
 
 <head>
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <style>
 
         tr {
@@ -227,8 +229,10 @@
                         </div>
 
                         <div id="table1" class="table-template">
-
-
+@*                              @Html.Partial("_PActivation")
+ *@                           
+@*  @await Html.PartialAsync("_PActivation")
+ *@
                             <table id="event-table">
                                 <thead>
                                     <tr class="color-pellette-0">
@@ -246,7 +250,7 @@
                                         <tr>
 
                                             <td data-label="TITLE"><a asp-controller="LicenseListView" asp-action="Index">@capture.ProductName</a></td>
-                                            <td data-label="TITLE">	</td>
+                                            <td data-label="TITLE"></td>
                                             <td data-label="STATUS">@capture.LicenseOwner</td>
                                             <td data-label="FUNDING">
                                                 @capture.Supplier
@@ -259,7 +263,7 @@
                             </table>
                         </div>
                         <div style="width: 100%; background-color:grey; justify-content:center;align-items:center; display:flex; height:50px; border-radius:6px;">
-                            <h4 style="color: #fff;"> Users(1)</h4>
+                            <h4 style="color: #fff;"> Users(@Model.ActivationList.Count)</h4>
 
                         </div>
 
@@ -268,7 +272,7 @@
                             </div>
                             <div>
                                 <div class="search-box">
-                                    <input type="text" placeholder="Search" id="search-input" onkeyup="filterTable()">
+                                    <input type="text" placeholder="Search" id="search-input" onkeyup="methodHandler.filterTable()">
                                 </div>
                             </div>
                         </div>
@@ -288,50 +292,82 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach (var activation in Model.ActivationList)
+                                    {
+                                        <tr>
+                                            <td data-label="TITLE"><a asp-controller="LicenseListView" asp-action="Index">@activation.LicenseUser</a></td>
+                                            <td data-label="TITLE">	</td>
+                                            <td data-label="STATUS">@activation.ActivatedDate.ToString("yyyy-MM-dd")	</td>
+                                            <td data-label="FUNDING">
+                                                @activation.ExpiryDate.ToString("yyyy-MM-dd")
+                                            </td>
+                                            <td data-label="Status">
+                                                @{
+                                                    // Calculate the status based on the dates
+                                                    var currentDate = DateTime.Now;
+                                                    var activatedDate = activation.ActivatedDate;
+                                                    var expiryDate = activation.ExpiryDate;
 
-                                    <tr>
-                                        <td data-label="TITLE"><a asp-controller="LicenseListView" asp-action="Index">Thabang Mafa</a></td>
-                                        <td data-label="TITLE">GE Support Service		</td>
-                                        <td data-label="STATUS">2020/05/01	</td>
-                                        <td data-label="FUNDING">
-                                            2020/05/31
-                                        </td>
-                                        <td data-label="FUNDING">
-                                            Expired
-                                        </td>
-                                        <td data-label="FUNDING">
-                                            Download
-                                        </td>
-                                        <td data-label="FUNDING">
-                                            <div class="right-arrow">
-                                                <div class="right-arrow-view">
-                                                    <img src="images/close.png" class="logo" alt="" />
+                                                    if (currentDate < activatedDate)
+                                                    {
+                                                    // The license is not yet activated
+                                                        <span style="color: orange;">Not Activated</span>
+                                                    }
+                                                    else if (currentDate >= activatedDate && currentDate <= expiryDate)
+                                                    {
+                                                    // The license is active
+                                                        <span style="color: green;">Active</span>
+                                                    }
+                                                    else
+                                                    {
+                                                    // The license has expired
+                                                        <span style="color: red;">Expired</span>
+                                                    }
+                                                }
+                                            </td>
+                                            <td data-label="FUNDING">
+                                         
+
+                                                @if (activation.AccessFile != null && activation.AccessFile.Length > 0)
+                                                {
+                                                    <a asp-controller="LicenseMActivations" asp-action="DownloadPdf" asp-route-captureId="@activation.CaptureId" asp-route-activationId="@activation.ActivationId ">View PDF</a>
+                                                }
+                                          
+                                          </td>
+                                            <td data-label="FUNDING">
+                                                <div class="right-arrow">
+                                                    <div class="right-arrow-view">
+                                                        <img src="images/close.png" class="logo" alt="" />
+                                                    </div>
+                                                    <div>
+                                                        @await Html.PartialAsync("_Delete", activation.ActivationId)
+
+@*                                                         <a asp-controller="MoUManage1Delete" asp-action="Index"> Remove</a>
+ *@
+                                                    </div>
                                                 </div>
-                                                <div>
-
-                                                    <a asp-controller="MoUManage1Delete" asp-action="Index"> Remove</a>
-
-                                                </div>
-                                            </div>
-                                        </td>
+                                            </td>
 
 
-                                    </tr>
+                                        </tr>
+                                    }
+                               
 
                                 </tbody>
                             </table>
                         </div>
                         <div class="medium-12 cell " style="   display: flex; gap: 10px;">
+@*                             <a onclick="modalHandler.openModal('myModal')"> Add</a>
+ *@@*                             <a href="@Url.Action("Index", "LicenseMActivationUser", new { captureId = capture.CaptureId })">Manage</a>
+ *@
 
-                            <button onclick="modalHandler.openModal('myModal')" style="
-        background-color: grey;
-        height: 35px;
-        width: 150px;
-        border-radius: 6px;
-        color: white;
-        font-family: inherit;
-        margin-top: 15px;
-    ">
+                            <a href="@Url.Action("Index", "LicenseMActivationUser", new { captureId = ViewBag.CaptureId })">Add user</a>
+
+                            <form asp-controller="LicenseActivationUserGet" asp-action="Index" method="get">
+                                <input type="hidden" name="captureId" value="@ViewBag.CaptureId">
+                                <button type="submit" class="submit-link-button"><a>Add</a> </button>
+                            </form>
+                            <button asp-controller="LicenseMActivationUser" asp-action="Index" style="background-color: grey;  height: 35px;   width: 150px;   border-radius: 6px;    color: white;   font-family: inherit;   margin-top: 15px;   ">
                                 Add User
                             </button>
                         </div>
@@ -341,9 +377,10 @@
             </div>
         </div>
     </div>
-
-
-  @*   <div id="myModal" class="my-modal1">
+@*     @await Html.PartialAsync("_PActivationUser")
+ *@
+@* 
+    <div id="myModal" class="my-modal1">
         <div class="my-modal-content-indicator">
             <span class="my-close" onclick="modalHandler.closeModal('myModal')">&times;</span>
             <div class="my-modal-content-header">
@@ -352,7 +389,10 @@
             <div class="required"><span class="mandatory-star">*</span> Required </div>
 
             <div class="my-modal-content-body">
-                <form  asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()">
+                <form asp-asp-controller="LicenseMActivationUser" asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+
+
                     <div class="">
                         <div class="search-section">
 
@@ -369,17 +409,17 @@
                                 <label>
                                     Activation Date
                                     <span class="mandatory-star">*</span>
+                                    @Html.TextBoxFor(model => model.NewActivation.ActivatedDate, new { required = "required", @class = "form-control", type = "date" })
 
-                                    @Html.EditorFor(model => model.NewActivation.ActivationDate, new { htmlAttributes = new { @class = "form-control" , type = "date" } })
-                                    @Html.ValidationMessageFor(model => model.NewActivation.ActivationDate)
+                                    @Html.ValidationMessageFor(model => model.NewActivation.ActivatedDate)
 
                                 </label>
                             </div><div class="medium-12 cell ">
                                 <label>
                                     Expiry Date
                                     <span class="mandatory-star">*</span>
+                                    @Html.TextBoxFor(model => model.NewActivation.ExpiryDate, new { required = "required", @class = "form-control", type = "date" })
 
-                                    @Html.EditorFor(model => model.NewActivation.ExpiryDate, new { htmlAttributes = new { @class = "form-control" , type = "date" } })
                                     @Html.ValidationMessageFor(model => model.NewActivation.ExpiryDate)
 
                                 </label>
@@ -388,8 +428,10 @@
                                 <label>
                                     Accessform
                                     <span class="mandatory-star">*</span>
-                                    <input type="file" id="AccessFile" name="NewLicenseActivation.AccessFile" accept=".pdf" required />
-                                    @Html.ValidationMessageFor(model => model.NewActivation.AccessFile)
+                                    @*   <input  type="file" name="NewActivation.Accessform" class="form-control" />
+                                    <span asp-validation-for="NewActivation.Accessform" class="text-danger"></span> 
+                                    <input class="form-control" name="templateFile" type="file" />
+
                                 </label>
                             </div>
                         </div>
@@ -397,7 +439,6 @@
 
                     <div class="my-clearfix">
                         <hr> <!-- Add a horizontal line here -->
-
                         <button type="button" class="my-cancelbtn" onclick="modalHandler.closeModal('myModal')">Cancel</button>
                         <button type="submit" class="my-deletebtn1">Save</button>
                     </div>
@@ -405,18 +446,47 @@
             </div>
 
         </div>
-    </div> *@
-
+    </div>
+ *@
 
     <!--/***************************************/
                   Java scripts
     /***************************************/-->
+ 
 
+    <script>
+        $(document).ready(function () {
+            // Get the captureId from the query string
+            var urlParams = new URLSearchParams(window.location.search);
+            var captureId = urlParams.get('captureId');
+
+            // Make an AJAX request to your action method
+            $.ajax({
+                url: '/LicenseMActivations/Index',
+                type: 'GET',
+                data: { captureId: captureId },
+                success: function (data) {
+                    var tableBody = $('#event-table tbody');
+                    $.each(data.LicenseActivationList, function (index, capture) {
+                        if (capture.LicenseOwner.trim() !== '') {
+                            var row = $('<tr>').appendTo(tableBody);
+                            $('<td>').text(capture.LicenseOwner).appendTo(row);
+                            $('<td>').text(capture.ProductName).appendTo(row);
+                            $('<td>').text(capture.Supplier).appendTo(row);
+                        }
+                    });
+                },
+                error: function (error) {
+                    console.log("An error occurred:", error);
+                }
+            });
+        });
+       
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="~/js/JavaScript.js"></script>
-
-
+ 
 
     <script>
         modalHandler.registerModal('myModal');

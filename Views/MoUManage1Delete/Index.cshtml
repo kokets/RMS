@@ -1,8 +1,11 @@
+@model HSRC_RMS.Models.MouCreateDelete
+
 @{
     ViewData["Title"] = "Event Page";
+    var createId = Model.MouViewDelete.CreateId;
+
 }
-<!DOCTYPE html>
-<html>
+
 <head>
 
     <style>
@@ -320,38 +323,45 @@
                                         Reference number:
                                     </td>
                                     <td data-label="Mou Unit">
-                                        #2441
+                                        @Model.MouViewDelete.ReferenceNumber
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td data-label="Budget Year" class="color-pellette-4">MoU to cancel	</td>
                                     <td data-label="Mou Unit">
-University of Alberta
+                                        @Model.MouViewDelete.MouRequest
                                     </td>
                                 </tr>
                                 <tr>
                                     <td data-label="Budget Year" class="color-pellette-4">Type of agreement:	</td>
                                     <td data-label="Mou Unit">
-                                        National/Regional/International
+                                        @Model.MouViewDelete.CreateId
                                     </td>
                                 </tr>
                                 <tr>
                                     <td data-label="Budget Year" class="color-pellette-4">Unit:		</td>
                                     <td data-label="Mou Unit">
-[DGSD] Service Delivery, Democracy and Governance
+                                        @Model.MouViewDelete.Division
                                     </td>
                                 </tr>
                             </table>
+                            @Model.MouViewDelete.CreateId
                             <div class="medium-12 cell " style="   display: flex; gap: 10px;">
-                                <button style="   background-color: grey;
-            height: 35px;
-            width: 150px;
-            border-radius: 6px;
-            color: white;
-            font-family: inherit;
-            margin-top: 15px;">
+                                @await Html.PartialAsync("_Delete", Model.MouViewDelete.CreateId)
+
+                                
+                              @*   <form method="post" asp-controller="MoUManage1Delete" asp-action="Delete">
+
+                                    <input type="hidden" name="creatId" value="@Model.MouViewDelete.CreateId" />
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+
+                       
+                                </form> *@
+                               
+                              @*   <button style="   background-color: grey; height: 35px;   width: 150px;   border-radius: 6px ;  color: white;   font-family: inherit;   margin-top: 15px;">
                                     Confirm Cancellation of  MoU Request
-                                </button>
+                                </button> *@
                             </div>
                         </div>
 

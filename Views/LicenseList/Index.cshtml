@@ -284,24 +284,21 @@
                                         <td data-label="LicenseOwner">@capture.LicenseOwner</td>
                                         <td data-label="Activations">
                                             @capture.Activations
-                                            <form asp-controller="LicenseMActivations" asp-action="Index" method="get">
+@*                                             <form asp-controller="LicenseMActivations" asp-action="_PActivation" method="get">
+ *@                                           @*      <form asp-controller="LicenseMActivations" asp-action="Index" method="get">
+
                                                 <input type="hidden" name="captureid" value="@capture.CaptureId" />
                                                 <button type="submit" class="submit-link-button"><a>Manage</a> </button>
-                                            </form>
+                                            </form> *@
+
+                                            <a href="@Url.Action("Index", "LicenseMActivations", new { captureId = capture.CaptureId })">Manage</a>
+
 @*                                             <a asp-controller="LicenseMActivations" asp-action="Index"> 	Manage</a>
  *@                                        </td>
                                         <td data-label="LicenseStatus">@capture.LicenseStatus	</td>
 
                                         <td data-label="Action">
-                                          @*   <label>
-                                                <select id="action-select" onchange="modalHandler.handleActionNavigation('action-select')">
-
-                                                    <option value="D -GE Support Service">-select-</option>
-                                                    <option value="View1">View</option>
-                                                    <option value="Edit2">Edit</option>
-
-                                                </select>
-                                            </label> *@
+                                      
                                         
                                             <form asp-controller="LicenseListView" asp-action="Index" method="get">
                                                 <input type="hidden" name="captureid" value="@capture.CaptureId" />
@@ -419,6 +416,7 @@
     /***************************************/-->
 
     <script src="~/js/JavaScript.js"></script>
+
 
     <script>
         modalHandler.registerModal('myModal');
