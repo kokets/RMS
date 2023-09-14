@@ -23,6 +23,8 @@ namespace HSRC_RMS.Helpers
 
 
         //db properties for different tables
+
+        /**Users Tables Start**/
         public DbSet<Users> Users { get; set; }
         /**Users Tables End**/
 
