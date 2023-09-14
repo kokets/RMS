@@ -1,18 +1,22 @@
-﻿using HSRC_RMS.Helpers;
+using HSRC_RMS.Helpers;
 using HSRC_RMS.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
-namespace HSRC.Controllers
+namespace HSRC_RMS.Controllers
 {
-    public class Collaborations1Controller : Controller
+    public class ProposalsDisplayController : Controller
     {
-        private readonly IRepository<OpportunitiesRegister> _giftRepository;
+
+
+        private readonly IRepository<ProposalsRegister> _giftRepository;
         private readonly IRepository<Users> _usersRepository;
         //private readonly IRepository<GiftComment> _commentRepository;
 
-        private readonly RmsDbConnect _context;
+        private readonly RmsDbConnect  _context;
 
-        public Collaborations1Controller(IRepository<OpportunitiesRegister> giftRepository, IRepository<Users> usersRepository, RmsDbConnect context)
+        public ProposalsDisplayController(IRepository<ProposalsRegister> giftRepository, IRepository<Users> usersRepository, RmsDbConnect context)
         {
             _giftRepository = giftRepository;
             _usersRepository = usersRepository;
@@ -24,7 +28,7 @@ namespace HSRC.Controllers
         public IActionResult Index()
         {
             var giftDisplayList = _giftRepository.GetAll()
-                   .Select(opportunities => new OpportunitiesDisplay
+                   .Select(opportunities => new ProposalsDisplay
                    {
                        opportunityId = opportunities.opportunityId,
 
@@ -51,19 +55,8 @@ namespace HSRC.Controllers
         //        _commentRepository.Update(giftComment);
         //        _commentRepository.Save();
         //    }
-
+       
         //    return RedirectToAction("Index", "GiftDisplay");
         //}
-
-
-        public IActionResult Details(string id)
-        {
-            ErrorViewModel model = new ErrorViewModel()
-            {
-                RequestId = id
-            };
-
-            return View(model);
-        }
     }
 }

@@ -1,4 +1,4 @@
-using HSRC_RMS.Helpers;
+﻿using HSRC_RMS.Helpers;
 using HSRC_RMS.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace HSRC_RMS.Controllers
 {
-    public class GiftDisplayController : Controller
+    public class OpportunitiesReportController : Controller
     {
 
 
@@ -16,12 +16,12 @@ namespace HSRC_RMS.Controllers
 
         private readonly RmsDbConnect _context;
 
-        public GiftDisplayController(IRepository<GiftRegister> giftRepository, IRepository<Users> usersRepository, RmsDbConnect context, IRepository<GiftComment> commentRepository)
+        public OpportunitiesReportController(IRepository<GiftRegister> giftRepository, IRepository<Users> usersRepository, RmsDbConnect context, IRepository<GiftComment>  commentRepository)
         {
             _giftRepository = giftRepository;
             _usersRepository = usersRepository;
-            _commentRepository = commentRepository;
             _context = context;
+            _commentRepository = commentRepository;
         }
 
         [HttpGet]
@@ -42,29 +42,16 @@ namespace HSRC_RMS.Controllers
                         PurposeOfGift = gift.PurposeOfGift,
                         ReceivedInAppreciation = gift.ReceivedInAppreciation,
                         CurrentDate = DateTime.Now,
-                        //fetch the comment associated with the giftid
 
-                        Comment = _commentRepository.FindBy(comment => comment.GiftId == gift.GiftId)
+                        //fetch the comment associated with the giftid
+                       
+                          Comment = _commentRepository.FindBy(comment => comment.GiftId == gift.GiftId)
                             .Select(comment => comment.Comment)
                             .FirstOrDefault(),
                     })
                     .ToList();
 
             return View(giftDisplayList);
-        }
-
-        [HttpPost]
-        public IActionResult Index(int giftId)
-        {
-            var giftComment = _commentRepository.FindBy(comment => comment.GiftId == giftId).FirstOrDefault();
-            if (giftComment != null)
-            {
-                giftComment.Comment = "Submitted ERM"; // Update the comment
-                _commentRepository.Update(giftComment);
-                _commentRepository.Save();
-            }
-
-            return RedirectToAction("Index", "GiftDisplay");
         }
     }
 }

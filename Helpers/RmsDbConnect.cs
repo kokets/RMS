@@ -15,9 +15,14 @@ namespace HSRC_RMS.Helpers
         //constructor that takes in dbcontextOption as input
         public RmsDbConnect(DbContextOptions<RmsDbConnect> options) : base(options) { }
 
-        //db properties for different tables
+        public DbSet<GiftRegister> GiftRegister { get; set; }
 
-        /**Users Tables Start**/
+        public DbSet<OpportunitiesRegister> opportunities { get; set; }
+
+        public DbSet<ProposalsRegister> proposals { get; set; }
+
+
+        //db properties for different tables
         public DbSet<Users> Users { get; set; }
         /**Users Tables End**/
 

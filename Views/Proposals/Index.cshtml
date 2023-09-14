@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
 	ViewData["Title"] = "Login Page";
 }
 
@@ -28,7 +27,6 @@
 					<label class="main-menu-btn" for="main-menu-state">
 						<span class="main-menu-btn-icon"></span> Toggle main menu visibility
 					</label>
-
 
 					<!-- Sample menu definition -->
 					<ul id="main-menu" class="sm sm-mint">
@@ -86,9 +84,9 @@
 				<p></p>
 			</div>
 			<a asp-controller="Home" asp-action="Index"
-	  class="button radius padding_10">Back</a>
+			   class="button radius padding_10">Back</a>
 			<a asp-controller="Home" asp-action="Index"
-	  class="button radius padding_10">Home</a>
+			   class="button radius padding_10">Home</a>
 		</div>
 	</div>
 
@@ -102,51 +100,66 @@
 			<div class="large-9 columns ">
 				<div class="large-6 medium-6 columns padding_10 data-equalizer-watch">
 					<div class="content-blocks content-blocks-1">
-						<h4>Funding Opportunities</h4>
+						<h4>System Configuration</h4>
 						<ul>
-							<li><a asp-controller="YearQuarters" asp-action="Index">Manage Opportunities</a></li>
+							<li><a asp-controller="ProposalConfigure" asp-action="Index">Configuration</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="large-6 medium-6 columns padding_10 data-equalizer-watch">
 					<div class="content-blocks content-blocks-2">
-						<h4>Proposals </h4>
+						<h4>Funding Opportunites </h4>
 						<ul>
-							<li><a asp-controller="OTR" asp-action="Index">Manage Proposals</a></li>
+							<li><a asp-controller="GiftDisplay" asp-action="Index">Manage Opportunities</a></li>
 						</ul>
 					</div>
 				</div>
-				
-			</div>
-			<div class="large-3 medium-12 small-12 columns widgets">
-				<div class="large-12 medium-6 columns padding_10 data-equalizer-watch">
-					<div class="content-blocks content-blocks-widget-1">
-						<div class="wgt">
-							<h3>Request Assistance</h3>
-							<form>
-								<div class="">
-									<div class="search-section">
-										<div class="medium-12 cell ">
-											<label>
-												Jump To ID#
-												<input/>
-											</label>
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
+				 <div class="large-6 medium-6 columns padding_10 data-equalizer-watch">
+					<div class="content-blocks content-blocks-1">
+						<h4>Proposals</h4>
+						<ul>
+							<li><a asp-controller="ProposalsDisplay" asp-action="Index">Manage Proposals</a></li>
+						</ul>
 					</div>
 				</div>
-				<div class="large-12 medium-6 columns padding_10 data-equalizer-watch">
-					<div class="content-blocks content-blocks-widget-1">
-						<div class="wgt">
-							<h3>Info</h3>
-							This page contains contents for Opportunities and proposals .
-						</div>
+				<div class="large-6 medium-6 columns padding_10 data-equalizer-watch">
+					<div class="content-blocks content-blocks-2">
+						<h4>Reports</h4>
+						<ul>
+							<li><a asp-controller="" asp-action="Index">Reports</a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
+			@* <div class="large-3 medium-12 small-12 columns widgets">
+			<div class="large-12 medium-6 columns padding_10 data-equalizer-watch">
+			<div class="content-blocks content-blocks-widget-1">
+			<div class="wgt">
+			<h3>Request Assistance</h3>
+			<form>
+			<div class="">
+			<div class="search-section">
+			<div class="medium-12 cell ">
+			<label>
+			Jump To ID#
+			<input/>
+			</label>
+			</div>
+			</div>
+			</div>
+			</form>
+			</div>
+			</div>
+			</div>
+			<div class="large-12 medium-6 columns padding_10 data-equalizer-watch">
+			<div class="content-blocks content-blocks-widget-1">
+			<div class="wgt">
+			<h3>Info</h3>
+			This page contains contents for Opportunities and proposals .
+			</div>
+			</div>
+			</div>
+			</div> *@
 		</div>
 
 

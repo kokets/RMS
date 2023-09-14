@@ -1,0 +1,321 @@
+@model HSRC_RMS.Models.JointPublicationsRegister
+@using HSRC_RMS.Helpers
+@{
+    ViewData["Title"] = "Collaborations";
+}
+
+<head>
+    <style>
+
+
+        .mandatory-star {
+            color: red; /* Set the color of the star */
+            margin-left: 3px; /* Adjust the space between the label and the star */
+        }
+
+        .comments-container {
+            max-height: 500px; /* Set a maximum height for the container */
+            overflow-y: auto; /* Add vertical scrollbar when the content exceeds the maximum height */
+        }
+
+        .event-form {
+            align-content: center;
+            justify-content: center;
+        }
+
+        .save-buttons {
+            background-color: grey;
+            height: 35px;
+            width: 100px;
+            border-radius: 6px;
+            color: white;
+            font-family: inherit;
+            margin-top: 15px;
+        }
+
+        .cancel-buttons {
+            background-color: grey;
+            height: 35px;
+            width: 70px;
+            border-radius: 6px;
+            color: white;
+            font-family: inherit;
+            margin-top: 15px;
+        }
+
+        .buttons-row {
+            display: flex; /* Nested flex container */
+            gap: 10px; /* Add spacing between buttons and select */
+        }
+
+
+
+        .required {
+            display: flex;
+            color: red;
+            justify-content: flex-end;
+        }
+
+        .invalid-field {
+            border: 1px solid red;
+            background-color: #ffcccc;
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+    <!--/***************************************/
+             ----   section-1  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section2 color-pellette-2">
+        <div class="row">
+            <div class="large-2 medium-12 small-12 padding_20 columns">
+                <img src="images/hsrclogo@2x.png" width="180px" class="logo" alt="" />
+
+            </div>
+
+            <div class="large-10 medium-12 small-12 columns padding_35 navigator">
+
+                <nav id="main-nav">
+
+                    <!-- Mobile menu toggle button (hamburger/x icon) -->
+                    <input id="main-menu-state" type="checkbox" />
+                    <label class="main-menu-btn" for="main-menu-state">
+                        <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+                    </label>
+
+
+                    <!-- Sample menu definition -->
+                    <ul id="main-menu" class="sm sm-mint">
+                        <li><a asp-controller="Projects1" asp-action="Index">Time Recording</a></li>
+                        <li>
+                            <a href="#">About</a>
+                            <ul>
+                                <li><a href="#">Introduction to SmartMenus jQuery</a></li>
+                                <li><a href="#">Demos + themes</a></li>
+                                <li><a href="#">The author</a></li>
+                                <li>
+                                    <a href="#">The company</a>
+                                    <ul>
+                                        <li><a href="#">About Vadikom</a></li>
+                                        <li><a href="#">Projects</a></li>
+                                        <li><a href="#">Services</a></li>
+                                        <li><a href="#">Privacy policy</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="Projects1" asp-action="Index">Reports</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="GiftDisplay" asp-action="Index">Perfomance indicators</a>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Projects Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Contract Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Program Reports</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Employees Report </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Spend Procurement Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Project Budget Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Dataset Report</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
+                                <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Interns </a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="GiftReport" asp-action="Index">My Gift</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportActiveMou" asp-action="Index">Active MoUs</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportAllMou" asp-action="Index">All MoUs</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUReportRequest" asp-action="Index">MoUs Request</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Projects1" asp-action="Index">Budget</a>
+                        </li>
+
+                        <li class="dropdowng color-pellette-0">
+                            <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
+                            <ul class="dropdowng-menu color-pellette-0">
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">Gift Register </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Add Gift</a></l>
+
+                                    </ul>
+                                </li>
+                                <li class="color-pellette-0"><a asp-controller="License" asp-action="Index">License Adminstrator</a></li>
+                                <li class="has-submenu color-pellette-0">
+                                    <a asp-controller="" asp-action="Index">MoUs </a>
+                                    <ul class="subg-menu color-pellette-0">
+                                        <li class="color-pellette-0"><a asp-controller="MoUCreate" asp-action="Index">Create MoU Request</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUView" asp-action="Index">View MoU Request</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUActivity" asp-action="Index">MoU Activity</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage1" asp-action="Index">Manage MoU Requests</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage2" asp-action="Index">Manage MoU Requests(Legal)</a></l>
+                                        <li class="color-pellette-0"><a asp-controller="MoUManage3" asp-action="Index">Manage MoU Requests(CEO)</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="TeamConfigure" asp-action="Index">TEAM MANAGEMENT</a></li>
+                        <li><a asp-controller="AccessGroups" asp-action="Index">ACCESS GROUPS</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!--/***************************************/
+             ----   section-3  ----
+         ----   OTHER DEFENITIONS  ----
+    /***************************************/-->
+
+    <div class="section3 color-pellette-8 text-center">
+        <div class="row padding_40 ">
+            <div class="columns small-8 medium-centered small-centered large-centered">
+                <h4>Collaborations - New Joint Supervisions</h4>
+                <p class="anim-text">Social science that makes a difference</p>
+            </div>
+            <a asp-controller="JointPublisherDisplay" asp-action="Index"
+               class="button radius padding_10">Back</a>
+            <a asp-controller="Home" asp-action="Index"
+               class="button radius padding_10">Home</a>
+        </div>
+    </div>
+
+
+
+    <div class="section5  color-pellette-5 ">
+        <div class="row collapse   " data-equalizer>
+            <div class="large-12 medium-12 small-12 columns">
+                <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch  ">
+                    <div class="content-blocks content-blocks-0 ">
+                        <div class="required"><span class="mandatory-star">*</span> Required </div>
+
+                        <form id="giftForm" asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()">
+                            @Html.AntiForgeryToken()
+                            <div class="">
+                                <div class="search-section">
+
+                                    <div class="medium-12 cell ">
+                                        <label>
+                                            BudgetYear
+                                            <span class="mandatory-star">*</span>
+
+@*                                             @Html.DropDownListFor(model => model.Budgetyears, DropdownHelpers.GetBudgetYearOptions(), "--Please Select--", new { required = "required" ,id = "Budgetyears"})
+ *@
+
+                                        </label>
+                                    </div>
+                                    <div class="medium-12 cell">
+                                        <label>
+                                            Publisher
+                                            <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.Puiblisher)
+                                        </label>
+                                    </div>
+                                    <div class="medium-12 cell">
+                                        <label>
+                                            Title
+                                            <span class="mandatory-star">*</span>
+
+                                            @Html.TextBoxFor(model => model.Title)
+
+                                        </label>
+                                    </div>
+
+
+
+                                    <div class="medium-12 cell">
+                                        <label>
+                                            Institution
+                                            <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.Institution)
+
+
+                                        </label>
+                                    </div>
+
+                                    <div class="medium-12 cell">
+                                        <label>
+                                            StartDate
+                                            <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.StartDate, new { required = "required", @class = "form-control", type = "date" })
+                                        </label>
+                                    </div>
+                                    <div class="medium-12 cell">
+                                        <label>
+                                            EndDate
+                                            <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.EndDate, new { required = "required", @class = "form-control", type = "date" })
+                                        </label>
+                                    </div>
+                                    <div class="medium-12 cell">
+                                        <label>
+                                            Document
+                                            <span class="mandatory-star">*</span>
+                                            @Html.TextBoxFor(model => model.Document)
+                                        </label>
+                                    </div>
+                                    <div class="medium-12 cell">
+                                        <label>
+                                            Status
+                                            <span class="mandatory-star">*</span>
+
+                                            @Html.DropDownListFor(model => model.Status, DropdownHelpers.GetStatusOption(), "--Please Select--", new { required = "required" ,id = "Status"})
+
+                                        </label>
+                                    </div>
+
+
+
+                                    <div class="medium-12 cell buttons-row">
+                                        <button type="submit" class="save-buttons">Register Publisher</button>
+                                        <button asp-controller="JointPublicationsDisplay" asp-action="Index" class="cancel-buttons">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--/***************************************/
+                  Java scripts
+    /***************************************/-->
+    <script src="~/js/JavaScript.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js@1.11.0/dist/toastify.min.js"></script>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include SweetAlert library for the popup -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+
+</body>

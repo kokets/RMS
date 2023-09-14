@@ -25,12 +25,18 @@ namespace HSRC_RMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Index(GiftRegister model)
         {
+
+
+       
             if (ModelState.IsValid)
             {
                 try
                 {
+
+
                     // Retrieve the UserId from the session
                     int? userId = HttpContext.Session.GetInt32("UserId");
 
@@ -42,37 +48,36 @@ namespace HSRC_RMS.Controllers
                         // Add the gift
                        await  _giftRepository.AddAsync(model);
                       await  _giftRepository.SaveAsync();
-
-                        // Add the default comment
-                        var defaultComment = new GiftComment
-                        {
-                            GiftId = model.GiftId,
-                            Comment = "Not Submitted to ERM"
-                        };
-
-                        await  _commentRepository.AddAsync(defaultComment);
-                        await  _commentRepository.SaveAsync();
-
-                        TempData["SuccessMessage"] = "Gift registered successfully.";
-
-                        return RedirectToAction("Index", "GiftDisplay");
-                    }
-                    else
+                    // Add the default comment
+                    var defaultComment = new GiftComment
                     {
-                        // Handle the case where UserId is not found in the session
-                        ModelState.AddModelError("", "User information not found. Please log in.");
-                        return RedirectToAction("Index", "Login");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Exception: {ex.Message}");
+                        GiftId = model.GiftId,
+                        Comment = "Not Submitted to ERM"
+                    };
 
-                    ModelState.AddModelError("", "An error occurred while saving the gift.");
+                    await _commentRepository.AddAsync(defaultComment);
+                    await _commentRepository.SaveAsync();
+
+                    TempData["SuccessMessage"] = "Gift registered successfully.";
+
+                    return RedirectToAction("Index", "GiftDisplay");
+                }
+                    else
+                {
+                    // Handle the case where UserId is not found in the session
+                    ModelState.AddModelError("", "User information not found. Please log in.");
+                    return RedirectToAction("Index", "Login");
                 }
             }
+                catch (Exception ex)
+                {
+                Console.WriteLine($"Exception: {ex.Message}");
+
+                ModelState.AddModelError("", "An error occurred while saving the gift.");
+            }
+        }
 
             return View(model);
-        }
     }
+}
 }
