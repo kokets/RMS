@@ -21,6 +21,22 @@ namespace HSRC_RMS.Helpers
                 new SelectListItem { Value = "Other", Text = "Other" }
             };
         }
+
+        public static List<SelectListItem> GetBudgetYearOptions()
+        {
+            return new List<SelectListItem>
+            {
+                 new SelectListItem { Value = "2015/16", Text = "2015/16" },
+                 new SelectListItem { Value = "2016/17", Text = "2016/17" },
+                 new SelectListItem { Value = "2017/18", Text = "2017/18" },
+                 new SelectListItem { Value = "2018/19", Text = "2018/19" },
+                 new SelectListItem { Value = "2019/20", Text = "2019/20" },
+                 new SelectListItem { Value = "2020/21", Text = "2020/21" },
+                 new SelectListItem { Value = "2021/22", Text = "2021/22" },
+                 new SelectListItem { Value = "2022/23", Text = "2022/23" },
+                 new SelectListItem { Value = "2023/24", Text = "2023/24" },
+            };
+        }
         public static List<SelectListItem> GetYesNoOption()
         {
             return new List<SelectListItem> { new SelectListItem { Value = "Yes", Text = "Yes" }, new SelectListItem { Value = "No", Text = " No" } };
@@ -46,7 +62,7 @@ namespace HSRC_RMS.Helpers
                 new SelectListItem { Value = "Event dealing with the eradication of poverty, reduction of inequalities and / or promotion of employment convened by the HSRC ", Text = "Event dealing with the eradication of poverty, reduction of inequalities and / or promotion of employment convened by the HSRC " },
                 new SelectListItem { Value = "Research related engagements with communities and civil society forums", Text = "Research related engagements with communities and civil society forums" },
                 new SelectListItem { Value = "Conferences or training academics for young african scholars ", Text = "Conferences or training academics for young african scholars " },
-       
+
             };
         }
 
@@ -74,7 +90,7 @@ namespace HSRC_RMS.Helpers
                 new SelectListItem { Value = "Letter of intent for collaboration", Text = "Letter of intent for collaboration" },
                 new SelectListItem { Value = "MoU Renewal", Text = "MoU Renewal" },
                 new SelectListItem { Value = "National/Regional/International", Text = "National/Regional/International" },
-            
+
             };
         }
 
@@ -96,5 +112,5 @@ namespace HSRC_RMS.Helpers
         }
     }
 
- 
+
 }
