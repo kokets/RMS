@@ -287,13 +287,13 @@
                                             <td data-label="Action">
 
                                                 <div class="buttons">
-                                                    <form asp-controller="" asp-action="Index">
-                                                        <input type="hidden" name="id" value="@item.AcademicId" />
-                                                        <button type="submit" class="edit-link-button"> <a>Edit</a> </button>
+                                                    <form asp-controller="LicenseListView" asp-action="Index" method="get">
+                                                        <input type="hidden" name="captureid" value="@item.AcademicId" />
+                                                        <button type="submit" class="submit-link-button"><a>View</a> </button>
                                                     </form>
-                                                    <form asp-controller="" asp-action="Index" method="post">
-                                                        <input type="hidden" name="giftId" value="@item.AcademicId" />
-                                                        <button type="submit" class="submit-link-button" id="submitButton-@item.AcademicId"><a>Delete</a> </button>
+                                                    <form asp-controller="JointAcademicEdit" asp-action="Index" method="get">
+                                                        <input type="hidden" name="academicId" value="@item.AcademicId" />
+                                                        <button type="submit" class="submit-link-button"><a>Edit</a> </button>
                                                     </form>
                                                 </div>
 

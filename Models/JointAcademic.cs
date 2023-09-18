@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 
 //model to handle all the gifts database queries
@@ -75,6 +76,34 @@ namespace HSRC_RMS.Models
         public string? Document { get; set; }
 
 
+    }
+
+    public class JointAcademicEditGet
+    {
+
+        public List<SelectListItem> UsersOptionAsync { get; set; } // New property
+        public List<SelectListItem> TypeOptionsAsync { get; set; } // New property
+        public List<SelectListItem> SupplierOptionsAsync { get; set; } // New property
+
+        public JointAcademicRegister NewEditCapture { get; set; }
+        public List<JointAcademicRegister> LicenseEditList { get; set; }
+
+
+        public int AcademicId { get; set; } // Add this property
+
+
+        public JointAcademicEditGet()
+        {
+
+            UsersOptionAsync = new List<SelectListItem>(); // Initialize the list
+            TypeOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            SupplierOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            NewEditCapture = new JointAcademicRegister();
+            LicenseEditList = new List<JointAcademicRegister>();
+
+
+
+        }
     }
 
 }
