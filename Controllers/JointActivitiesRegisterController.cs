@@ -28,8 +28,7 @@ namespace HSRC_RMS.Controllers
         public IActionResult Index(JointActivitiesRegister model)
         {
             //Hardcoded user ID for testing
-            int hardcodedUserId = 23;
-            model.BudgetYear = hardcodedUserId;
+            
             if (!ModelState.IsValid)
             {
                 try

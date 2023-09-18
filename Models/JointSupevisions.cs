@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 
 //model to handle all the gifts database queries
@@ -15,9 +16,6 @@ namespace HSRC_RMS.Models
 
         [Required(ErrorMessage = "Opportunity Title is required")]
         public string? Budgetyears { get; set; }
-
-        [Required(ErrorMessage = "Opportunity Title is required")]
-        public int? BudgetYear { get; set; }
 
         [Required(ErrorMessage = "Opportunity Funder is required")]
         public string? SuperVisor { get; set; }
@@ -51,7 +49,6 @@ namespace HSRC_RMS.Models
         public int SupervisionID { get; set; }
 
         public string? Budgetyears { get; set; }
-        public int? BudgetYear { get; set; }
 
 
         [Required(ErrorMessage = "Opportunity Title is required")]
@@ -71,6 +68,34 @@ namespace HSRC_RMS.Models
         public string? Document { get; set; }
 
 
+    }
+
+    public class JointSupervisionsEditGet
+    {
+
+        public List<SelectListItem> UsersOptionAsync { get; set; } // New property
+        public List<SelectListItem> TypeOptionsAsync { get; set; } // New property
+        public List<SelectListItem> SupplierOptionsAsync { get; set; } // New property
+
+        public JointSupervisionsRegister NewEditCapture { get; set; }
+        public List<JointSupervisionsRegister> LicenseEditList { get; set; }
+
+
+        public int SupervisionID { get; set; } // Add this property
+
+
+        public JointSupervisionsEditGet()
+        {
+
+            UsersOptionAsync = new List<SelectListItem>(); // Initialize the list
+            TypeOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            SupplierOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            NewEditCapture = new JointSupervisionsRegister();
+            LicenseEditList = new List<JointSupervisionsRegister>();
+
+
+
+        }
     }
 
 }

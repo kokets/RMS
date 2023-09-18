@@ -29,7 +29,6 @@ namespace HSRC.Controllers
                         PublicationdID = opportunities.PublicationdID,
                         Budgetyears = opportunities.Budgetyears,
 
-                        BudgetYear = opportunities.BudgetYear,
                         Puiblisher = opportunities.Puiblisher,
                         Title = opportunities.Title,
                         Institution = opportunities.Institution,

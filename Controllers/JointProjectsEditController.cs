@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using System.Threading;
 namespace HSRC_RMS.Controllers
 {
-    public class JointAcademicEditController : Controller
+    public class JointProjectsEditController : Controller
     {
-        private readonly IRepository<JointAcademicRegister> _captureRepository;
+        private readonly IRepository<JointProjectsRegister> _captureRepository;
        
 
-        public JointAcademicEditController(IRepository<JointAcademicRegister> captureRepository)
+        public JointProjectsEditController(IRepository<JointProjectsRegister> captureRepository)
         {
             _captureRepository = captureRepository;
         }
@@ -21,26 +21,25 @@ namespace HSRC_RMS.Controllers
             try
             {
 
-                JointAcademicRegister opportunities = await _captureRepository.GetByIdAsync(academicId);
+                JointProjectsRegister opportunities = await _captureRepository.GetByIdAsync(academicId);
                 //TempData["CaptureData"] = captures;
 
 
-                JointAcademicEditGet viewModel = new JointAcademicEditGet
+                JointProjectsEditGet viewModel = new JointProjectsEditGet
                 {
-                    NewEditCapture = new JointAcademicRegister
+                    NewEditCapture = new JointProjectsRegister
                     {
-                        AcademicId = opportunities.AcademicId,
+                        ProjectID = opportunities.ProjectID,
                         Budgetyears = opportunities.Budgetyears,
-                        Staff = opportunities.Staff,
-                        Position = opportunities.Position,
+                        ProjectNumber = opportunities.ProjectNumber,
+                        Title = opportunities.Title,
                         Institution = opportunities.Institution,
-                        Descriptions = opportunities.Descriptions,
                         Status = opportunities.Status,
                         StartDate = opportunities.StartDate,
                         EndDate = opportunities.EndDate,
                         Document = opportunities.Document,
                     },
-                    AcademicId = academicId
+                    ProjectID = academicId
                 };
 
 
@@ -64,14 +63,14 @@ namespace HSRC_RMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(JointAcademicEditGet model)
+        public async Task<IActionResult> Index(JointProjectsEditGet model)
         {
            
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var LicenseToUpdate = await _captureRepository.GetByIdAsync(model.AcademicId);
+                    var LicenseToUpdate = await _captureRepository.GetByIdAsync(model.ProjectID);
                     if (LicenseToUpdate == null)
                     {
                         TempData["ErrorMessage"] = "Academic Opportunity not found.";
@@ -80,10 +79,9 @@ namespace HSRC_RMS.Controllers
 
                     // Update properties from the model
                     LicenseToUpdate.Budgetyears = model.NewEditCapture.Budgetyears;
-                    LicenseToUpdate.Staff = model.NewEditCapture.Staff;
-                    LicenseToUpdate.Position = model.NewEditCapture.Position;
+                    LicenseToUpdate.ProjectNumber = model.NewEditCapture.ProjectNumber;
+                    LicenseToUpdate.Title = model.NewEditCapture.Title;
                     LicenseToUpdate.Institution = model.NewEditCapture.Institution;
-                    LicenseToUpdate.Descriptions = model.NewEditCapture.Descriptions;
                     LicenseToUpdate.Status = model.NewEditCapture.Status;
                     LicenseToUpdate.StartDate = model.NewEditCapture.StartDate;
                     LicenseToUpdate.EndDate = model.NewEditCapture.EndDate;
@@ -93,7 +91,7 @@ namespace HSRC_RMS.Controllers
                     await _captureRepository.SaveAsync(); // Assuming SaveAsync is the asynchronous method
 
                     TempData["SuccessMessage"] = "License  updated successfully.";
-                    return RedirectToAction("Index", "JointAcademicDisplay"); // Redirect with success message
+                    return RedirectToAction("Index", "JointProjectsDisplay"); // Redirect with success message
                 }
                 catch (Exception ex)
                 {
@@ -116,20 +114,20 @@ namespace HSRC_RMS.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(JointAcademicEditGet model)
+        public async Task<IActionResult> Delete(JointProjectsEditGet model)
         {
             try
             {
-                Console.WriteLine(model.AcademicId);
+                Console.WriteLine(model.ProjectID);
 
-                await _captureRepository.DeleteAsync(model.AcademicId);
+                await _captureRepository.DeleteAsync(model.ProjectID);
 
-                return RedirectToAction("Index", "JointAcademicDisplay");
+                return RedirectToAction("Index", "JointProjectsDisplay");
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return RedirectToAction("Index", "JointAcademicDisplay");
+                return RedirectToAction("Index", "JointProjectsDisplay");
 
             }
         }

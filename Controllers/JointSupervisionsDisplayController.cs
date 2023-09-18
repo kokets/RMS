@@ -28,7 +28,6 @@ namespace HSRC.Controllers
                     {
                         SupervisionID = opportunities.SupervisionID,
                         Budgetyears = opportunities.Budgetyears,
-                        BudgetYear = opportunities.BudgetYear,
                         SuperVisor = opportunities.SuperVisor,
                         Title = opportunities.Title,
                         Institution = opportunities.Institution,

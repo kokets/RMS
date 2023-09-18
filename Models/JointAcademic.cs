@@ -13,11 +13,6 @@ namespace HSRC_RMS.Models
         [Key] // This attribute marks GiftId as the primary key
         public int AcademicId { get; set; }
 
-
-
-        [Required(ErrorMessage = "Opportunity Title is required")]
-        public int? BudgetYear { get; set; }
-
         [Required(ErrorMessage = "Opportunity Title is required")]
         public string? Budgetyears { get; set; }
 
@@ -52,8 +47,6 @@ namespace HSRC_RMS.Models
     {
         [Key] // This attribute marks GiftId as the primary key
         public int AcademicId { get; set; }
-
-		public int? BudgetYear { get; set; }
 
         public string? Budgetyears { get; set; }
 

@@ -28,8 +28,6 @@ namespace HSRC.Controllers
 					{
 						AcademicId = opportunities.AcademicId,
                         Budgetyears = opportunities.Budgetyears,
-
-                        BudgetYear = opportunities.BudgetYear,
 						Staff = opportunities.Staff,
 						Position = opportunities.Position,
 						Institution = opportunities.Institution,

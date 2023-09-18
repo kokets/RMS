@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 
 //model to handle all the gifts database queries
@@ -16,8 +17,6 @@ namespace HSRC_RMS.Models
         [Required(ErrorMessage = "Opportunity Title is required")]
         public string? Budgetyears { get; set; }
 
-        [Required(ErrorMessage = "Opportunity Title is required")]
-        public int? BudgetYear { get; set; }
 
         [Required(ErrorMessage = "Opportunity Funder is required")]
         public string? Puiblisher { get; set; }
@@ -50,7 +49,7 @@ namespace HSRC_RMS.Models
         [Key] // This attribute marks GiftId as the primary key
         public int PublicationdID { get; set; }
 
-        public int? BudgetYear { get; set; }
+       
         public string? Budgetyears { get; set; }
 
 
@@ -73,4 +72,32 @@ namespace HSRC_RMS.Models
 
     }
 
+
+    public class JointPublicationsEditGet
+    {
+
+        public List<SelectListItem> UsersOptionAsync { get; set; } // New property
+        public List<SelectListItem> TypeOptionsAsync { get; set; } // New property
+        public List<SelectListItem> SupplierOptionsAsync { get; set; } // New property
+
+        public JointPublicationsRegister NewEditCapture { get; set; }
+        public List<JointPublicationsRegister> LicenseEditList { get; set; }
+
+
+        public int PublicationdID { get; set; } // Add this property
+
+
+        public JointPublicationsEditGet()
+        {
+
+            UsersOptionAsync = new List<SelectListItem>(); // Initialize the list
+            TypeOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            SupplierOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            NewEditCapture = new JointPublicationsRegister();
+            LicenseEditList = new List<JointPublicationsRegister>();
+
+
+
+        }
+    }
 }

@@ -27,9 +27,7 @@ namespace HSRC_RMS.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(JointProjectsRegister model)
         {
-            //Hardcoded user ID for testing
-            int hardcodedUserId = 23;
-            model.BudgetYear = hardcodedUserId;
+            
             if (!ModelState.IsValid)
             {
                 try

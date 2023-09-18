@@ -274,7 +274,7 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td> @Html.DisplayFor(modelItem => item.BudgetYear)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.Budgetyears)</td>
                                             <td> @Html.DisplayFor(modelItem => item.Activity)</td>
                                             <td> @Html.DisplayFor(modelItem => item.Institution)</td>
                                             <td> @Html.DisplayFor(modelItem => item.Title)</td>
@@ -288,12 +288,12 @@
                                             <td data-label="Action">
 
                                                 <div class="buttons">
-                                                    <form asp-controller="" asp-action="Index">
-                                                        <input type="hidden" name="id" value="@item.ActivityID" />
+                                                    <form asp-controller="JointSupervisionsEdit" asp-action="Index">
+                                                        <input type="hidden" name="ActivityID" value="@item.ActivityID" />
                                                         <button type="submit" class="edit-link-button"> <a>Edit</a> </button>
                                                     </form>
-                                                    <form asp-controller="" asp-action="Index" method="post">
-                                                        <input type="hidden" name="giftId" value="@item.ActivityID" />
+                                                    <form asp-controller="JointSupervisionsEdit" asp-action="Delete" method="post">
+                                                        <input type="hidden" name="ActivityID" value="@item.ActivityID" />
                                                         <button type="submit" class="submit-link-button" id="submitButton-@item.ActivityID"><a>Delete</a> </button>
                                                     </form>
                                                 </div>

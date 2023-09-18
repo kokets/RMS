@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using System.Threading;
 namespace HSRC_RMS.Controllers
 {
-    public class JointAcademicEditController : Controller
+    public class JointSupervisionsEditController : Controller
     {
-        private readonly IRepository<JointAcademicRegister> _captureRepository;
+        private readonly IRepository<JointSupervisionsRegister> _captureRepository;
        
 
-        public JointAcademicEditController(IRepository<JointAcademicRegister> captureRepository)
+        public JointSupervisionsEditController(IRepository<JointSupervisionsRegister> captureRepository)
         {
             _captureRepository = captureRepository;
         }
@@ -21,26 +21,25 @@ namespace HSRC_RMS.Controllers
             try
             {
 
-                JointAcademicRegister opportunities = await _captureRepository.GetByIdAsync(academicId);
+                JointSupervisionsRegister opportunities = await _captureRepository.GetByIdAsync(academicId);
                 //TempData["CaptureData"] = captures;
 
 
-                JointAcademicEditGet viewModel = new JointAcademicEditGet
+                JointSupervisionsEditGet viewModel = new JointSupervisionsEditGet
                 {
-                    NewEditCapture = new JointAcademicRegister
+                    NewEditCapture = new JointSupervisionsRegister
                     {
-                        AcademicId = opportunities.AcademicId,
+                        SupervisionID = opportunities.SupervisionID,
                         Budgetyears = opportunities.Budgetyears,
-                        Staff = opportunities.Staff,
-                        Position = opportunities.Position,
+                        SuperVisor = opportunities.SuperVisor,
+                        Title = opportunities.Title,
                         Institution = opportunities.Institution,
-                        Descriptions = opportunities.Descriptions,
                         Status = opportunities.Status,
                         StartDate = opportunities.StartDate,
                         EndDate = opportunities.EndDate,
                         Document = opportunities.Document,
                     },
-                    AcademicId = academicId
+                    SupervisionID = academicId
                 };
 
 
@@ -64,26 +63,25 @@ namespace HSRC_RMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(JointAcademicEditGet model)
+        public async Task<IActionResult> Index(JointSupervisionsEditGet model)
         {
            
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var LicenseToUpdate = await _captureRepository.GetByIdAsync(model.AcademicId);
+                    var LicenseToUpdate = await _captureRepository.GetByIdAsync(model.SupervisionID);
                     if (LicenseToUpdate == null)
                     {
-                        TempData["ErrorMessage"] = "Academic Opportunity not found.";
+                        TempData["ErrorMessage"] = "Supervisor not found.";
                         return NotFound();
                     }
 
                     // Update properties from the model
                     LicenseToUpdate.Budgetyears = model.NewEditCapture.Budgetyears;
-                    LicenseToUpdate.Staff = model.NewEditCapture.Staff;
-                    LicenseToUpdate.Position = model.NewEditCapture.Position;
+                    LicenseToUpdate.SuperVisor = model.NewEditCapture.SuperVisor;
+                    LicenseToUpdate.Title = model.NewEditCapture.Title;
                     LicenseToUpdate.Institution = model.NewEditCapture.Institution;
-                    LicenseToUpdate.Descriptions = model.NewEditCapture.Descriptions;
                     LicenseToUpdate.Status = model.NewEditCapture.Status;
                     LicenseToUpdate.StartDate = model.NewEditCapture.StartDate;
                     LicenseToUpdate.EndDate = model.NewEditCapture.EndDate;
@@ -92,12 +90,12 @@ namespace HSRC_RMS.Controllers
                     await _captureRepository.UpdateAsync(LicenseToUpdate);
                     await _captureRepository.SaveAsync(); // Assuming SaveAsync is the asynchronous method
 
-                    TempData["SuccessMessage"] = "License  updated successfully.";
-                    return RedirectToAction("Index", "JointAcademicDisplay"); // Redirect with success message
+                    TempData["SuccessMessage"] = "Supervisions  updated successfully.";
+                    return RedirectToAction("Index", "JointSupervisionsDisplay"); // Redirect with success message
                 }
                 catch (Exception ex)
                 {
-                    TempData["ErrorMessage"] = "An error occurred while updating the License Type: " + ex.Message;
+                    TempData["ErrorMessage"] = "An error occurred while updating the Supervivisor Type: " + ex.Message;
                     return View(model); // Return to the edit view with error message
                 }
             }
@@ -115,25 +113,24 @@ namespace HSRC_RMS.Controllers
             return View(model);
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> Delete(JointAcademicEditGet model)
+        public async Task<IActionResult> Delete(JointSupervisionsEditGet model)
         {
             try
             {
-                Console.WriteLine(model.AcademicId);
+                Console.WriteLine(model.SupervisionID);
 
-                await _captureRepository.DeleteAsync(model.AcademicId);
+                await _captureRepository.DeleteAsync(model.SupervisionID);
 
-                return RedirectToAction("Index", "JointAcademicDisplay");
+                return RedirectToAction("Index", "JointSupervisionsDisplay");
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return RedirectToAction("Index", "JointAcademicDisplay");
+                return RedirectToAction("Index", "JointSupervisionsDisplay");
 
             }
         }
-
-
     }
 }

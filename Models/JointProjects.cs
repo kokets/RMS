@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 
 //model to handle all the gifts database queries
@@ -14,8 +15,6 @@ namespace HSRC_RMS.Models
 
         public string? Budgetyears { get; set; }
 
-        [Required(ErrorMessage = "Opportunity Title is required")]
-        public int? BudgetYear { get; set; }
 
         [Required(ErrorMessage = "Opportunity Funder is required")]
         public string? ProjectNumber { get; set; }
@@ -47,7 +46,7 @@ namespace HSRC_RMS.Models
         [Key] // This attribute marks GiftId as the primary key
         public int ProjectID { get; set; }
 
-        public int? BudgetYear { get; set; }
+
 
        
         public string? Budgetyears { get; set; }
@@ -69,6 +68,34 @@ namespace HSRC_RMS.Models
         public string? Document { get; set; }
 
 
+    }
+
+    public class JointProjectsEditGet
+    {
+
+        public List<SelectListItem> UsersOptionAsync { get; set; } // New property
+        public List<SelectListItem> TypeOptionsAsync { get; set; } // New property
+        public List<SelectListItem> SupplierOptionsAsync { get; set; } // New property
+
+        public JointProjectsRegister NewEditCapture { get; set; }
+        public List<JointProjectsRegister> LicenseEditList { get; set; }
+
+
+        public int ProjectID { get; set; } // Add this property
+
+
+        public JointProjectsEditGet()
+        {
+
+            UsersOptionAsync = new List<SelectListItem>(); // Initialize the list
+            TypeOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            SupplierOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            NewEditCapture = new JointProjectsRegister();
+            LicenseEditList = new List<JointProjectsRegister>();
+
+
+
+        }
     }
 
 }

@@ -38,6 +38,17 @@ namespace HSRC_RMS.Helpers
         /**Gift Register Tables End**/
 
 
+        /**Collaborations Tables Start**/
+
+        public DbSet<JointAcademicRegister> JointAcademic { get; set; }
+        public DbSet<JointActivitiesRegister> JointActivities { get; set; }
+        public DbSet<JointProjectsRegister> JointProjects { get; set; }
+        public DbSet<JointPublicationsRegister> JointPublications { get; set; }
+        public DbSet<JointSupervisionsRegister> JointSupevisions { get; set; }
+
+        /**Collaborations Tables End**/
+
+
         /**License Tables start**/
 
         public DbSet<LicenseSupplies> LicenseSupply { get; set; }
