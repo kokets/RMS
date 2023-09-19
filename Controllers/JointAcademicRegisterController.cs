@@ -27,7 +27,7 @@ namespace HSRC_RMS.Controllers
 		[ValidateAntiForgeryToken]
 		public IActionResult Index(JointAcademicRegister model)
 		{
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
 			{
 				try
 				{

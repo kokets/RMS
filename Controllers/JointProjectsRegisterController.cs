@@ -28,7 +28,7 @@ namespace HSRC_RMS.Controllers
         public IActionResult Index(JointProjectsRegister model)
         {
             
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {

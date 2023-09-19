@@ -29,7 +29,7 @@ namespace HSRC_RMS.Controllers
         {
             
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {

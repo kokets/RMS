@@ -29,7 +29,7 @@ namespace HSRC_RMS.Controllers
         {
             //Hardcoded user ID for testing
             
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {

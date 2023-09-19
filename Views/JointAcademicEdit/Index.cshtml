@@ -185,14 +185,7 @@
                                             Budget Year
                                             <span class="mandatory-star">*</span>
 
-                                            @*    <select id="selectType" name="User" onchange="updateLicenseUser(this)">
-                                            <option value="">-- Select License Owner --</option>
-                                            @foreach (var Username in Model.LicenseCUsersList)
-                                            {
-                                            <option value="@Username">@Username</option>
-                                            }
-                                            </select>
-                                            *@
+                                         
                                             @Html.DropDownListFor(model => model.NewEditCapture.Budgetyears, DropdownHelpers.GetBudgetYearOptions()
                                             , "--Please Select--", new { required = "required", id = "Budgetyears" })
                                             @Html.ValidationMessageFor(model => model.NewEditCapture.Budgetyears)

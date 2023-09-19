@@ -275,8 +275,8 @@
                                         <tr>
                                             <td> @Html.DisplayFor(modelItem => item.Budgetyears)</td>
                                             <td> @Html.DisplayFor(modelItem => item.ProjectNumber)</td>
-                                            <td> @Html.DisplayFor(modelItem => item.Institution)</td>
                                             <td> @Html.DisplayFor(modelItem => item.Title)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.Institution)</td>
                                             <td> @Html.DisplayFor(modelItem => item.StartDate)</td>
                                             <td> @Html.DisplayFor(modelItem => item.EndDate)</td>
                                             <td> @Html.DisplayFor(modelItem => item.Document)</td>
@@ -286,12 +286,12 @@
                                             <td data-label="Action">
 
                                                 <div class="buttons">
-                                                    <form asp-controller="" asp-action="Index">
-                                                        <input type="hidden" name="id" value="@item.ProjectID" />
-                                                        <button type="submit" class="edit-link-button"> <a>Edit</a> </button>
+                                                    <form asp-controller="JointProjectsEdit" asp-action="Index" method="get">
+                                                        <input type="hidden" name="academicId" value="@item.ProjectID" />
+                                                        <button type="submit" class="submit-link-button"><a>Edit</a> </button>
                                                     </form>
-                                                    <form asp-controller="" asp-action="Index" method="post">
-                                                        <input type="hidden" name="giftId" value="@item.ProjectID" />
+                                                    <form asp-controller="JointProjectsEdit" asp-action="Delete" method="post">
+                                                        <input type="hidden" name="ProjectID" value="@item.ProjectID" />
                                                         <button type="submit" class="submit-link-button" id="submitButton-@item.ProjectID"><a>Delete</a> </button>
                                                     </form>
                                                 </div>

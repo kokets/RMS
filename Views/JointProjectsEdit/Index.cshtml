@@ -176,14 +176,14 @@
                         <form asp-controller="JointProjectsEdit" asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()">
                             @Html.AntiForgeryToken()
 
-                            <input type="hidden" name="AcademicId" value="@Model.ProjectID" />
+                            <input type="hidden" name="ProjectID" value="@Model.ProjectID" />
 
                             <div class="">
                                 <div class="search-section">
 
                                     <div class="medium-12 cell ">
                                         <label>
-                                            License Owner
+                                            Budget Year
                                             <span class="mandatory-star">*</span>
 
                                             @*    <select id="selectType" name="User" onchange="updateLicenseUser(this)">
@@ -203,7 +203,7 @@
                                     *@
                                     <div class="medium-12 cell">
                                         <label>
-                                            Product Name
+                                            Project Number
                                             <span class="mandatory-star">*</span>
                                             @Html.TextBoxFor(model => model.NewEditCapture.ProjectNumber, new { required = "required"  ,id = "Staff"})
                                             @Html.ValidationMessageFor(model => model.NewEditCapture.ProjectNumber)
@@ -212,14 +212,14 @@
                                     </div>
                                     <div class="medium-12 cell ">
                                         <label>
-                                            Product Key
+                                            Title
                                             <span class="mandatory-star">*</span>
                                             @Html.TextBoxFor(model => model.NewEditCapture.Title, new { required = "required"  ,id = "Position"})
                                             @Html.ValidationMessageFor(model => model.NewEditCapture.Title)
                                         </label>
                                     </div><div class="medium-12 cell ">
                                         <label>
-                                            License Type
+                                            Instittution
                                             <span class="mandatory-star">*</span>
 
                                             @*      <select id="selectType" name="Type" onchange="updateLicenseType(this)">
@@ -234,20 +234,9 @@
 
                                         </label>
                                     </div>
-                                    @*                                     @Html.HiddenFor(model => model.NewLicenseCapture.LicenseType, new { id = "LicenseType" })
-                                    *@                                    <div class="medium-12 cell ">
+                                    <div class="medium-12 cell ">
                                         <label>
-                                            Acquired Date
-                                            <span class="mandatory-star">*</span>
-                                            @Html.TextBoxFor(model => model.NewEditCapture.Institution, new { required = "required", @class = "form-control" })
-
-@*                                             @Html.EditorFor(model => model.NewEditCapture.AcquiredDate, new { htmlAttributes = new { @class = "form-control" , type = "date" } })
-                                            *@                                            @Html.ValidationMessageFor(model => model.NewEditCapture.Institution)
-
-                                        </label>
-                                    </div><div class="medium-12 cell ">
-                                        <label>
-                                            Expiry Date
+                                            Start Date
                                             <span class="mandatory-star">*</span>
                                             @Html.TextBoxFor(model => model.NewEditCapture.StartDate, new { required = "required", @class = "form-control", type = "date" })
 
@@ -258,7 +247,7 @@
                                         </label>
                                     </div><div class="medium-12 cell ">
                                         <label>
-                                            Activations
+                                            End Date
 
                                             <span class="mandatory-star">*</span>
                                             @Html.TextBoxFor(model => model.NewEditCapture.EndDate, new { required = "required"  ,id = "EndDate",type = "date" })
@@ -267,7 +256,7 @@
                                         </label>
                                     </div><div class="medium-12 cell ">
                                         <label>
-                                            License Status
+                                            Document
                                             <span class="mandatory-star">*</span>
 
                                             <span class="mandatory-star">*</span>
@@ -277,7 +266,7 @@
                                         </label>
                                     </div><div class="medium-12 cell ">
                                         <label>
-                                            Supplier
+                                            Status
                                             @* <select id="selectSupplier" name="Supplier" onchange="updateLicenseSupply(this)">
                                             <option value="">-- Select Supplier --</option>
                                             @foreach (var supplier in Model.LicenseCSuppliesList)

@@ -258,13 +258,13 @@
                                 <thead>
                                     <tr class="color-pellette-0">
                                         <th scope="col" width="8%">Budget Year</th>
-                                        <th scope="col" width="8%">Staff</th>
+                                        <th scope="col" width="8%">Activity</th>
+                                        <th scope="col" width="10%">Title</th>
                                         <th scope="col" width="15%">Institution</th>
-                                        <th scope="col" width="15%">Position</th>
-                                        <th scope="col" width="9%">Description</th>
-                                        <th scope="col" width="10%">Start Date</th>
-                                        <th scope="col" width="10%">End Date</th>
-                                        <th scope="col" width="16%">Document</th>
+                                        <th scope="col" width="15%">Description</th>
+                                        <th scope="col" width="10%">Collaboration</th>
+                                        <th scope="col" width="8%">Date</th>
+                                        <th scope="col" width="10%">Document</th>
                                         <th scope="col" width="8%">Status</th>
                                         <th scope="col" width="8%">Action</th>
                                     </tr>
@@ -288,11 +288,11 @@
                                             <td data-label="Action">
 
                                                 <div class="buttons">
-                                                    <form asp-controller="JointSupervisionsEdit" asp-action="Index">
-                                                        <input type="hidden" name="ActivityID" value="@item.ActivityID" />
+                                                    <form asp-controller="JointActivitiesEdit" asp-action="Index" method="get">
+                                                        <input type="hidden" name="academicId" value="@item.ActivityID" />
                                                         <button type="submit" class="edit-link-button"> <a>Edit</a> </button>
                                                     </form>
-                                                    <form asp-controller="JointSupervisionsEdit" asp-action="Delete" method="post">
+                                                    <form asp-controller="JointActivitiesEdit" asp-action="Delete" method="post">
                                                         <input type="hidden" name="ActivityID" value="@item.ActivityID" />
                                                         <button type="submit" class="submit-link-button" id="submitButton-@item.ActivityID"><a>Delete</a> </button>
                                                     </form>

@@ -136,30 +136,17 @@
     <div class="section3 color-pellette-8 text-center">
         <div class="row padding_40 ">
             <div class="columns small-8 medium-centered small-centered large-centered">
-                <h4>Collaborations - Joint Academic Edit</h4>
+                <h4>Collaborations - Joint Activities Edit</h4>
                 <p class="anim-text">Social science that makes a difference</p>
             </div>
-            <a asp-controller="JointAcademicDisplay" asp-action="Index"
+            <a asp-controller="JointActivitiesDisplay" asp-action="Index"
                class="button radius padding_10">Back</a>
             <a asp-controller="Home" asp-action="Index"
                class="button radius padding_10">Home</a>
         </div>
     </div>
     <!-- Display success message if available -->
-    @if (TempData.ContainsKey("SuccessMessage"))
-    {
-        <div class="alert alert-success">
-            @TempData["SuccessMessage"]
-        </div>
-    }
-
-    <!-- Display error message if available -->
-    @if (TempData.ContainsKey("ErrorMessage"))
-    {
-        <div class="alert alert-danger">
-            @TempData["ErrorMessage"]
-        </div>
-    }
+   
     
     <div class="section5 color-pellette-5  ">
         <div class="row collapse  " data-equalizer>
@@ -276,7 +263,7 @@
                                             <span class="mandatory-star">*</span>
 
                                             <span class="mandatory-star">*</span>
-                                            @Html.DropDownListFor(model => model.NewEditCapture.Status, DropdownHelpers.GetBudgetYearOptions(), new { required = "required" ,id = "TextBoxFor"})
+                                            @Html.DropDownListFor(model => model.NewEditCapture.Status, DropdownHelpers.GetStatusOption(), new { required = "required" ,id = "Status"})
                                             @Html.ValidationMessageFor(model => model.NewEditCapture.Status)
 
                                         </label>
