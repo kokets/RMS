@@ -374,12 +374,12 @@ class MethodHandler {
     }
 
     printTableData() {
-    var divToPrint = document.getElementById("event-table");
-    var newWin = window.open("");
-    newWin.document.write(divToPrint.outerHTML);
-    newWin.print();
-    newWin.close();
-}
+        var divToPrint = document.getElementById("event-table");
+        var newWin = window.open("");
+        newWin.document.write(divToPrint.outerHTML);
+        newWin.print();
+        newWin.close();
+    }
 }
 class PdfCopyExcelCsv {
     static ExportToExcel(type, fn, dl) {

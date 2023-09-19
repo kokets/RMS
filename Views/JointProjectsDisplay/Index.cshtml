@@ -227,7 +227,7 @@
                             <div class="above-table">
                                 <div class="buttons-row ">
 
-                                    <button class="download-buttons" onclick="generatePDF()">Print</button>
+                                    <button class="download-buttons" onclick="generatenewPDF()">Print</button>
                                     <button class="download-buttons" onclick="copyTable(document.getElementById('event-table'))">Copy</button>
                                     @*                                 <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
                                     *@                                <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
@@ -481,12 +481,29 @@
                 alert("Copying failed. Please try again.");
             }
         }
-        function printData() {
-            var divToPrint = document.getElementById("event-table");
-            var newWin = window.open("");
-            newWin.document.write(divToPrint.outerHTML);
-            newWin.print();
-            newWin.close();
+        function generatenewPDF() {
+            const table = document.getElementById("event-table");
+
+            // Create an HTML2PDF options object (optional)
+            const pdfOptions = {
+                margin: 5,
+                filename: 'JointAcademics.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
+            };
+
+            // Use html2pdf.js to generate the PDF
+            html2pdf()
+                .from(table)
+                .set(pdfOptions)
+                .save()
+                .then(function () {
+                    console.log("PDF saved successfully");
+                })
+                .catch(function (error) {
+                    console.error("Error saving PDF:", error);
+                });
         }
     </script>
 

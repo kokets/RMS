@@ -226,7 +226,7 @@
                         <div id="table1" class="table-template">
                             <div class="above-table">
                                 <div class="buttons-row ">
-                                    <button class="download-buttons" onclick="methodHandler.printTableData()">Print</button>
+                                    <button class="download-buttons" onclick="generatenewPDF()">Print</button>
                                     <button class="download-buttons" onclick="copyTable(document.getElementById('event-table'))">Copy</button>
                                     @*                                 <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
                                     *@                                <button class="download-buttons" onclick="ExportToExcel('xlsx')">Excel</button>
@@ -252,8 +252,8 @@
                                 </div>
                             </div>
                             <table id="event-table">
+                                <h3>     <a asp-controller="JointAcademicRegister" asp-action="Index">REGISTER NEW JOINT Academic Opportunity</a></h3>
 
-                                <h3>     <a asp-controller="JointAcademicRegister" asp-action="Index">REGISTER NEW JOINT ACADEMIC OPPORTUNITY</a></h3>
                                 <thead>
                                     <tr class="color-pellette-0">
                                         <th scope="col" width="8%">Budget Year</th>
@@ -282,7 +282,7 @@
                                             <td> @Html.DisplayFor(modelItem => item.EndDate)</td>
                                             <td> @Html.DisplayFor(modelItem => item.Document)</td>
                                             <td> @Html.DisplayFor(modelItem => item.Status)</td>
-                                           
+
 
                                             <td data-label="Action">
 
@@ -291,7 +291,7 @@
                                                         <input type="hidden" name="academicId" value="@item.AcademicId" />
                                                         <button type="submit" class="submit-link-button"><a>Edit</a> </button>
                                                     </form>
-                                                    <form asp-controller="JointSupervisionsEdit" asp-action="Delete" method="post">
+                                                    <form asp-controller="JointAcademicEdit" asp-action="Delete" method="post">
                                                         <input type="hidden" name="AcademicId" value="@item.AcademicId" />
                                                         <button type="submit" class="submit-link-button" id="submitButton-@item.AcademicId"><a>Delete</a> </button>
                                                     </form>
@@ -321,10 +321,11 @@
                   Java scripts
     /***************************************/-->
 
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.10/xlsx.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 
 
     <script src="~/js/JavaScript.js"></script>
@@ -364,7 +365,7 @@
 
     <script>
         async function generatePDF() {
-            const table = document.getElementById('event-table');
+            const table = document.getElementById("event-table");
             const pdfOptions = {
                 margin: 10,
                 filename: 'new.pdf',
@@ -389,25 +390,25 @@
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 
     <script>
-      function ExportToExcel(type, fn, dl) {
-    var elt = document.getElementById('event-table');
-    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+        function ExportToExcel(type, fn, dl) {
+            var elt = document.getElementById('event-table');
+            var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
 
-    // Specify the desired date format
-    var dateFormat = 'yyyy-MM-dd';
+            // Specify the desired date format
+            var dateFormat = 'yyyy-MM-dd';
 
-    // Set date format for Excel
-    var ws = wb.Sheets["sheet1"];
-    ws["!cols"] = [
-        { wch: 15 }, { wch: 15 }, { wch: 15 }, /* ... other column widths ... */
-        { wch: dateFormat.length } // Set column width for date column
-    ];
-    ws["!dateFormats"] = [dateFormat]; // Set the desired date format
+            // Set date format for Excel
+            var ws = wb.Sheets["sheet1"];
+            ws["!cols"] = [
+                { wch: 15 }, { wch: 15 }, { wch: 15 }, /* ... other column widths ... */
+                { wch: dateFormat.length } // Set column width for date column
+            ];
+            ws["!dateFormats"] = [dateFormat]; // Set the desired date format
 
-    return dl ?
-        XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64', dateNF: dateFormat }) :
-        XLSX.writeFile(wb, fn || ('Gift.' + (type || 'xlsx')));
-}
+            return dl ?
+                XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64', dateNF: dateFormat }) :
+                XLSX.writeFile(wb, fn || ('Gift.' + (type || 'xlsx')));
+        }
 
 
         function download_csv(csv, filename) {
@@ -482,13 +483,31 @@
                 alert("Copying failed. Please try again.");
             }
         }
-        function printData() {
-            var divToPrint = document.getElementById("event-table");
-            var newWin = window.open("");
-            newWin.document.write(divToPrint.outerHTML);
-            newWin.print();
-            newWin.close();
+        function generatenewPDF() {
+            const table = document.getElementById("event-table");
+
+            // Create an HTML2PDF options object (optional)
+            const pdfOptions = {
+                margin: 5,
+                filename: 'JointAcademics.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
+            };
+
+            // Use html2pdf.js to generate the PDF
+            html2pdf()
+                .from(table)
+                .set(pdfOptions)
+                .save()
+                .then(function () {
+                    console.log("PDF saved successfully");
+                })
+                .catch(function (error) {
+                    console.error("Error saving PDF:", error);
+                });
         }
+
     </script>
 
 
