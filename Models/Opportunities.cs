@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 
 //model to handle all the gifts database queries
@@ -24,13 +25,13 @@ namespace HSRC_RMS.Models
         public string? Program { get; set; }
 
         [Required(ErrorMessage = "Opportunity Status is required")]
-        public bool Status { get; set; }
+        public string? Status { get; set; }
 
         [Required(ErrorMessage = "Opportunity Url is required")]
         public string? Url { get; set; }
 
         [Required(ErrorMessage = "Opportunity SubmissionDate is required")]
-        public string? SubmissionDate { get; set; }
+        public DateTime? SubmissionDate { get; set; }
 
     }
 
@@ -50,11 +51,51 @@ namespace HSRC_RMS.Models
 
         public string? Program { get; set; }
 
-        public bool Status { get; set; }
+        public string Status { get; set; }
         public string? Url { get; set; }
-        public string? SubmissionDate { get; set; }
+        public DateTime? SubmissionDate { get; set; }
 
 
     }
+
+    public class OpportunitiesEditGet
+    {
+
+        public List<SelectListItem> UsersOptionAsync { get; set; } // New property
+        public List<SelectListItem> TypeOptionsAsync { get; set; } // New property
+        public List<SelectListItem> SupplierOptionsAsync { get; set; } // New property
+
+        public OpportunitiesRegister NewEditCapture { get; set; }
+        public List<OpportunitiesRegister> LicenseEditList { get; set; }
+
+
+        public int opportunityId { get; set; } // Add this property
+
+
+        public OpportunitiesEditGet()
+        {
+
+            UsersOptionAsync = new List<SelectListItem>(); // Initialize the list
+            TypeOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            SupplierOptionsAsync = new List<SelectListItem>(); // Initialize the list
+            NewEditCapture = new OpportunitiesRegister();
+            LicenseEditList = new List<OpportunitiesRegister>();
+
+
+
+        }
+    }
+
+
+	public class OpportunitiesViewGet
+	{
+		public OpportunitiesRegister NewViewLicense { get; set; }
+		public int opportunityId { get; set; } // Add this property
+
+		public OpportunitiesViewGet()
+		{
+			NewViewLicense = new OpportunitiesRegister();
+		}
+	}
 
 }

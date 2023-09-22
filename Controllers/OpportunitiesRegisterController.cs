@@ -2,6 +2,7 @@
 using HSRC_RMS.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System;
 
 namespace HSRC_RMS.Controllers
 {
@@ -25,29 +26,41 @@ namespace HSRC_RMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(OpportunitiesRegister model)
+        public async Task<IActionResult> Index(OpportunitiesRegister model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Hardcoded user ID for testing
-                    int hardcodedUserId = 1;
-                    model.UserId = hardcodedUserId;
+                    Random random = new Random();
 
-                    //add the opportuinity
-                    _opportunityRegister.Add(model);
-                    _opportunityRegister.Save();
+                    //Generate a random integer between 1 and 100 (inclusive)
+                    int randomNumber = random.Next(1, 150001);
+                    int? userId = HttpContext.Session.GetInt32("UserId");
 
+                    if (userId.HasValue)
+                    {
+                        model.UserId = userId.Value;
+                        Console.WriteLine($"UserId: {model.UserId}");
+                        model.opportunityId = randomNumber;
+                        Console.WriteLine($"UserId: {model.UserId}");
 
-                   
+                        // Add the gift
+                        await _opportunityRegister.AddAsync(model);
+                        await _opportunityRegister.SaveAsync();
+                        // Add the default comment
+                       
+                        TempData["SuccessMessage"] = "Opportunity registered successfully";
 
-                    //_commentRepository.Add(defaultComment);
-                    //_commentRepository.Save();
-
-                    TempData["SuccessMessage"] = "Opportunity registered successfully.";
-
-                    return RedirectToAction("Index", "OpportunitiesDisplay");
+                        return RedirectToAction("Index", "OpportunitiesDisplay");
+                    }
+                    else
+                    {
+                        // Handle the case where UserId is not found in the session
+                        ModelState.AddModelError("", "User information not found. Please log in.");
+                        return RedirectToAction("Index", "Login");
+                    }
+     
                 }
                 catch (Exception)
                 {

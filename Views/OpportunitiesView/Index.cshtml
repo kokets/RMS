@@ -1,66 +1,59 @@
-@model HSRC_RMS.Models.OpportunitiesRegister
+@model HSRC_RMS.Models.OpportunitiesViewGet
 @using HSRC_RMS.Helpers
-@{
-    ViewData["Title"] = "Gift";
-}
 
+@{
+    ViewData["Title"] = "Opportunities View";
+}
 <head>
+
     <style>
 
 
-        .mandatory-star {
-            color: red; /* Set the color of the star */
-            margin-left: 3px; /* Adjust the space between the label and the star */
-        }
 
-        .comments-container {
-            max-height: 500px; /* Set a maximum height for the container */
-            overflow-y: auto; /* Add vertical scrollbar when the content exceeds the maximum height */
-        }
 
-        .event-form {
-            align-content: center;
-            justify-content: center;
-        }
-
-        .save-buttons {
-            background-color: grey;
-            height: 35px;
-            width: 100px;
-            border-radius: 6px;
-            color: white;
-            font-family: inherit;
-            margin-top: 15px;
-        }
-
-        .cancel-buttons {
-            background-color: grey;
-            height: 35px;
-            width: 70px;
-            border-radius: 6px;
-            color: white;
-            font-family: inherit;
-            margin-top: 15px;
-        }
-
-        .buttons-row {
-            display: flex; /* Nested flex container */
-            gap: 10px; /* Add spacing between buttons and select */
-        }
-
-        
-
-        .required {
+        .view-mo-menu {
             display: flex;
-            color: red;
-            justify-content: flex-end;
+            justify-content: center;
+            padding: 10px;
+            margin-top: -20px; /* Adjust this value as needed */
         }
 
-        .invalid-field {
-            border: 1px solid red;
-            background-color: #ffcccc;
+        .view-mou-menu {
+            display: flex;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            list-style: none;
+            width: 205px;
         }
 
+            .view-mou-menu a {
+                position: relative;
+                width: 100%;
+                display: table-cell;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 10px 20px;
+                transition: 0.2s ease color;
+                border-right: 1px solid #ccc; /* Add right border to create a line separator */
+            }
+
+                .view-mou-menu a:last-child {
+                    border-right: none; /* Remove right border for the last link */
+                }
+
+                .view-mou-menu a:before, .view-mou-menu a:after {
+                    position: absolute;
+                    border-radius: 50%;
+                    transform: scale(0);
+                    transition: 0.2s ease transform;
+                }
+
+                .view-mou-menu a:after {
+                    top: 5%;
+                    left: 18px;
+                    width: 20px;
+                    height: 4px;
+                }
 
     </style>
 </head>
@@ -94,23 +87,7 @@
                     <!-- Sample menu definition -->
                     <ul id="main-menu" class="sm sm-mint">
                         <li><a asp-controller="Projects1" asp-action="Index">Time Recording</a></li>
-                        <li>
-                            <a href="#">About</a>
-                            <ul>
-                                <li><a href="#">Introduction to SmartMenus jQuery</a></li>
-                                <li><a href="#">Demos + themes</a></li>
-                                <li><a href="#">The author</a></li>
-                                <li>
-                                    <a href="#">The company</a>
-                                    <ul>
-                                        <li><a href="#">About Vadikom</a></li>
-                                        <li><a href="#">Projects</a></li>
-                                        <li><a href="#">Services</a></li>
-                                        <li><a href="#">Privacy policy</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
+
                         <li><a asp-controller="Projects" asp-action="Index">Projects</a></li>
                         <li class="dropdowng color-pellette-0">
                             <a asp-controller="Projects1" asp-action="Index">Reports</a>
@@ -128,10 +105,11 @@
                                 <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Resourse Output</a></li>
                                 <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Time Recording </a></li>
                                 <li class="color-pellette-0"><a asp-controller="GiftDisplay" asp-action="Index">Interns </a></li>
+
                                 <li class="has-submenu color-pellette-0">
                                     <a asp-controller="" asp-action="Index">Gift </a>
                                     <ul class="subg-menu color-pellette-0">
-                                        <li class="color-pellette-0"><a asp-controller="GiftReport" asp-action="Index">My Gift</a></li>
+                                        <li class="color-pellette-0"><a asp-controller="MyGift" asp-action="Index">My Gift</a></l>
 
                                     </ul>
                                 </li>
@@ -149,7 +127,6 @@
                         <li>
                             <a asp-controller="Projects1" asp-action="Index">Budget</a>
                         </li>
-
                         <li class="dropdowng color-pellette-0">
                             <a asp-controller="BudgetYears" asp-action="Index">SYSTEM MANAGEMENT</a>
                             <ul class="dropdowng-menu color-pellette-0">
@@ -186,7 +163,6 @@
     </div>
 
 
-
     <!--/***************************************/
              ----   section-3  ----
          ----   OTHER DEFENITIONS  ----
@@ -195,7 +171,7 @@
     <div class="section3 color-pellette-8 text-center">
         <div class="row padding_40 ">
             <div class="columns small-8 medium-centered small-centered large-centered">
-                <h4>Opportunities Register</h4>
+                <h4>Opportunities Details</h4>
                 <p class="anim-text">Social science that makes a difference</p>
             </div>
             <a asp-controller="OpportunitiesDisplay" asp-action="Index"
@@ -207,99 +183,118 @@
 
 
 
-    <div class="section5  color-pellette-5 ">
-        <div class="row collapse   " data-equalizer>
+
+    <div class="section5 color-pellette-5">
+        <div class="row collapse" data-equalizer>
             <div class="large-12 medium-12 small-12 columns">
-                <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch  ">
-                    <div class="content-blocks content-blocks-0 ">
-                        <div class="required"><span class="mandatory-star">*</span> Required </div>
-
-                        <form id="opportunityForm" asp-action="Index" method="post" onsubmit="return MethodHandler.GiftValidateForm()">
-                            <div class="">
-                                <div class="search-section">
-
-                                    <div class="medium-12 cell ">
-                                        <label>
-                                            Title <span class="mandatory-star">*</span>
-                                            <input type="text" />
-
-                                        </label>
-                                    </div>
-                                    <div class="medium-12 cell">
-                                        <label>
-                                            Funder  <span class="mandatory-star">*</span>
-
-                                            <input type="text" />
-
-                                        </label>
-                                    </div>
-
-                                    <div class="medium-12 cell">
-                                        <label>
-                                            Program
-                                            <span class="mandatory-star">*</span>
-
-                                            <input type="text" />
-                                        </label>
-                                    </div>
-
-                                    <div class="medium-12 cell">
-                                        <label>
-                                            Status
-                                            <span class="mandatory-star">*</span>
-
-                                            <select>
-                                                <option value="D -GE Support Service">---Please Select--</option>
-                                                <option value="D -GE Support Service">Open</option>
-                                                <option value="D -GE Support Service">Closed</option>
-
-                                            </select>
-                                        </label>
-                                    </div>
-                                    <div class="medium-12 cell">
-                                        <label>
-                                            Url
-                                            <span class="mandatory-star">*</span>
-
-                                            <input type="text" />
-                                        </label>
-                                    </div>
-                                    <div class="medium-12 cell">
-                                        <label>
-                                            Submission Date
-                                            <span class="mandatory-star">*</span>
-
-                                            <input type="text" />
-                                        </label>
-                                    </div>
+                <div class="large-12 medium-12 small-12 columns padding_10 data-equalizer-watch">
 
 
+                    <div class="content-blocks content-blocks-0">
+@* 
+                        <h3><a asp-controller="License" asp-action="Index"> Back to Dashboard</a></h3>
+                        <h3><a asp-controller="LicenseList" asp-action="Index"> Back to License </a></h3> *@
 
-                                    <div class="medium-12 cell buttons-row">
-                                        <a asp-controller="OpportunitiesRegister" asp-action="Index" style="display: flex; justify-content: center; align-items: center;  background-color: grey; height: 35px; width: 150px; border-radius: 6px; color: white; font-family: inherit; margin-top: 15px; text-align: center;">Save Information</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                          
+                        <div id="table2" class="table-template" >
+                            <table id="event-table">
+                          
+                                        <tr class="data-row">
+                                            <td data-label=" Call ID" class="color-pellette-4 short-column">
+                                                Call ID
+                                            </td>
+                                            <td data-label=" Call ID">
+                                        @Model.NewViewLicense.opportunityId
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="ProductName" class="color-pellette-4">Product</td>
+                                            <td data-label="ProductName">
+                                        @Model.NewViewLicense.Title
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label=" ProductKey" class="color-pellette-4">Key		</td>
+                                            <td data-label="ProductKey">
+                                        @Model.NewViewLicense.Funder
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="LicenseType" class="color-pellette-4">Type		</td>
+                                            <td data-label="LicenseType">
+                                        @Model.NewViewLicense.Program
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="ExpiryDate" class="color-pellette-4">Expiry Date			</td>
+                                            <td data-label="ExpiryDate">
+                                        @Model.NewViewLicense.SubmissionDate
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="Activations" class="color-pellette-4">Activations		</td>
+                                            <td data-label="Activations">
+                                        @Model.NewViewLicense.Url
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="LicenseStatus" class="color-pellette-4">Status		</td>
+                                            <td data-label="LicenseStatus">
+                                        @Model.NewViewLicense.Status
+
+                                            </td>
+                                        </tr>
+                                       
+                          
+
+                            </table>
+                       
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
     </div>
 
 
-    <!--/***************************************/
-                  Java scripts
-    /***************************************/-->
-    <script src="~/js/JavaScript.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js@1.11.0/dist/toastify.min.js"></script>
-    <!-- Include jQuery library -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Include SweetAlert library for the popup -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!--/***************************************/
+                      Java scripts
+        /***************************************/-->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/js.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="~/js/JavaScript.js"></script>
 
 
+        <!-- SmartMenus jQuery plugin -->
+        <script type="text/javascript" src="js/jquery.smartmenus.js"></script>
+
+        <!-- SmartMenus jQuery init -->
+        <script type="text/javascript">
+            $(function () {
+                $('#main-menu').smartmenus({
+                    subMenusSubOffsetX: 1,
+                    subMenusSubOffsetY: -8
+                });
+            });
 
 
+        </script>
+
+        <script>
+            const animationsHandler = new AnimationsHandler();
+
+            document.addEventListener("DOMContentLoaded", () => {
+                animationsHandler.initTextAnimation();
+                animationsHandler.applyTableAnimation();
+            });
+        </script>
+        <script src="js/vendor/what-input.js"></script>
+        <script src="js/vendor/foundation.js"></script>
+        <script type="text/javascript" src="script.js"></script>
 
 </body>
